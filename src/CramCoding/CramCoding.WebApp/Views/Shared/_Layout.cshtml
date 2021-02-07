@@ -31,6 +31,9 @@
                         <a class="nav-link" asp-controller="Home" asp-action="Page3">Page 3</a>
                     </li>
                 </ul>
+                <ul class="navbar-nav ml-auto">
+                    <partial name="_LoginPartial" />
+                </ul>
             </div>
         </nav>
     </header>
@@ -41,6 +44,7 @@
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    @RenderSection("Scripts", required: false);
 
 </body>
 </html>

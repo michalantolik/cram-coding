@@ -29,7 +29,9 @@ namespace CramCoding.WebApp
                 );
             });
 
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<ApplicationRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

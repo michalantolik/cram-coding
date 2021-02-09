@@ -1,6 +1,6 @@
 ﻿namespace CramCoding.WebApp.Models
 {
-    internal enum Role
+    public enum Role
     {
         AdminUser,
         BasicUser,

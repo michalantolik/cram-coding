@@ -32,6 +32,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    @if (User.IsInRole(Role.AdminUser.ToString()))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                        </li>
+                    }
                     <partial name="_LoginPartial" />
                 </ul>
             </div>

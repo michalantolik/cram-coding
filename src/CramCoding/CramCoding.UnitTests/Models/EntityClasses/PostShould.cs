@@ -6,6 +6,22 @@ namespace CramCoding.UnitTests.Models.EntityClasses
 {
     public class PostShould
     {
+        [Fact]
+        public void InitializeCategoriesCollection()
+        {
+            var sut = new Post();
+            Assert.NotNull(sut.Categories);
+            Assert.Empty(sut.Categories);
+        }
+
+        [Fact]
+        public void InitializeTagsCollection()
+        {
+            var sut = new Post();
+            Assert.NotNull(sut.Tags);
+            Assert.Empty(sut.Tags);
+        }
+
         [Theory]
         [InlineData("Architektura oprogramowania", "posts/architektura-oprogramowania")]
         [InlineData("Relacyjne bazy danych", "posts/relacyjne-bazy-danych")]

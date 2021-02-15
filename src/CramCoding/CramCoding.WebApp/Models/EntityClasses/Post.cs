@@ -76,6 +76,8 @@ namespace CramCoding.WebApp.Models.EntityClasses
 
         public ICollection<Tag> Tags { get; set; }
 
+        public ICollection<Comment> Comments { get; set; }
+
         #endregion Navigation properties
 
 

@@ -20,6 +20,7 @@ namespace CramCoding.WebApp.Models.EntityClasses
 
             Categories = new List<Category>();
             Tags = new List<Tag>();
+            Comments = new List<Comment>();
         }
 
         #endregion Constructor

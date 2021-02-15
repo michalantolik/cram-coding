@@ -19,6 +19,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
             UpdatePostAuthor();
             UpdatePostCategory();
             UpdatePostTag();
+            UpdatePostComment();
         }
 
         #endregion Constructor
@@ -89,6 +90,30 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
                 this.tag.Single(c => c.TagId == tagId).Posts.Add(
                     this.post.Single(p => p.PostId == postId)
+                );
+            }
+        }
+
+        private void UpdatePostComment()
+        {
+            LinkPostToComment(1, 1);
+            LinkPostToComment(1, 2);
+            LinkPostToComment(3, 6);
+            LinkPostToComment(5, 3);
+            LinkPostToComment(5, 4);
+            LinkPostToComment(5, 5);
+
+            void LinkPostToComment(int postId, int commentId)
+            {
+                var post = this.post.Single(p => p.PostId == postId);
+                var comment = this.comment.Single(c => c.CommentId == commentId);
+
+                this.post.Single(p => p.PostId == postId).Comments.Add(
+                    this.comment.Single(c => c.CommentId == commentId)
+                );
+
+                this.comment.Single(c => c.CommentId == commentId)
+                    .Post = this.post.Single(p => p.PostId == postId
                 );
             }
         }

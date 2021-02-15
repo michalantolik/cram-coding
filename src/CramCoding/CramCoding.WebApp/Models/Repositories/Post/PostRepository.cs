@@ -25,16 +25,19 @@ namespace CramCoding.WebApp.Models.Repositories
         public void Add(Post post)
         {
             this.context.Post.Add(post);
+            this.context.SaveChanges();
         }
 
         public void Update(Post post)
         {
             this.context.Post.Update(post);
+            this.context.SaveChanges();
         }
 
         public void Delete(Post post)
         {
             this.context.Post.Remove(post);
+            this.context.SaveChanges();
         }
     }
 }

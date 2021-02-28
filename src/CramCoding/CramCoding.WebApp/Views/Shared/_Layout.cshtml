@@ -10,27 +10,14 @@
 </head>
 <body>
 
-    <header class="container">
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
-            <h1 class="navbar-brand">Cram Coding</h1>
+    <!-- Top Navigation -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark text-light px-5 py-4 mb-5">
+        <div class="container">
+            <a class="navbar-brand h1" href="#page-top">CRAM CODING</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="menu" class="navbar-collapse collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Page1">Page 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Page2">Page 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Page3">Page 3</a>
-                    </li>
-                </ul>
                 <ul class="navbar-nav ml-auto">
                     @if (User.IsInRole(Role.AdminUser.ToString()))
                     {
@@ -41,12 +28,73 @@
                     <partial name="_LoginPartial" />
                 </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <div>
-        @RenderBody()
-    </div>
+    <!-- Main Content -->
+    <main class="container">
+        <div class="row">
+
+            <!-- Rendered Body -->
+            <div class="col-md-8">
+                @RenderBody()
+            </div>
+
+            <!-- Sidebars -->
+            <div class="col-md-4 d-flex flex-column">
+
+                <!-- Lorem -->
+                <div class="card mb-5">
+                    <div class="card-header bg-dark text-light">
+                        Lorem
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action border-0">Vivamus</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">Pellentesque</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">Etiam</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ipsum -->
+                <div class="card mb-5">
+                    <div class="card-header bg-dark text-light">
+                        Ipsum
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action border-0 active">Nulla</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">Curabitur</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">Aliquam</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dolor  -->
+                <div class="card mb-5">
+                    <div class="card-header bg-dark text-light">
+                        Dolor
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap">
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">magna </span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">enim </span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">tincidunt</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">blandit</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">vestibulum</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">primis</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">ultrices</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">elementum</span></a>
+                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">placerat</span></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
 
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>

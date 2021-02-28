@@ -23,8 +23,10 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
             AppDbContextMock = new AppDbContext(options);
 
             var repositoryData = new RepositoryData();
+
+            // Provided that Post have related entities defined (relationships are established) ...
+            // ... there is no need to add those entities separately by calling AddRange method
             AppDbContextMock.AddRange(repositoryData.Post);
-            AppDbContextMock.AddRange(repositoryData.Comment);
             AppDbContextMock.SaveChanges();
         }
 

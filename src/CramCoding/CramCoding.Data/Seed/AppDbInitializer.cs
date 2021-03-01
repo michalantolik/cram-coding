@@ -4,14 +4,21 @@ using System.Threading.Tasks;
 
 namespace CramCoding.Data.Seed
 {
-    public static class AppDbInitializer
+    public class AppDbInitializer
     {
-        public static async Task SeedRoles(RoleManager<ApplicationRole> roleManager)
+        private readonly RoleManager<ApplicationRole> roleManager;
+
+        public AppDbInitializer(RoleManager<ApplicationRole> roleManager)
+        {
+            this.roleManager = roleManager;
+        }
+
+        public async Task SeedRolesAsync()
         {
             foreach (var role in RolesSeederData.Data)
             {
                 var roleName = role.Key.ToString();
-                var roleExists = await roleManager.RoleExistsAsync(roleName);
+                var roleExists = await this.roleManager.RoleExistsAsync(roleName);
 
                 if (!roleExists)
                 {
@@ -20,7 +27,7 @@ namespace CramCoding.Data.Seed
                         Name = roleName,
                         Description = role.Value
                     };
-                    await roleManager.CreateAsync(applicationRole);
+                    await this.roleManager.CreateAsync(applicationRole);
                 }
             }
         }

@@ -1,7 +1,5 @@
 using CramCoding.Data.Seed;
-using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
@@ -16,8 +14,8 @@ namespace CramCoding.WebApp
 
             using (var scope = host.Services.CreateScope())
             {
-                var services = scope.ServiceProvider;
-                await AppDbInitializer.SeedRoles(services.GetService<RoleManager<ApplicationRole>>());
+                var initializer = scope.ServiceProvider.GetService<AppDbInitializer>();
+                await initializer.SeedRolesAsync();
             }
 
             host.Run();

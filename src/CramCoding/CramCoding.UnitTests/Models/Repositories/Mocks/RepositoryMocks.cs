@@ -1,4 +1,5 @@
 ﻿using CramCoding.Data;
+using CramCoding.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -22,11 +23,11 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
             var options = new DbContextOptionsBuilder<AppDbContext>().UseInMemoryDatabase(InMemoryDbName).Options;
             AppDbContextMock = new AppDbContext(options);
 
-            var repositoryData = new RepositoryData();
+            var memoryData = new MemoryData();
 
             // Provided that Post have related entities defined (relationships are established) ...
             // ... there is no need to add those entities separately by calling AddRange method
-            AppDbContextMock.AddRange(repositoryData.Post);
+            AppDbContextMock.AddRange(memoryData.Post);
             AppDbContextMock.SaveChanges();
         }
 

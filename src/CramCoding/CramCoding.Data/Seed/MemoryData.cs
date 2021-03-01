@@ -1,20 +1,19 @@
 ﻿using CramCoding.Domain.Entities;
 using CramCoding.Domain.Identity;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
-namespace CramCoding.UnitTests.Models.Repositories.Mocks
+namespace CramCoding.Data.Seed
 {
     /// <summary>
-    /// This class contains in memory data for an instance of <see cref="DbContext"/>
+    /// This class contains in memory data which can be used to ...
+    /// ... seed development database and arrange test data
     /// </summary>
-    /// <remarks>It does NOT contain a mock of the repository class itself</remarks>
-    internal class RepositoryData
+    public class MemoryData
     {
         #region Constructor
 
-        public RepositoryData()
+        public MemoryData()
         {
             UpdatePostAuthor();
             UpdatePostCategory();

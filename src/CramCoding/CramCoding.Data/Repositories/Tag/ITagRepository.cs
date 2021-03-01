@@ -5,10 +5,10 @@ namespace CramCoding.Data.Repositories
 {
     public interface ITagRepository
     {
-        void Add(Tag category);
-        void Delete(Tag category);
+        void Add(Tag tag);
+        void Delete(Tag tag);
         Tag Find(int id);
         IQueryable<Tag> GetAll();
-        void Update(Tag category);
+        void Update(Tag tag);
     }
 }

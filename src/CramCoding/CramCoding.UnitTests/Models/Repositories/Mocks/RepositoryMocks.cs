@@ -1,4 +1,4 @@
-﻿using CramCoding.WebApp.Models;
+﻿using CramCoding.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 

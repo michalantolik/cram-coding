@@ -1,6 +1,6 @@
-﻿using CramCoding.UnitTests.Models.Repositories.Mocks;
-using CramCoding.WebApp.Models.EntityClasses;
-using CramCoding.WebApp.Models.Repositories;
+﻿using CramCoding.Data.Repositories;
+using CramCoding.Domain.Entities;
+using CramCoding.UnitTests.Models.Repositories.Mocks;
 using System;
 using System.Linq;
 using Xunit;

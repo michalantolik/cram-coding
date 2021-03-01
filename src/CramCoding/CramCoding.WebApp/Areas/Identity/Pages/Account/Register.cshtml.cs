@@ -1,4 +1,4 @@
-﻿using CramCoding.WebApp.Models;
+﻿using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -83,7 +83,7 @@ namespace CramCoding.WebApp.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
-                { 
+                {
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     UserName = Input.Email,

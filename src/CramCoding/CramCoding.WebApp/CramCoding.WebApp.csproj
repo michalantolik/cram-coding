@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CramCoding.Data\CramCoding.Data.csproj" />
+    <ProjectReference Include="..\CramCoding.Domain\CramCoding.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

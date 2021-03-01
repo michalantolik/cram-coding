@@ -1,5 +1,5 @@
-﻿using CramCoding.WebApp.Models;
-using CramCoding.WebApp.Models.EntityClasses;
+﻿using CramCoding.Domain.Entities;
+using CramCoding.Domain.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;

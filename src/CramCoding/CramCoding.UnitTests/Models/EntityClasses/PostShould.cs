@@ -1,4 +1,4 @@
-﻿using CramCoding.WebApp.Models.EntityClasses;
+﻿using CramCoding.Domain.Entities;
 using System;
 using Xunit;
 

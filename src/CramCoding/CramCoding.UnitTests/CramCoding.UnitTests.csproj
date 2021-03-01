@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CramCoding.WebApp\CramCoding.WebApp.csproj" />
+    <ProjectReference Include="..\CramCoding.Data\CramCoding.Data.csproj" />
+    <ProjectReference Include="..\CramCoding.Domain\CramCoding.Domain.csproj" />
   </ItemGroup>
 
 </Project>

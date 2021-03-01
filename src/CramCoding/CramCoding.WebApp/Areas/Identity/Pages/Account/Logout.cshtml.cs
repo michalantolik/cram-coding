@@ -1,4 +1,4 @@
-﻿using CramCoding.WebApp.Models;
+﻿using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

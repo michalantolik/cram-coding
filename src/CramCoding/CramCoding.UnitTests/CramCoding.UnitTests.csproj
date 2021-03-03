@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CramCoding.Data\CramCoding.Data.csproj" />
     <ProjectReference Include="..\CramCoding.Domain\CramCoding.Domain.csproj" />
+    <ProjectReference Include="..\CramCoding.WebApp\CramCoding.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 using CramCoding.Data;
+using CramCoding.Data.Repositories;
 using CramCoding.Data.Seed;
 using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Builder;
@@ -38,6 +39,7 @@ namespace CramCoding.WebApp
             services.AddRazorPages();
 
             services.AddTransient<AppDbInitializer>();
+            services.AddScoped<IPostRepository, PostRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

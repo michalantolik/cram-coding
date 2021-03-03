@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "CramCoding.WebApp": {
+    "Run CramCoding.WebApp": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
@@ -24,11 +24,21 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "CramCoding.WebApp Watch": {
+    "Watch CramCoding.WebApp": {
       "commandName": "Executable",
       "executablePath": "dotnet",
       "workingDirectory": "$(ProjectDir)",
       "commandLineArgs": "watch run",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Seed CramCoding.WebApp": {
+      "commandLineArgs": "seed",
+      "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",

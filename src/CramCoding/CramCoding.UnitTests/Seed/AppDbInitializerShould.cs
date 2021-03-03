@@ -1,0 +1,71 @@
+﻿using CramCoding.Data.Seed;
+using CramCoding.Domain.Entities;
+using CramCoding.Domain.Identity;
+using Moq;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Xunit;
+
+namespace CramCoding.UnitTests.Seed
+{
+    public class AppDbInitializerShould
+    {
+        private AppDbInitializerMocks mocks;
+
+        public AppDbInitializerShould()
+        {
+            this.mocks = new AppDbInitializerMocks();
+        }
+
+        [Fact]
+        public async Task SeedRoles()
+        {
+            // ARRANGE
+            this.mocks.RoleManagerMock.Setup(x => x.RoleExistsAsync(It.IsAny<string>()))
+                .Returns(Task.FromResult(false));
+
+            var sut = CreateSut();
+
+            // ACT
+            await sut.SeedAsync();
+
+            // ASSERT
+            foreach (var roleName in Enum.GetNames(typeof(Role)))
+            {
+                this.mocks.RoleManagerMock.Verify(x => x.CreateAsync(
+                    It.Is<ApplicationRole>(r => r.Name == roleName)), Times.Once);
+            };
+        }
+
+        [Fact]
+        public async Task SeedPosts()
+        {
+            // ARRANGE
+            var posts = new Post[] { new Post(), new Post(), new Post(), new Post(), new Post() };
+            this.mocks.PostRepositoryMock.Setup(x => x.GetAll())
+                .Returns(posts.AsQueryable());
+
+            var sut = CreateSut();
+
+            // ACT
+            await sut.SeedAsync();
+
+            // ASSERT
+            this.mocks.PostRepositoryMock.Verify(x => x.Delete(
+                It.IsAny<Post>()), Times.Exactly(posts.Length)
+            );
+            this.mocks.PostRepositoryMock.Verify(x => x.Add(
+                It.IsAny<Post>()), Times.Exactly(posts.Length)
+            );
+        }
+
+        private AppDbInitializer CreateSut()
+        {
+            return new AppDbInitializer(
+                this.mocks.RoleManagerMock.Object,
+                this.mocks.PostRepositoryMock.Object
+            );
+        }
+    }
+}

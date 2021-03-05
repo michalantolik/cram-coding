@@ -10,18 +10,22 @@ namespace CramCoding.Data.Seed
     {
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IPostRepository postRepository;
+        private readonly ICategoryRepository categoryRepository;
 
         public AppDbInitializer(
             RoleManager<ApplicationRole> roleManager,
-            IPostRepository postRepository)
+            IPostRepository postRepository,
+            ICategoryRepository categoryRepository)
         {
             this.roleManager = roleManager;
             this.postRepository = postRepository;
+            this.categoryRepository = categoryRepository;
         }
 
         public async Task SeedAsync()
         {
             await SeedRolesAsync();
+            await SeedCategoriesAsync();
             await SeedPostsAsync();
         }
 
@@ -41,6 +45,22 @@ namespace CramCoding.Data.Seed
                     };
                     await this.roleManager.CreateAsync(applicationRole);
                 }
+            }
+        }
+
+        private async Task SeedCategoriesAsync()
+        {
+            // Delete all existing database post categories
+            foreach (var category in this.categoryRepository.GetAll().ToArray())
+            {
+                await Task.Run(() => this.categoryRepository.Delete(category));
+            }
+
+            // Seed database post categories with seeder data
+            var categorySeederData = new CategorySeederData().Categories;
+            foreach (var category in categorySeederData)
+            {
+                await Task.Run(() => this.categoryRepository.Add(category));
             }
         }
 

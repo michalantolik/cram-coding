@@ -39,6 +39,28 @@ namespace CramCoding.UnitTests.Seed
         }
 
         [Fact]
+        public async Task SeedCategories()
+        {
+            // ARRANGE
+            var categories = new Category[] { new Category(), new Category() };
+            this.mocks.CategoryRepositoryMock.Setup(x => x.GetAll())
+                .Returns(categories.AsQueryable());
+
+            var sut = CreateSut();
+
+            // ACT
+            await sut.SeedAsync();
+
+            // ASSERT
+            this.mocks.CategoryRepositoryMock.Verify(x => x.Delete(
+                It.IsAny<Category>()), Times.Exactly(categories.Length)
+            );
+            this.mocks.CategoryRepositoryMock.Verify(x => x.Add(
+                It.IsAny<Category>()), Times.Exactly(categories.Length)
+            );
+        }
+
+        [Fact]
         public async Task SeedPosts()
         {
             // ARRANGE
@@ -64,7 +86,8 @@ namespace CramCoding.UnitTests.Seed
         {
             return new AppDbInitializer(
                 this.mocks.RoleManagerMock.Object,
-                this.mocks.PostRepositoryMock.Object
+                this.mocks.PostRepositoryMock.Object,
+                this.mocks.CategoryRepositoryMock.Object
             );
         }
     }

@@ -43,7 +43,7 @@ namespace CramCoding.UnitTests.Seed
         {
             // ARRANGE
             var categories = new Category[] { new Category(), new Category() };
-            this.mocks.CategoryRepositoryMock.Setup(x => x.GetAll())
+            this.mocks.CategoryRepositoryMock.Setup(x => x.GetAll(false))
                 .Returns(categories.AsQueryable());
 
             var sut = CreateSut();

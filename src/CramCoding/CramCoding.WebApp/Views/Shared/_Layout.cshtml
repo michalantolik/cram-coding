@@ -43,35 +43,10 @@
             <!-- Sidebars -->
             <div class="col-md-4 d-flex flex-column">
 
-                <!-- Lorem -->
-                <div class="card mb-5">
-                    <div class="card-header bg-dark text-light">
-                        Lorem
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action border-0">Vivamus</a>
-                            <a href="#" class="list-group-item list-group-item-action border-0">Pellentesque</a>
-                            <a href="#" class="list-group-item list-group-item-action border-0">Etiam</a>
-                        </div>
-                    </div>
-                </div>
+                <!-- Categories -->
+                @await Component.InvokeAsync("CategoryMenu")
 
-                <!-- Ipsum -->
-                <div class="card mb-5">
-                    <div class="card-header bg-dark text-light">
-                        Ipsum
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action border-0 active">Nulla</a>
-                            <a href="#" class="list-group-item list-group-item-action border-0">Curabitur</a>
-                            <a href="#" class="list-group-item list-group-item-action border-0">Aliquam</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dolor  -->
+                <!-- Tags  -->
                 <div class="card mb-5">
                     <div class="card-header bg-dark text-light">
                         Dolor

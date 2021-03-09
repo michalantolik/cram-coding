@@ -35,6 +35,7 @@ namespace CramCoding.WebApp
                 .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllersWithViews();
             services.AddRazorPages();
 

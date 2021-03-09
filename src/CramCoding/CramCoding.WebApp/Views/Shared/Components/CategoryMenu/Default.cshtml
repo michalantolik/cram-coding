@@ -1,0 +1,18 @@
+﻿@model CategoryMenuViewModel
+
+@foreach (var category in Model.Categories)
+{
+    <div class="card mb-5">
+        <div class="card-header bg-dark text-light">
+            @category.CategoryName
+        </div>
+        <div class="card-body p-0">
+            <div class="list-group">
+                @foreach (var subcategory in category.Subcategories)
+                {
+                    <a href="#" class="list-group-item list-group-item-action border-0">@subcategory</a>
+                }
+            </div>
+        </div>
+    </div>
+}

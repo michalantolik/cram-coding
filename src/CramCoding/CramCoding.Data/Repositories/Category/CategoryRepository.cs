@@ -1,4 +1,5 @@
 ﻿using CramCoding.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace CramCoding.Data.Repositories
@@ -12,28 +13,35 @@ namespace CramCoding.Data.Repositories
             this.context = context;
         }
 
-        public IQueryable<Category> GetAll()
+        /// <inheritdoc/>
+        public IQueryable<Category> GetAll(bool include = false)
         {
-            return this.context.Category;
+            return include
+                ? this.context.Category.Include(c => c.Children)
+                : this.context.Category;
         }
 
+        /// <inheritdoc/>
         public Category Find(int id)
         {
             return this.context.Category.Find(id);
         }
 
+        /// <inheritdoc/>
         public void Add(Category category)
         {
             this.context.Category.Add(category);
             this.context.SaveChanges();
         }
 
+        /// <inheritdoc/>
         public void Update(Category category)
         {
             this.context.Category.Update(category);
             this.context.SaveChanges();
         }
 
+        /// <inheritdoc/>
         public void Delete(Category category)
         {
             this.context.Category.Remove(category);

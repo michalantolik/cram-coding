@@ -1,0 +1,20 @@
+﻿<!--
+CategoryMenu view component consists of multiple Category partial views.
+Each Category partial view is a group of subcategories with a parent category name.
+-->
+
+@model CategoryViewModel
+
+<div class="card mb-5">
+    <div class="card-header bg-dark text-light">
+        @Model.CategoryName
+    </div>
+    <div class="card-body p-0">
+        <div class="list-group">
+            @foreach (var subcategory in Model.Subcategories)
+            {
+                <a href="#" class="list-group-item list-group-item-action border-0">@subcategory</a>
+            }
+        </div>
+    </div>
+</div>

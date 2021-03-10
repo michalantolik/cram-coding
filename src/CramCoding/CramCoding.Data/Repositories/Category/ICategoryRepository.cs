@@ -24,14 +24,14 @@ namespace CramCoding.Data.Repositories
         /// Finds <see cref="Category"/> entity in the data storage by ID
         /// </summary>
         /// <param name="id">Entity ID</param>
-        /// <returns></returns>
+        /// <returns>Found <see cref="Category"/> entity</returns>
         Category Find(int id);
 
         /// <summary>
         /// Reads out all <see cref="Category"/> entities from the data storage
         /// </summary>
         /// <param name="include">Include all related entities</param>
-        /// <returns></returns>
+        /// <returns>All <see cref="Category"/> entities</returns>
         IQueryable<Category> GetAll(bool include = false);
 
         /// <summary>

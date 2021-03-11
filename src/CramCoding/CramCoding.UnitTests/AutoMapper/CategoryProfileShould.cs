@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CramCoding.Domain.Entities;
-using CramCoding.WebApp.AutoMapper;
 using CramCoding.WebApp.ViewModels;
 using System.Linq;
 using Xunit;
@@ -44,14 +43,7 @@ namespace CramCoding.UnitTests.AutoMapper
 
         internal IMapper CreateSut()
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new CategoryProfile());
-            });
-
-            var mapper = config.CreateMapper();
-
-            return mapper;
+            return AutoMapperFactory.Create();
         }
     }
 }

@@ -1,48 +1,15 @@
 ﻿using CramCoding.Domain.Entities;
-using System.Linq;
 
 namespace CramCoding.Data.Repositories
 {
-    public class CommentRepository : ICommentRepository
+    /// <summary>
+    /// Class used for persistence purposes of <see cref="Comment"/> entities 
+    /// </summary>
+    public class CommentRepository : BaseRepository<Comment>
     {
-        private readonly AppDbContext context;
-
-        public CommentRepository(AppDbContext context)
+        public CommentRepository(AppDbContext context) : base(context)
         {
-            this.context = context;
-        }
 
-        /// <inheritdoc/>
-        public IQueryable<Comment> GetAll()
-        {
-            return this.context.Comment;
-        }
-
-        /// <inheritdoc/>
-        public Comment Find(int id)
-        {
-            return this.context.Comment.Find(id);
-        }
-
-        /// <inheritdoc/>
-        public void Add(Comment comment)
-        {
-            this.context.Comment.Add(comment);
-            this.context.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void Update(Comment comment)
-        {
-            this.context.Comment.Update(comment);
-            this.context.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void Delete(Comment comment)
-        {
-            this.context.Comment.Remove(comment);
-            this.context.SaveChanges();
         }
     }
 }

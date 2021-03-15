@@ -4,13 +4,14 @@ using System.Linq;
 
 namespace CramCoding.Data.Repositories
 {
-    public class CategoryRepository : ICategoryRepository
+    /// <summary>
+    /// Class used for persistence purposes of <see cref="Category"/> entities 
+    /// </summary>
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
-        private readonly AppDbContext context;
-
-        public CategoryRepository(AppDbContext context)
+        public CategoryRepository(AppDbContext context) : base(context)
         {
-            this.context = context;
+
         }
 
         /// <inheritdoc/>
@@ -19,33 +20,6 @@ namespace CramCoding.Data.Repositories
             return include
                 ? this.context.Category.Include(c => c.Children)
                 : this.context.Category;
-        }
-
-        /// <inheritdoc/>
-        public Category Find(int id)
-        {
-            return this.context.Category.Find(id);
-        }
-
-        /// <inheritdoc/>
-        public void Add(Category category)
-        {
-            this.context.Category.Add(category);
-            this.context.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void Update(Category category)
-        {
-            this.context.Category.Update(category);
-            this.context.SaveChanges();
-        }
-
-        /// <inheritdoc/>
-        public void Delete(Category category)
-        {
-            this.context.Category.Remove(category);
-            this.context.SaveChanges();
         }
     }
 }

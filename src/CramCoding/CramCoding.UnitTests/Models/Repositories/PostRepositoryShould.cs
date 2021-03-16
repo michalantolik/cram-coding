@@ -58,7 +58,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void FindPostWhenExists(int postId)
         {
             // ACT
-            var post = this.sut.Find(postId);
+            var post = this.sut.FindById(postId);
 
             // ASSERT
             Assert.NotNull(post);
@@ -71,7 +71,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void NotFindPostWhenNotExists(int postId)
         {
             // ACT
-            var post = this.sut.Find(postId);
+            var post = this.sut.FindById(postId);
 
             // ASSERT
             Assert.Null(post);
@@ -87,7 +87,7 @@ namespace CramCoding.UnitTests.Models.Repositories
             this.sut.Add(newPost);
 
             // ASSERT
-            var foundPost = this.sut.Find(12);
+            var foundPost = this.sut.FindById(12);
             Assert.NotNull(foundPost);
         }
 
@@ -95,14 +95,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void UpdatePost()
         {
             // ARRANGE
-            var post = this.sut.Find(1);
+            var post = this.sut.FindById(1);
             post.Content = "Updated Post Content";
 
             // ACT
             this.sut.Update(post);
 
             // ASSERT
-            var updatedPost = this.sut.Find(1);
+            var updatedPost = this.sut.FindById(1);
             Assert.NotNull(updatedPost);
             Assert.Equal("Updated Post Content", updatedPost.Content);
         }
@@ -111,14 +111,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void DeletePost()
         {
             // ARRANGE
-            var post = this.sut.Find(2);
+            var post = this.sut.FindById(2);
             Assert.NotNull(post);
 
             // ACT
             this.sut.Delete(post);
 
             // ASSERT
-            var deletedPost = this.sut.Find(2);
+            var deletedPost = this.sut.FindById(2);
             Assert.Null(deletedPost);
         }
     }

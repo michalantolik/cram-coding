@@ -21,5 +21,11 @@ namespace CramCoding.Data.Repositories
                 ? this.context.Category.Include(c => c.Children)
                 : this.context.Category;
         }
+
+        /// <inheritdoc/>
+        public Category FindByName(string name)
+        {
+            return this.context.Category.SingleOrDefault(c => c.Name == name);
+        }
     }
 }

@@ -64,7 +64,7 @@ namespace CramCoding.UnitTests.Seed
         public async Task SeedPosts()
         {
             // ARRANGE
-            var posts = new Post[] { new Post(), new Post(), new Post(), new Post(), new Post() };
+            var posts = new Post[32];
             this.mocks.PostRepositoryMock.Setup(x => x.GetAll())
                 .Returns(posts.AsQueryable());
 
@@ -75,10 +75,10 @@ namespace CramCoding.UnitTests.Seed
 
             // ASSERT
             this.mocks.PostRepositoryMock.Verify(x => x.Delete(
-                It.IsAny<Post>()), Times.Exactly(posts.Length)
+                It.IsAny<Post>()), Times.Exactly(32)
             );
             this.mocks.PostRepositoryMock.Verify(x => x.Add(
-                It.IsAny<Post>()), Times.Exactly(posts.Length)
+                It.IsAny<Post>()), Times.Exactly(20)
             );
         }
 

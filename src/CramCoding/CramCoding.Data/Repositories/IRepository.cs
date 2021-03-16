@@ -36,7 +36,7 @@ namespace CramCoding.Data.Repositories
         /// Finds <see cref="TEntity"/> entity in the data storage by ID
         /// </summary>
         /// <param name="id">Entity ID</param>
-        /// <returns>Found <see cref="TEntity"/> entity</returns>
-        TEntity Find(int id);
+        /// <returns>Found <see cref="TEntity"/> entity or null</returns>
+        TEntity FindById(int id);
     }
 }

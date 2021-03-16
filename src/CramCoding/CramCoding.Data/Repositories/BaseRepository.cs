@@ -33,7 +33,7 @@ namespace CramCoding.Data.Repositories
         }
 
         /// <inheritdoc/>
-        public TEntity Find(int id)
+        public TEntity FindById(int id)
         {
             return this.dbSet.Find(id);
         }

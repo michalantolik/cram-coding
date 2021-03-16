@@ -58,7 +58,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void FindCategoryWhenExists(int categoryId)
         {
             // ACT
-            var category = this.sut.Find(categoryId);
+            var category = this.sut.FindById(categoryId);
 
             // ASSERT
             Assert.NotNull(category);
@@ -71,7 +71,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void NotFindCategoryWhenNotExists(int categoryId)
         {
             // ACT
-            var category = this.sut.Find(categoryId);
+            var category = this.sut.FindById(categoryId);
 
             // ASSERT
             Assert.Null(category);
@@ -87,7 +87,7 @@ namespace CramCoding.UnitTests.Models.Repositories
             this.sut.Add(newCategory);
 
             // ASSERT
-            var foundCategory = this.sut.Find(132);
+            var foundCategory = this.sut.FindById(132);
             Assert.NotNull(foundCategory);
         }
 
@@ -95,14 +95,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void UpdateCategory()
         {
             // ARRANGE
-            var category = this.sut.Find(1);
+            var category = this.sut.FindById(1);
             category.Name = "Updated Category Name";
 
             // ACT
             this.sut.Update(category);
 
             // ASSERT
-            var updatedCategory = this.sut.Find(1);
+            var updatedCategory = this.sut.FindById(1);
             Assert.NotNull(updatedCategory);
             Assert.Equal("Updated Category Name", updatedCategory.Name);
         }
@@ -111,14 +111,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void DeleteCategory()
         {
             // ARRANGE
-            var category = this.sut.Find(2);
+            var category = this.sut.FindById(2);
             Assert.NotNull(category);
 
             // ACT
             this.sut.Delete(category);
 
             // ASSERT
-            var deletedCategory = this.sut.Find(2);
+            var deletedCategory = this.sut.FindById(2);
             Assert.Null(deletedCategory);
         }
     }

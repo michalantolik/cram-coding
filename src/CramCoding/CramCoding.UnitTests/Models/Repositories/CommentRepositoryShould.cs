@@ -58,7 +58,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void FindCommentWhenExists(int tagId)
         {
             // ACT
-            var tag = this.sut.Find(tagId);
+            var tag = this.sut.FindById(tagId);
 
             // ASSERT
             Assert.NotNull(tag);
@@ -71,7 +71,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void NotFindCommentWhenNotExists(int tagId)
         {
             // ACT
-            var tag = this.sut.Find(tagId);
+            var tag = this.sut.FindById(tagId);
 
             // ASSERT
             Assert.Null(tag);
@@ -87,7 +87,7 @@ namespace CramCoding.UnitTests.Models.Repositories
             this.sut.Add(newComment);
 
             // ASSERT
-            var foundComment = this.sut.Find(12);
+            var foundComment = this.sut.FindById(12);
             Assert.NotNull(foundComment);
         }
 
@@ -95,14 +95,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void UpdateComment()
         {
             // ARRANGE
-            var tag = this.sut.Find(1);
+            var tag = this.sut.FindById(1);
             tag.Content = "Updated Comment Content";
 
             // ACT
             this.sut.Update(tag);
 
             // ASSERT
-            var updatedComment = this.sut.Find(1);
+            var updatedComment = this.sut.FindById(1);
             Assert.NotNull(updatedComment);
             Assert.Equal("Updated Comment Content", updatedComment.Content);
         }
@@ -111,14 +111,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void DeleteComment()
         {
             // ARRANGE
-            var tag = this.sut.Find(2);
+            var tag = this.sut.FindById(2);
             Assert.NotNull(tag);
 
             // ACT
             this.sut.Delete(tag);
 
             // ASSERT
-            var deletedComment = this.sut.Find(2);
+            var deletedComment = this.sut.FindById(2);
             Assert.Null(deletedComment);
         }
     }

@@ -14,5 +14,12 @@ namespace CramCoding.Data.Repositories
         /// <param name="include">Include all related entities</param>
         /// <returns>All <see cref="Category"/> entities</returns>
         IQueryable<Category> GetAll(bool include = false);
+
+        /// <summary>
+        /// Finds <see cref="Category"/> entity in the data storage by name
+        /// </summary>
+        /// <param name="name">Category name</param>
+        /// <returns>Found <see cref="Category"/> entity or null</returns>
+        Category FindByName(string name);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CramCoding.Domain.Entities;
+using System.Linq;
 
 namespace CramCoding.Data.Repositories
 {
@@ -10,6 +11,12 @@ namespace CramCoding.Data.Repositories
         public PostRepository(AppDbContext context) : base(context)
         {
 
+        }
+
+        /// <inheritdoc/>
+        public Post FindByHeader(string header)
+        {
+            return this.context.Post.SingleOrDefault(p => p.Header == header);
         }
     }
 }

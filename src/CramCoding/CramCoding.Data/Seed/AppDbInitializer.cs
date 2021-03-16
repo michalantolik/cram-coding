@@ -1,6 +1,7 @@
 ﻿using CramCoding.Data.Repositories;
 using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,6 +28,7 @@ namespace CramCoding.Data.Seed
             await SeedRolesAsync();
             await SeedCategoriesAsync();
             await SeedPostsAsync();
+            await AssignPostsToCategories();
         }
 
         private async Task SeedRolesAsync()
@@ -77,6 +79,76 @@ namespace CramCoding.Data.Seed
             foreach (var post in postsSeederData)
             {
                 await Task.Run(() => this.postRepository.Add(post));
+            }
+        }
+
+        private async Task AssignPostsToCategories()
+        {
+            var categoryPostsMap = new (string categoryName, string[] postHeaders)[]
+            {
+                ("Vestibulum",
+                new[]
+                {
+                    "Vestibulum fermentum felis dui",
+                    "Nullam convallis purus in justo mattis",
+                    "Praesent tempus",
+                    "Lorem ipsum dolor sit amet",
+                    "Suspendisse potenti",
+                    "Phasellus a ultrices elit",
+                    "Nullam at vehicula enim",
+                    "Quisque sollicitudin risus molestie ex dapibus facilisis",
+                    "Aliquam efficitur",
+                    "In hac habitasse platea dictumst",
+                    "Ut at sem urna",
+                    "Maecenas facilisis elit nec dapibus volutpat",
+                }),
+                ("Lorem",
+                new[]
+                {
+                    "Lorem ipsum dolor sit amet",
+                    "Maecenas cursus dictum leo in fringilla",
+                }),
+                ("Morbi",
+                new[]
+                {
+                    "Morbi id posuere eros",
+                }),
+                ("Proin",
+                new[]
+                {
+                    "Proin consectetur blandit elit ut rhoncus",
+                    "Vestibulum fermentum felis dui",
+                    "Suspendisse id ipsum aliquam",
+                }),
+                ("Cras",
+                new[]
+                {
+                    "Cras rutrum in enim vel faucibus",
+                    "Phasellus nisl elit, semper eget enim et",
+                }),
+            };
+
+            await Task.Run(() =>
+            {
+                foreach (var categoryPosts in categoryPostsMap)
+                {
+                    foreach (var postHeader in categoryPosts.postHeaders)
+                    {
+                        AddPostToCategory(categoryPosts.categoryName, postHeader);
+                    }
+                }
+            });
+
+            void AddPostToCategory(string categoryName, string postHeader)
+            {
+                var category = this.categoryRepository.FindByName(categoryName);
+                var post = this.postRepository.FindByHeader(postHeader);
+
+                if (category != null && post != null)
+                {
+                    category.Posts.Add(post);
+                    this.categoryRepository.Update(category);
+                }
             }
         }
     }

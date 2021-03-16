@@ -13,22 +13,21 @@ namespace CramCoding.Data.Seed
             {
                 new Category
                 {
-                    Name = "Lorem",
+                    Name = "Maximus",
                     Children = new List<Category>
                     {
-                        new Category { Name = "Vivamus" },
-                        new Category { Name = "Pellentesque" },
-                        new Category { Name = "Etiam" },
+                        new Category { Name = "Lorem" },
+                        new Category { Name = "Vestibulum" },
                     }
                 },
                 new Category
                 {
-                    Name = "Ipsum",
+                    Name = "Libero",
                     Children = new List<Category>
                     {
-                        new Category { Name = "Nulla" },
-                        new Category { Name = "Curabitur" },
-                        new Category { Name = "Aliquam" },
+                        new Category { Name = "Morbi" },
+                        new Category { Name = "Proin" },
+                        new Category { Name = "Cras" },
                     }
                 },
             };

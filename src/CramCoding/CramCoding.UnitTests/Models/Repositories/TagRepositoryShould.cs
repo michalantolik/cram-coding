@@ -58,7 +58,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void FindTagWhenExists(int tagId)
         {
             // ACT
-            var tag = this.sut.Find(tagId);
+            var tag = this.sut.FindById(tagId);
 
             // ASSERT
             Assert.NotNull(tag);
@@ -71,7 +71,7 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void NotFindTagWhenNotExists(int tagId)
         {
             // ACT
-            var tag = this.sut.Find(tagId);
+            var tag = this.sut.FindById(tagId);
 
             // ASSERT
             Assert.Null(tag);
@@ -87,7 +87,7 @@ namespace CramCoding.UnitTests.Models.Repositories
             this.sut.Add(newTag);
 
             // ASSERT
-            var foundTag = this.sut.Find(12);
+            var foundTag = this.sut.FindById(12);
             Assert.NotNull(foundTag);
         }
 
@@ -95,14 +95,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void UpdateTag()
         {
             // ARRANGE
-            var tag = this.sut.Find(1);
+            var tag = this.sut.FindById(1);
             tag.Name = "Updated Tag Name";
 
             // ACT
             this.sut.Update(tag);
 
             // ASSERT
-            var updatedTag = this.sut.Find(1);
+            var updatedTag = this.sut.FindById(1);
             Assert.NotNull(updatedTag);
             Assert.Equal("Updated Tag Name", updatedTag.Name);
         }
@@ -111,14 +111,14 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void DeleteTag()
         {
             // ARRANGE
-            var tag = this.sut.Find(2);
+            var tag = this.sut.FindById(2);
             Assert.NotNull(tag);
 
             // ACT
             this.sut.Delete(tag);
 
             // ASSERT
-            var deletedTag = this.sut.Find(2);
+            var deletedTag = this.sut.FindById(2);
             Assert.Null(deletedTag);
         }
     }

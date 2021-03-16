@@ -42,9 +42,9 @@ namespace CramCoding.UnitTests.Models.Repositories
 
             // ASSERT
             Assert.NotNull(categories);
-            Assert.Equal(3, categories.Length);
+            Assert.Equal(11, categories.Length);
 
-            var expectedIds = new int[] { 1, 2, 3 };
+            var expectedIds = Enumerable.Range(1, 11);
             foreach (var id in expectedIds)
             {
                 Assert.Contains(categories, t => t.CategoryId == id);
@@ -66,8 +66,8 @@ namespace CramCoding.UnitTests.Models.Repositories
 
         [Theory]
         [InlineData(0)]
-        [InlineData(9)]
-        [InlineData(23)]
+        [InlineData(53)]
+        [InlineData(243)]
         public void NotFindCategoryWhenNotExists(int categoryId)
         {
             // ACT
@@ -81,13 +81,13 @@ namespace CramCoding.UnitTests.Models.Repositories
         public void AddCategory()
         {
             // ARRANGE
-            var newCategory = new Category { CategoryId = 12, Name = "Category 12" };
+            var newCategory = new Category { CategoryId = 132, Name = "Category 12" };
 
             // ACT
             this.sut.Add(newCategory);
 
             // ASSERT
-            var foundCategory = this.sut.Find(12);
+            var foundCategory = this.sut.Find(132);
             Assert.NotNull(foundCategory);
         }
 

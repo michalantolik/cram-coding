@@ -16,6 +16,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         public RepositoryData()
         {
+            UpdateCategoryParent();
             UpdatePostAuthor();
             UpdatePostCategory();
             UpdatePostTag();
@@ -27,14 +28,39 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         #region Public properties
 
-        public Post[] Post => this.post;
+        public Post[] Post => this.posts;
 
-        public Comment[] Comment => this.comment;
+        public Category[] Categories => this.categories;
+
+        public Comment[] Comments => this.comments;
+
+        public Tag[] Tags => this.tags;
 
         #endregion Public properties
 
 
         #region Methods to update relationships between entities
+
+        private void UpdateCategoryParent()
+        {
+            LinkParentToChild(1, 4);
+            LinkParentToChild(1, 5);
+            LinkParentToChild(1, 6);
+            LinkParentToChild(2, 7);
+            LinkParentToChild(2, 8);
+            LinkParentToChild(3, 9);
+            LinkParentToChild(3, 10);
+            LinkParentToChild(3, 11);
+
+            void LinkParentToChild(int parentId, int childId)
+            {
+                var parentCategory = this.categories.Single(c => c.CategoryId == parentId);
+                var childCategory = this.categories.Single(c => c.CategoryId == childId);
+
+                parentCategory.Children.Add(childCategory);
+                childCategory.Parent = parentCategory;
+            }
+        }
 
         private void UpdatePostAuthor()
         {
@@ -46,28 +72,28 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
             void LinkPostToUser(int postId, string userId)
             {
-                this.post.Single(p => p.PostId == postId).Author = this.user.Single(u => u.Id == userId);
+                this.posts.Single(p => p.PostId == postId).Author = this.user.Single(u => u.Id == userId);
             }
         }
 
         private void UpdatePostCategory()
         {
-            LinkPostToCategory(1, 1);
-            LinkPostToCategory(1, 3);
-            LinkPostToCategory(2, 2);
-            LinkPostToCategory(3, 2);
-            LinkPostToCategory(3, 3);
-            LinkPostToCategory(4, 1);
-            LinkPostToCategory(5, 3);
+            LinkPostToCategory(1, 5);
+            LinkPostToCategory(1, 5);
+            LinkPostToCategory(2, 6);
+            LinkPostToCategory(3, 10);
+            LinkPostToCategory(3, 9);
+            LinkPostToCategory(4, 11);
+            LinkPostToCategory(5, 9);
 
             void LinkPostToCategory(int postId, int categoryId)
             {
-                this.post.Single(p => p.PostId == postId).Categories.Add(
-                    this.category.Single(c => c.CategoryId == categoryId)
+                this.posts.Single(p => p.PostId == postId).Categories.Add(
+                    this.categories.Single(c => c.CategoryId == categoryId)
                 );
 
-                this.category.Single(c => c.CategoryId == categoryId).Posts.Add(
-                    this.post.Single(p => p.PostId == postId)
+                this.categories.Single(c => c.CategoryId == categoryId).Posts.Add(
+                    this.posts.Single(p => p.PostId == postId)
                 );
             }
         }
@@ -84,12 +110,12 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
             void LinkPostToTag(int postId, int tagId)
             {
-                this.post.Single(p => p.PostId == postId).Tags.Add(
-                    this.tag.Single(c => c.TagId == tagId)
+                this.posts.Single(p => p.PostId == postId).Tags.Add(
+                    this.tags.Single(c => c.TagId == tagId)
                 );
 
-                this.tag.Single(c => c.TagId == tagId).Posts.Add(
-                    this.post.Single(p => p.PostId == postId)
+                this.tags.Single(c => c.TagId == tagId).Posts.Add(
+                    this.posts.Single(p => p.PostId == postId)
                 );
             }
         }
@@ -105,15 +131,15 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
             void LinkPostToComment(int postId, int commentId)
             {
-                var post = this.post.Single(p => p.PostId == postId);
-                var comment = this.comment.Single(c => c.CommentId == commentId);
+                var post = this.posts.Single(p => p.PostId == postId);
+                var comment = this.comments.Single(c => c.CommentId == commentId);
 
-                this.post.Single(p => p.PostId == postId).Comments.Add(
-                    this.comment.Single(c => c.CommentId == commentId)
+                this.posts.Single(p => p.PostId == postId).Comments.Add(
+                    this.comments.Single(c => c.CommentId == commentId)
                 );
 
-                this.comment.Single(c => c.CommentId == commentId)
-                    .Post = this.post.Single(p => p.PostId == postId
+                this.comments.Single(c => c.CommentId == commentId)
+                    .Post = this.posts.Single(p => p.PostId == postId
                 );
             }
         }
@@ -123,7 +149,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         #region Post data
 
-        private Post[] post = new Post[]
+        private Post[] posts = new Post[]
         {
             new Post
             {
@@ -187,23 +213,19 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         #region Category data
 
-        private Category[] category = new Category[]
+        private Category[] categories = new Category[]
         {
-            new Category
-            {
-                CategoryId = 1,
-                Name = "Category 1",
-            },
-            new Category
-            {
-                CategoryId = 2,
-                Name = "Category 2",
-            },
-            new Category
-            {
-                CategoryId = 3,
-                Name = "Category 3",
-            },
+            new Category { CategoryId = 1, Name = "Category 1" },
+            new Category { CategoryId = 2,  Name = "Category 2" },
+            new Category { CategoryId = 3, Name = "Category 3" },
+            new Category { CategoryId = 4,  Name = "Subcategory 1" },
+            new Category { CategoryId = 5, Name = "Subcategory 2" },
+            new Category { CategoryId = 6, Name = "Subcategory 3" },
+            new Category { CategoryId = 7,  Name = "Subcategory 4" },
+            new Category { CategoryId = 8, Name = "Subcategory 5" },
+            new Category { CategoryId = 9, Name = "Subcategory 6" },
+            new Category { CategoryId = 10,  Name = "Subcategory 7" },
+            new Category { CategoryId = 11, Name = "Subcategory 8" }
         };
 
         #endregion Category data
@@ -211,7 +233,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         #region Tag data
 
-        private Tag[] tag = new Tag[]
+        private Tag[] tags = new Tag[]
         {
             new Tag
             {
@@ -235,7 +257,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         #region Comment data
 
-        private Comment[] comment = new Comment[]
+        private Comment[] comments = new Comment[]
         {
             new Comment
             {

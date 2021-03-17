@@ -20,10 +20,20 @@ namespace CramCoding.WebApp.ViewModels
 
         private void Initialize()
         {
-            var mainCategories = this.categoryRepository.GetAll(true).Where(c => c.Parent == null).ToArray();
-            var categoriesViewModels = mainCategories.Select(c => this.mapper.Map<CategoryViewModel>(c)).ToArray();
+            var mainCategories = this.categoryRepository
+                .GetAll(true)
+                .Where(category => category.Parent == null)
+                .ToArray();
 
-            Categories = categoriesViewModels;
+            var mainCategoriesViewModels = mainCategories
+                .Select(mainCategory =>
+                {
+                    mainCategory.Children = mainCategory.Children.OrderBy(child => child.Name).ToArray();
+                    return this.mapper.Map<CategoryViewModel>(mainCategory);
+                })
+                .ToArray();
+
+            Categories = mainCategoriesViewModels;
         }
 
         public IEnumerable<CategoryViewModel> Categories { get; set; }

@@ -1,4 +1,5 @@
 ﻿using CramCoding.Data;
+using CramCoding.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -12,6 +13,8 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
     {
         public AppDbContext AppDbContextMock { get; set; }
 
+        public ICategoryRepository CategoryRepositoryMock { get; set; }
+
         public RepositoryMocks()
         {
             InitializeDbContextMock();
@@ -23,12 +26,13 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
             AppDbContextMock = new AppDbContext(options);
 
             var repositoryData = new RepositoryData();
-
             AppDbContextMock.AddRange(repositoryData.Categories);
             AppDbContextMock.AddRange(repositoryData.Comments);
             AppDbContextMock.AddRange(repositoryData.Post);
             AppDbContextMock.AddRange(repositoryData.Tags);
             AppDbContextMock.SaveChanges();
+
+            CategoryRepositoryMock = new CategoryRepository(AppDbContextMock);
         }
 
         /// <summary>

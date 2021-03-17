@@ -13,7 +13,7 @@ Each Category partial view is a group of subcategories with a parent category na
         <div class="list-group">
             @foreach (var subcategory in Model.Subcategories)
             {
-                <a href="#" class="list-group-item list-group-item-action border-0">@subcategory</a>
+                <a asp-controller="Home" asp-action="Index" asp-route-category="@subcategory" class="list-group-item list-group-item-action border-0">@subcategory</a>
             }
         </div>
     </div>

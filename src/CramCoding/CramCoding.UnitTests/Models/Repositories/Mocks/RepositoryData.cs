@@ -79,9 +79,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
         private void UpdatePostCategory()
         {
             LinkPostToCategory(1, 5);
-            LinkPostToCategory(1, 5);
             LinkPostToCategory(2, 6);
-            LinkPostToCategory(3, 10);
             LinkPostToCategory(3, 9);
             LinkPostToCategory(4, 11);
             LinkPostToCategory(5, 9);

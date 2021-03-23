@@ -29,9 +29,10 @@
         <div class="border-end bg-light" id="adminSidebar">
             <div class="list-group list-group-flush">
                 <a asp-controller="Admin" asp-action="Posts" class="list-group-item list-group-item-action border-bottom ps-4">Wpisy</a>
-                <a href="#" class="list-group-item list-group-item-action border-bottom ps-4">Kategorie</a>
-                <a href="#" class="list-group-item list-group-item-action border-bottom ps-4">Komentarze</a>
-                <a href="#" class="list-group-item list-group-item-action border-bottom ps-4">Użytkownicy</a>
+                <a asp-controller="Admin" asp-action="Categories" class="list-group-item list-group-item-action border-bottom ps-4">Kategorie</a>
+                <a asp-controller="Admin" asp-action="Tags" class="list-group-item list-group-item-action border-bottom ps-4">Tagi</a>
+                <a asp-controller="Admin" asp-action="Comments" class="list-group-item list-group-item-action border-bottom ps-4">Komentarze</a>
+                <a asp-controller="Admin" asp-action="Users" class="list-group-item list-group-item-action border-bottom ps-4">Użytkownicy</a>
             </div>
         </div>
 

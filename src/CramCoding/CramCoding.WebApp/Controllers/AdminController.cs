@@ -10,5 +10,15 @@ namespace CramCoding.WebApp.Controllers
         {
             return View();
         }
+
+        public IActionResult Posts()
+        {
+            return View();
+        }
+
+        public IActionResult AddPost()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,22 @@
+﻿/*********************************************************************************/
+/*--- Admin Panel ---------------------------------------------------------------*/
+/*********************************************************************************/
+
+/* Sidebar */
+#adminSidebar {
+    height: 100vh;
+    width: 200px;
+}
+
+    #adminSidebar > div.list-group {
+        background-color: transparent;
+    }
+
+        #adminSidebar > div.list-group > a.list-group-item {
+            background-color: transparent;
+        }
+
+            #adminSidebar > div.list-group > a.list-group-item:hover {
+                background-color: lightgray;
+                font-weight: bold;
+            }

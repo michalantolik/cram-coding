@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Nowy wpis";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Top row -->
+    <div class="row pb-4">
+
+        <!-- Label -->
+        <div class="col">
+            <h1 class="display-4 text-center">Nowy wpis</h1>
+        </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="row">
+
+        <form>
+
+            <!-- Header -->
+            <div class="form-group">
+                <label for="header">Tytuł</label>
+                <input type="text" class="form-control" id="header" />
+            </div>
+
+            <!-- Content -->
+            <div class="form-group">
+                <label for="context">Treść</label>
+                <textarea class="form-control" id="content" rows="10" cols="120"></textarea>
+            </div>
+
+            <!-- Author -->
+            <div class="form-group">
+                <label for="author">Autor</label>
+                <select class="custom-select" id="author">
+                    <option value="1">Super Blogger</option>
+                    <option value="2">Hero Blogger</option>
+                    <option value="3">Mega Blogger</option>
+                </select>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label for="category">Kategoria</label>
+                <select class="custom-select" id="category">
+                    <option>Wybierz kategorię...</option>
+                    <option value="1">Lorem</option>
+                    <option value="2">Morbi</option>
+                    <option value="3">Proin</option>
+                </select>
+            </div>
+
+            <!-- Tags -->
+            <div class="form-group pb-3">
+                <label for="tags">Tagi</label>
+                <select class="custom-select" multiple>
+                    <option>Wybierz tagi...</option>
+                    <option value="1">magna</option>
+                    <option value="2">enim</option>
+                    <option value="3">blandit</option>
+                    <option value="4">elementum</option>
+                    <option value="5">primis</option>
+                </select>
+            </div>
+
+            <!-- Save button -->
+            <button type="submit" class="btn btn-lg btn-primary btn-block">Zapisz</button>
+
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Wpisy";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Top row -->
+    <div class="row pb-4">
+
+        <!-- Empty -->
+        <div class="col"></div>
+
+        <!-- Label -->
+        <div class="col">
+            <h1 class="display-4 text-center">Wpisy</h1>
+        </div>
+
+        <!-- Button -->
+        <div class="col my-auto">
+            <a type="button" asp-controller="Admin" asp-action="AddPost" class="btn btn-lg btn-primary float-right">
+                Dodaj nowy
+            </a>
+        </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Lorem ipsum dolor sit amet</th>
+                    <th>Published at</th>
+                    <th>Updated at</th>
+                    <th>Created at</th>
+                    <th>Visits</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nullam convallis purus in justo mattis</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Praesent tempus</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>42</td>
+                </tr>
+                <tr>
+                    <td>Donec convallis metus ut cursus commod</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Quisque sollicitudin risus molestie ex dapibus facilisis</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Suspendisse potenti</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>9/2/2021 6:14 PM</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

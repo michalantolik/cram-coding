@@ -1,4 +1,6 @@
-﻿@{
+﻿@model EditPostViewModel
+
+@{
     ViewData["Title"] = "Nowy wpis";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
@@ -17,45 +19,53 @@
     <!-- Bottom row -->
     <div class="row">
 
-        <form class="row">
+        <form asp-action="AddPost" method="post" class="row" role="form">
+
+            <!-- Validation summary -->
+            <div asp-validation-summary="All" class="text-danger"></div>
 
             <!-- Header -->
             <div class="col-12 pb-3">
-                <label for="header">Tytuł</label>
-                <input type="text" class="form-control" id="header" />
+                <label asp-for="Header"></label>
+                <input asp-for="Header" type="text" class="form-control" />
+                <span asp-validation-for="Header" class="text-danger"></span>
             </div>
 
             <!-- Content -->
             <div class="col-12 pb-3">
-                <label for="context">Treść</label>
-                <textarea class="form-control" id="content" rows="10" cols="120"></textarea>
+                <label asp-for="Content"></label>
+                <textarea asp-for="Content" class="form-control" rows="10" cols="120"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
             </div>
 
             <!-- Author -->
             <div class="col-12 pb-3">
-                <label for="author">Autor</label>
-                <select class="custom-select" id="author">
+                <label asp-for="Author">Autor</label>
+                <select asp-for="Author" class="custom-select">
+                    <option selected disabled>Wybierz autora...</option>
                     <option value="1">Super Blogger</option>
                     <option value="2">Hero Blogger</option>
                     <option value="3">Mega Blogger</option>
                 </select>
+                <span asp-validation-for="Author" class="text-danger"></span>
             </div>
 
             <!-- Category -->
             <div class="col-12 pb-3">
-                <label for="category">Kategoria</label>
-                <select class="custom-select" id="category">
-                    <option>Wybierz kategorię...</option>
+                <label asp-for="Category">Kategoria</label>
+                <select asp-for="Category" class="custom-select">
+                    <option selected disabled>Wybierz kategorię...</option>
                     <option value="1">Lorem</option>
                     <option value="2">Morbi</option>
                     <option value="3">Proin</option>
                 </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
 
             <!-- Tags -->
             <div class="col-12 pb-3">
-                <label for="tags">Tagi</label>
-                <select class="custom-select" multiple>
+                <label asp-for="Tags">Tagi</label>
+                <select asp-for="Tags" class="custom-select" multiple>
                     <option>Wybierz tagi...</option>
                     <option value="1">magna</option>
                     <option value="2">enim</option>
@@ -63,24 +73,30 @@
                     <option value="4">elementum</option>
                     <option value="5">primis</option>
                 </select>
+                <span asp-validation-for="Category" class="text-danger"></span>
             </div>
 
-            <!-- Published at -->
+            <!-- Published date -->
             <div class="col-md-6">
-                <label for="publishedDate">Data publikacji</label>
-                <input type="date" class="form-control" id="publishedDate" />
-            </div>
-            <div class="col-md-6 pb-4">
-                <label for="publishedTime">Czas publikacji</label>
-                <input type="time" class="form-control" id="publishedTime" />
+                <label asp-for="PublishedDate">Data publikacji</label>
+                <input asp-for="PublishedDate" type="date" class="form-control" />
+                <span asp-validation-for="PublishedDate" class="text-danger"></span>
             </div>
 
-            <!-- Visible -->
+            <!-- Published time -->
+            <div class="col-md-6 pb-4">
+                <label asp-for="PublishedTime">Czas publikacji</label>
+                <input asp-for="PublishedTime" type="time" class="form-control" />
+                <span asp-validation-for="PublishedTime" class="text-danger"></span>
+            </div>
+
+            <!-- Is visible -->
             <div class="col-12 pb-5">
                 <div class="form-check form-switch">
-                    <input type="checkbox" class="form-check-input" id="isVisible" checked />
-                    <label for="isVisible" class="form-check-label">Pokaż wpis</label>
+                    <input asp-for="IsVisible" type="checkbox" class="form-check-input" checked />
+                    <label asp-for="IsVisible" class="form-check-label">Pokaż wpis</label>
                 </div>
+                <span asp-validation-for="IsVisible" class="text-danger"></span>
             </div>
 
             <!-- Save button -->

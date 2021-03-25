@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using CramCoding.WebApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CramCoding.WebApp.Controllers
@@ -16,8 +17,20 @@ namespace CramCoding.WebApp.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult AddPost()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddPost(EditPostViewModel post)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Posts");
+            }
+
             return View();
         }
 

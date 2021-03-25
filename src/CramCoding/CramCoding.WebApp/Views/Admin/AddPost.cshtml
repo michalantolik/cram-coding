@@ -3,7 +3,7 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<div class="container-fluid">
+<div class="container">
 
     <!-- Top row -->
     <div class="row pb-4">
@@ -17,22 +17,22 @@
     <!-- Bottom row -->
     <div class="row">
 
-        <form>
+        <form class="row">
 
             <!-- Header -->
-            <div class="form-group">
+            <div class="col-12 pb-3">
                 <label for="header">Tytuł</label>
                 <input type="text" class="form-control" id="header" />
             </div>
 
             <!-- Content -->
-            <div class="form-group">
+            <div class="col-12 pb-3">
                 <label for="context">Treść</label>
                 <textarea class="form-control" id="content" rows="10" cols="120"></textarea>
             </div>
 
             <!-- Author -->
-            <div class="form-group">
+            <div class="col-12 pb-3">
                 <label for="author">Autor</label>
                 <select class="custom-select" id="author">
                     <option value="1">Super Blogger</option>
@@ -42,7 +42,7 @@
             </div>
 
             <!-- Category -->
-            <div class="form-group">
+            <div class="col-12 pb-3">
                 <label for="category">Kategoria</label>
                 <select class="custom-select" id="category">
                     <option>Wybierz kategorię...</option>
@@ -53,7 +53,7 @@
             </div>
 
             <!-- Tags -->
-            <div class="form-group pb-3">
+            <div class="col-12 pb-3">
                 <label for="tags">Tagi</label>
                 <select class="custom-select" multiple>
                     <option>Wybierz tagi...</option>
@@ -65,8 +65,28 @@
                 </select>
             </div>
 
+            <!-- Published at -->
+            <div class="col-md-6">
+                <label for="publishedDate">Data publikacji</label>
+                <input type="date" class="form-control" id="publishedDate" />
+            </div>
+            <div class="col-md-6 pb-4">
+                <label for="publishedTime">Czas publikacji</label>
+                <input type="time" class="form-control" id="publishedTime" />
+            </div>
+
+            <!-- Visible -->
+            <div class="col-12 pb-5">
+                <div class="form-check form-switch">
+                    <input type="checkbox" class="form-check-input" id="isVisible" checked />
+                    <label for="isVisible" class="form-check-label">Pokaż wpis</label>
+                </div>
+            </div>
+
             <!-- Save button -->
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Zapisz</button>
+            <div class="col-12">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Zapisz</button>
+            </div>
 
         </form>
 

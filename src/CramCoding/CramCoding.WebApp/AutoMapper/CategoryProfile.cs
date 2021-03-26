@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CramCoding.Domain.Entities;
-using CramCoding.WebApp.ViewModels;
+using CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu;
 using System.Linq;
 
 namespace CramCoding.WebApp.AutoMapper

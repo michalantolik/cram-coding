@@ -1,7 +1,8 @@
 ﻿using CramCoding.UnitTests.AutoMapper;
 using CramCoding.UnitTests.Models.Repositories.Mocks;
 using CramCoding.WebApp.Controllers;
-using CramCoding.WebApp.ViewModels;
+using CramCoding.WebApp.ViewModels.Admin.Post;
+using CramCoding.WebApp.ViewModels.Home.Post;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Xunit;

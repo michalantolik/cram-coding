@@ -1,7 +1,7 @@
 ﻿using CramCoding.UnitTests.AutoMapper;
 using CramCoding.UnitTests.Models.Repositories.Mocks;
 using CramCoding.WebApp.Components.CategoryMenu;
-using CramCoding.WebApp.ViewModels;
+using CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using System.Linq;
 using Xunit;

@@ -3,7 +3,7 @@ using CramCoding.Data.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CramCoding.WebApp.ViewModels
+namespace CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu
 {
     public class CategoryMenuViewModel
     {

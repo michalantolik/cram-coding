@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using CramCoding.WebApp.ViewModels.Admin.Post;
+using System.Collections.Generic;
 
-namespace CramCoding.WebApp.ViewModels
+namespace CramCoding.WebApp.ViewModels.Home.Post
 {
     public class CategoryPostsViewModel
     {

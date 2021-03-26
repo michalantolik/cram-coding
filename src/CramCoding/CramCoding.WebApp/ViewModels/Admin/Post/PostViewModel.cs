@@ -1,4 +1,4 @@
-﻿namespace CramCoding.WebApp.ViewModels
+﻿namespace CramCoding.WebApp.ViewModels.Admin.Post
 {
     public class PostViewModel
     {

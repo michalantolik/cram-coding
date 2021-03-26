@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CramCoding.Data.Repositories;
-using CramCoding.WebApp.ViewModels;
+using CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CramCoding.WebApp.Components.CategoryMenu

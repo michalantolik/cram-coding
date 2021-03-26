@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CramCoding.WebApp.ViewModels
+namespace CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu
 {
     public class CategoryViewModel
     {

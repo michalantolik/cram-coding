@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using CramCoding.Data.Repositories;
 using CramCoding.Domain.Entities;
-using CramCoding.WebApp.ViewModels;
+using CramCoding.WebApp.ViewModels.Admin.Post;
+using CramCoding.WebApp.ViewModels.Home.Post;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;

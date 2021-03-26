@@ -1,6 +1,6 @@
 ﻿using CramCoding.Data.Repositories;
 using CramCoding.Domain.Identity;
-using CramCoding.WebApp.ViewModels;
+using CramCoding.WebApp.ViewModels.Admin.Post;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

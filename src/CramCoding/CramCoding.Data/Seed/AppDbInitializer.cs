@@ -1,7 +1,6 @@
 ﻿using CramCoding.Data.Repositories;
 using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,23 +11,30 @@ namespace CramCoding.Data.Seed
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly IPostRepository postRepository;
         private readonly ICategoryRepository categoryRepository;
+        private readonly ITagRepository tagRepository;
 
         public AppDbInitializer(
             RoleManager<ApplicationRole> roleManager,
             IPostRepository postRepository,
-            ICategoryRepository categoryRepository)
+            ICategoryRepository categoryRepository,
+            ITagRepository tagRepository)
         {
             this.roleManager = roleManager;
             this.postRepository = postRepository;
             this.categoryRepository = categoryRepository;
+            this.tagRepository = tagRepository;
         }
 
         public async Task SeedAsync()
         {
             await SeedRolesAsync();
+
             await SeedCategoriesAsync();
+            await SeedTagsAsync();
             await SeedPostsAsync();
+
             await AssignPostsToCategories();
+            await AssignPostsToTags();
         }
 
         private async Task SeedRolesAsync()
@@ -66,6 +72,22 @@ namespace CramCoding.Data.Seed
             }
         }
 
+        private async Task SeedTagsAsync()
+        {
+            // Delete all existing database post tags
+            foreach (var tag in this.tagRepository.GetAll().ToArray())
+            {
+                await Task.Run(() => this.tagRepository.Delete(tag));
+            }
+
+            // Seed database post tags with seeder data
+            var tagSeederData = new TagsSeederData().Tags;
+            foreach (var tag in tagSeederData)
+            {
+                await Task.Run(() => this.tagRepository.Add(tag));
+            }
+        }
+
         private async Task SeedPostsAsync()
         {
             // Delete all existing database posts
@@ -79,6 +101,83 @@ namespace CramCoding.Data.Seed
             foreach (var post in postsSeederData)
             {
                 await Task.Run(() => this.postRepository.Add(post));
+            }
+        }
+
+        private async Task AssignPostsToTags()
+        {
+            var tagPostsMap = new (string tagName, string[] postHeaders)[]
+            {
+                ("magna",
+                new[]
+                {
+                    "Vestibulum fermentum felis dui",
+                    "Nullam convallis purus in justo mattis",
+                    "Praesent tempus",
+                    "Lorem ipsum dolor sit amet",
+                    "Suspendisse potenti",
+                    "Phasellus a ultrices elit",
+                    "Nullam at vehicula enim",
+                    "Quisque sollicitudin risus molestie ex dapibus facilisis",
+                    "Aliquam efficitur",
+                    "In hac habitasse platea dictumst",
+                    "Ut at sem urna",
+                    "Maecenas facilisis elit nec dapibus volutpat",
+                }),
+                ("vestibulum",
+                new[]
+                {
+                    "Lorem ipsum dolor sit amet",
+                    "Maecenas cursus dictum leo in fringilla",
+                    "Suspendisse potenti",
+                    "Phasellus a ultrices elit",
+                    "In hac habitasse platea dictumst",
+                    "Ut at sem urna",
+                    "Maecenas facilisis elit nec dapibus volutpat",
+                }),
+                ("primis",
+                new[]
+                {
+                    "Morbi id posuere eros",
+                    "In hac habitasse platea dictumst",
+                    "Ut at sem urna",
+                    "Maecenas facilisis elit nec dapibus volutpat",
+                    "Nullam convallis purus in justo mattis",
+                    "Praesent tempus",
+                }),
+                ("elementum",
+                new[]
+                {
+                    "Cras rutrum in enim vel faucibus",
+                    "Phasellus nisl elit, semper eget enim et",
+                    "Phasellus a ultrices elit",
+                    "Nullam at vehicula enim",
+                    "In hac habitasse platea dictumst",
+                    "Ut at sem urna",
+                }),
+            };
+
+            await Task.Run(() =>
+            {
+                foreach (var tagPosts in tagPostsMap)
+                {
+                    foreach (var postHeader in tagPosts.postHeaders)
+                    {
+                        AddPostToTag(tagPosts.tagName, postHeader);
+                    }
+                }
+            });
+
+            void AddPostToTag(string tagName, string postHeader)
+            {
+                var tag = this.tagRepository.FindByName(tagName);
+                var post = this.postRepository.FindByHeader(postHeader);
+
+                if (tag != null && post != null)
+                {
+                    tag.Posts.Add(post);
+                    this.tagRepository.Update(tag);
+                }
             }
         }
 

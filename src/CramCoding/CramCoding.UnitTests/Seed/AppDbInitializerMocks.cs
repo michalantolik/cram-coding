@@ -11,6 +11,7 @@ namespace CramCoding.UnitTests.Seed
         internal Mock<RoleManager<ApplicationRole>> RoleManagerMock { get; set; }
         internal Mock<IPostRepository> PostRepositoryMock { get; set; }
         internal Mock<ICategoryRepository> CategoryRepositoryMock { get; set; }
+        internal Mock<ITagRepository> TagRepositoryMock { get; set; }
 
 
         internal AppDbInitializerMocks()
@@ -18,6 +19,7 @@ namespace CramCoding.UnitTests.Seed
             InitializeRoleManagerMock();
             InitializePostRepositoryMock();
             InitializeCategoryRepositoryMock();
+            InitializeTagRepositoryMock();
         }
 
         private void InitializeRoleManagerMock()
@@ -33,6 +35,11 @@ namespace CramCoding.UnitTests.Seed
         private void InitializeCategoryRepositoryMock()
         {
             CategoryRepositoryMock = new Mock<ICategoryRepository>();
+        }
+
+        private void InitializeTagRepositoryMock()
+        {
+            TagRepositoryMock = new Mock<ITagRepository>();
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model TagCloudViewModel
+
+<div class="card mb-5">
+    <div class="card-header bg-dark text-light">
+        @Model.Header
+    </div>
+    <div class="card-body">
+        <div class="d-flex flex-wrap">
+            @foreach (var tag in Model.Tags)
+            {
+                <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 mr-2">@tag</span></a>
+            }
+        </div>
+    </div>
+</div>

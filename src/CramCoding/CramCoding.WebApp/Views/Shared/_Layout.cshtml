@@ -42,30 +42,8 @@
 
             <!-- Sidebars -->
             <div class="col-md-4 d-flex flex-column">
-
-                <!-- Categories -->
                 @await Component.InvokeAsync("CategoryMenu")
-
-                <!-- Tags  -->
-                <div class="card mb-5">
-                    <div class="card-header bg-dark text-light">
-                        Dolor
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex flex-wrap">
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">magna </span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">enim </span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">tincidunt</span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">blandit</span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">vestibulum</span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">primis</span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">ultrices</span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">elementum</span></a>
-                            <a href="#"><span class="badge rounded-pill bg-secondary text-light px-2 py-1 mr-2">placerat</span></a>
-                        </div>
-                    </div>
-                </div>
-
+                @await Component.InvokeAsync("TagCloud")
             </div>
 
         </div>

@@ -7,6 +7,11 @@ namespace CramCoding.Data.Repositories
     /// </summary>
     public interface ITagRepository : IRepository<Tag>
     {
-
+        /// <summary>
+        /// Finds <see cref="Tag"/> entity in the data storage by name
+        /// </summary>
+        /// <param name="name">Tag name</param>
+        /// <returns>Found <see cref="Tag"/> entity or null</returns>
+        Tag FindByName(string name);
     }
 }

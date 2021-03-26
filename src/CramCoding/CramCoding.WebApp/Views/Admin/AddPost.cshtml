@@ -40,40 +40,29 @@
 
             <!-- Author -->
             <div class="col-12 pb-3">
-                <label asp-for="Author">Autor</label>
-                <select asp-for="Author" class="custom-select">
+                <label asp-for="SelectedAuthor">Autor</label>
+                <select asp-for="SelectedAuthor" asp-items="@Model.Authors" class="custom-select">
                     <option selected disabled>Wybierz autora...</option>
-                    <option value="1">Super Blogger</option>
-                    <option value="2">Hero Blogger</option>
-                    <option value="3">Mega Blogger</option>
                 </select>
-                <span asp-validation-for="Author" class="text-danger"></span>
+                <span asp-validation-for="SelectedAuthor" class="text-danger"></span>
             </div>
 
             <!-- Category -->
             <div class="col-12 pb-3">
-                <label asp-for="Category">Kategoria</label>
-                <select asp-for="Category" class="custom-select">
+                <label asp-for="SelectedCategory">Kategoria</label>
+                <select asp-for="SelectedCategory" asp-items="@Model.Categories" class="custom-select">
                     <option selected disabled>Wybierz kategorię...</option>
-                    <option value="1">Lorem</option>
-                    <option value="2">Morbi</option>
-                    <option value="3">Proin</option>
                 </select>
-                <span asp-validation-for="Category" class="text-danger"></span>
+                <span asp-validation-for="SelectedCategory" class="text-danger"></span>
             </div>
 
             <!-- Tags -->
             <div class="col-12 pb-3">
-                <label asp-for="Tags">Tagi</label>
-                <select asp-for="Tags" class="custom-select" multiple>
+                <label asp-for="SelectedTags">Tagi</label>
+                <select asp-for="SelectedTags" asp-items="@Model.Tags" class="custom-select" multiple>
                     <option>Wybierz tagi...</option>
-                    <option value="1">magna</option>
-                    <option value="2">enim</option>
-                    <option value="3">blandit</option>
-                    <option value="4">elementum</option>
-                    <option value="5">primis</option>
                 </select>
-                <span asp-validation-for="Category" class="text-danger"></span>
+                <span asp-validation-for="SelectedTags" class="text-danger"></span>
             </div>
 
             <!-- Published date -->

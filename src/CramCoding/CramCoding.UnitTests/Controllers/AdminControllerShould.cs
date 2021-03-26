@@ -1,4 +1,6 @@
-﻿using CramCoding.WebApp.Controllers;
+﻿using CramCoding.UnitTests.Identity;
+using CramCoding.UnitTests.Models.Repositories.Mocks;
+using CramCoding.WebApp.Controllers;
 using CramCoding.WebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
@@ -11,11 +13,15 @@ namespace CramCoding.UnitTests.Controllers
         public void ReturnCurrentFormViewWhenAddingInvalidPost()
         {
             // ARRANGE
-            var post = new EditPostViewModel();
-            var sut = new AdminController();
+            var userManagerMock = IdentityMocksFactory.CreateUserManagerMock();
+            var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
+            var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
+
+            var sut = new AdminController(userManagerMock.Object, categoryRepositoryMock, tagRepositoryMock);
             sut.ModelState.AddModelError("firstName", "Invalid First Name");
 
             // ACT
+            var post = new EditPostViewModel();
             var result = sut.AddPost(post);
 
             // ASSERT
@@ -28,10 +34,14 @@ namespace CramCoding.UnitTests.Controllers
         public void RedirectToPostsWhenAddingValidPost()
         {
             // ARRANGE
-            var post = new EditPostViewModel();
-            var sut = new AdminController();
+            var userManagerMock = IdentityMocksFactory.CreateUserManagerMock();
+            var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
+            var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
+
+            var sut = new AdminController(userManagerMock.Object, categoryRepositoryMock, tagRepositoryMock);
 
             // ACT
+            var post = new EditPostViewModel();
             var result = sut.AddPost(post);
 
             // ASSERT

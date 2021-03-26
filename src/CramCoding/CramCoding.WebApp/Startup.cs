@@ -42,6 +42,7 @@ namespace CramCoding.WebApp
             services.AddTransient<AppDbInitializer>();
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

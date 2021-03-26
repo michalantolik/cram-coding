@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace CramCoding.WebApp.ViewModels
 {
@@ -14,15 +15,21 @@ namespace CramCoding.WebApp.ViewModels
 
         [Required(ErrorMessage = "Wybierz autora")]
         [Display(Name = "Autor")]
-        public string Author { get; set; }
+        public string SelectedAuthor { get; set; }
+
+        public SelectListItem[] Authors { get; set; }
 
         [Required(ErrorMessage = "Wybierz kategorię")]
         [Display(Name = "Kategoria")]
-        public string Category { get; set; }
+        public string SelectedCategory { get; set; }
+
+        public SelectListItem[] Categories { get; set; }
 
         [Required(ErrorMessage = "Wybierz tagi")]
         [Display(Name = "Tagi")]
-        public string[] Tags { get; set; }
+        public string[] SelectedTags { get; set; }
+
+        public SelectListItem[] Tags { get; set; }
 
         [Required(ErrorMessage = "Podaj datę publikacji")]
         [Display(Name = "Data publikacji")]

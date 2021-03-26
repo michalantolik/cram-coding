@@ -15,6 +15,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
         public IPostRepository PostRepositoryMock { get; set; }
         public ICategoryRepository CategoryRepositoryMock { get; set; }
+        public ITagRepository TagRepositoryMock { get; set; }
 
         public RepositoryMocks()
         {
@@ -35,6 +36,7 @@ namespace CramCoding.UnitTests.Models.Repositories.Mocks
 
             PostRepositoryMock = new PostRepository(AppDbContextMock);
             CategoryRepositoryMock = new CategoryRepository(AppDbContextMock);
+            TagRepositoryMock = new TagRepository(AppDbContextMock);
         }
 
         /// <summary>

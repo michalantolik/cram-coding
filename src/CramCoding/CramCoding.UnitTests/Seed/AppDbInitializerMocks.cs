@@ -1,5 +1,6 @@
 ﻿using CramCoding.Data.Repositories;
 using CramCoding.Domain.Identity;
+using CramCoding.UnitTests.Identity;
 using Microsoft.AspNetCore.Identity;
 using Moq;
 
@@ -21,10 +22,7 @@ namespace CramCoding.UnitTests.Seed
 
         private void InitializeRoleManagerMock()
         {
-            var roleStoreMock = new Mock<IRoleStore<ApplicationRole>>();
-            RoleManagerMock = new Mock<RoleManager<ApplicationRole>>(
-                roleStoreMock.Object, null, null, null, null
-            );
+            RoleManagerMock = IdentityMocksFactory.CreateRoleManagerMock();
         }
 
         private void InitializePostRepositoryMock()

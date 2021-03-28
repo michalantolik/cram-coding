@@ -41,7 +41,7 @@
             <!-- Author -->
             <div class="col-12 pb-3">
                 <label asp-for="SelectedAuthor">Autor</label>
-                <select asp-for="SelectedAuthor" asp-items="@Model.Authors" class="custom-select">
+                <select asp-for="SelectedAuthor" asp-items="@Model.Authors" class="form-select">
                     <option selected disabled>Wybierz autora...</option>
                 </select>
                 <span asp-validation-for="SelectedAuthor" class="text-danger"></span>
@@ -50,7 +50,7 @@
             <!-- Category -->
             <div class="col-12 pb-3">
                 <label asp-for="SelectedCategory">Kategoria</label>
-                <select asp-for="SelectedCategory" asp-items="@Model.Categories" class="custom-select">
+                <select asp-for="SelectedCategory" asp-items="@Model.Categories" class="form-select">
                     <option selected disabled>Wybierz kategorię...</option>
                 </select>
                 <span asp-validation-for="SelectedCategory" class="text-danger"></span>
@@ -59,7 +59,7 @@
             <!-- Tags -->
             <div class="col-12 pb-3">
                 <label asp-for="SelectedTags">Tagi</label>
-                <select asp-for="SelectedTags" asp-items="@Model.Tags" class="custom-select" multiple>
+                <select asp-for="SelectedTags" asp-items="@Model.Tags" class="form-select" multiple>
                     <option>Wybierz tagi...</option>
                 </select>
                 <span asp-validation-for="SelectedTags" class="text-danger"></span>

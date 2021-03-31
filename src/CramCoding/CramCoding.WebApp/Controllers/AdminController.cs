@@ -1,4 +1,5 @@
 ﻿using CramCoding.Data.Repositories;
+using CramCoding.Domain.Entities;
 using CramCoding.Domain.Identity;
 using CramCoding.WebApp.ViewModels.Admin.Post;
 using Microsoft.AspNetCore.Authorization;
@@ -39,19 +40,19 @@ namespace CramCoding.WebApp.Controllers
             var postViewModels = this.postRepository.GetAll(include: true)
                 .ToArray()
                 .Select(p => new PostViewModel()
-            {
-                Header = p.Header,
-                Content = p.Content,
-                CreatedAt = p.CreatedAt,
-                UpdatedAt = p.UpdatedAt,
-                PublishedAt = p.PublishedAt,
-                IsVisible = p.IsVisible,
-                ViewsCount = p.ViewsCount,
-                Author = p.Author.UserName,
-                Categories = p.Categories.Select(c => c.Name).ToArray(),
-                Tags = p.Tags.Select(t => t.Name).ToArray(),
-                CommentsCount = p.Comments.Count()
-            })
+                {
+                    Header = p.Header,
+                    Content = p.Content,
+                    CreatedAt = p.CreatedAt,
+                    UpdatedAt = p.UpdatedAt,
+                    PublishedAt = p.PublishedAt,
+                    IsVisible = p.IsVisible,
+                    ViewsCount = p.ViewsCount,
+                    Author = p.Author.UserName,
+                    Categories = p.Categories.Select(c => c.Name).ToArray(),
+                    Tags = p.Tags.Select(t => t.Name).ToArray(),
+                    CommentsCount = p.Comments.Count()
+                })
             .ToArray();
 
             return View(postViewModels);
@@ -64,10 +65,40 @@ namespace CramCoding.WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPost(EditPostViewModel post)
+        public IActionResult AddPost(EditPostViewModel editPostViewModel)
         {
             if (ModelState.IsValid)
             {
+                var post = new Post()
+                {
+                    Header = editPostViewModel.Header,
+                    Content = editPostViewModel.Content,
+                    CreatedAt = editPostViewModel.FormSumbissionDateTimeUtc.Value, // collected automatically
+                    UpdatedAt = editPostViewModel.FormSumbissionDateTimeUtc.Value, // collected automatically
+                    PublishedAt = editPostViewModel.PublishedDateTimeUtc.Value,    // set by post author
+                    IsVisible = editPostViewModel.IsVisible,
+                    ViewsCount = 0,
+                    Author = this.userManager.FindByNameAsync(editPostViewModel.SelectedAuthor).Result,
+
+                };
+
+                var category = this.categoryRepository.FindByName(editPostViewModel.SelectedCategory);
+                if (category != null)
+                {
+                    post.Categories.Add(category);
+                }
+
+                foreach (var singleTag in editPostViewModel.SelectedTags)
+                {
+                    var tag = this.tagRepository.FindByName(singleTag);
+                    if (tag != null)
+                    {
+                        post.Tags.Add(tag);
+                    }
+                }
+
+                this.postRepository.Add(post);
+
                 return RedirectToAction("Posts");
             }
 

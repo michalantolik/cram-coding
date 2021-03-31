@@ -1,9 +1,12 @@
-﻿using CramCoding.UnitTests.Identity;
+﻿using CramCoding.Domain.Identity;
+using CramCoding.UnitTests.Identity;
 using CramCoding.UnitTests.Models.Repositories.Mocks;
 using CramCoding.WebApp.Controllers;
 using CramCoding.WebApp.ViewModels.Admin.Post;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace CramCoding.UnitTests.Controllers
@@ -47,6 +50,17 @@ namespace CramCoding.UnitTests.Controllers
             var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
             var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
 
+            userManagerMock
+                .Setup(x => x.FindByNameAsync("Rambo"))
+                .Returns(Task.FromResult(
+                    new ApplicationUser()
+                    {
+                        Id = "Rambo",
+                        UserName = "Rambo",
+                        Email = "rambo@mail.com",
+                    }
+                 ));
+
             var sut = new AdminController(
                 userManagerMock.Object,
                 postRepositoryMock,
@@ -55,7 +69,17 @@ namespace CramCoding.UnitTests.Controllers
             );
 
             // ACT
-            var post = new EditPostViewModel();
+            var post = new EditPostViewModel()
+            {
+                Header = "Extra Test Header",
+                Content = "This is my marvellous test content",
+                PublishedDate = new DateTimeOffset(2021, 03, 31, 0, 0, 0, new TimeSpan(2, 0, 0)),
+                PublishedTime = new DateTimeOffset(2021, 03, 31, 7, 42, 34, new TimeSpan(2, 0, 0)),
+                FormSumbissionDateTimeUtc = new DateTimeOffset(2021, 03, 31, 5, 42, 34, new TimeSpan(0, 0, 0)),
+                SelectedCategory = "Maximus",
+                SelectedTags = new[] { "interdum", "volutpat" },
+                SelectedAuthor = "Rambo"
+            };
             var result = sut.AddPost(post);
 
             // ASSERT

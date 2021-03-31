@@ -90,10 +90,21 @@
 
             <!-- Save button -->
             <div class="col-12">
-                <button type="submit" class="btn btn-lg btn-primary btn-block">Zapisz</button>
+                <button type="submit" onclick="updateFormSubmissionDateTime()" class="btn btn-lg btn-primary btn-block">Zapisz</button>
             </div>
+
+            <!-- Form Submission Datetime (UTC).
+                 This is a hidden input field which gets updated when the form is submitted.
+                 This is done by JS function which is subscribed to submit button "onlick" event.
+                 Form submission datetime is then passed to ViewModel via Model Binding.
+                 It can be further used by DB persistence logic to store post created/updated date -->
+            <input hidden asp-for="FormSumbissionDateTimeUtc" type="datetime" />
 
         </form>
 
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/updateFormSubmissionDateTime.js"></script>
+}

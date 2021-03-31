@@ -78,7 +78,7 @@ namespace CramCoding.UnitTests.Seed
                 It.IsAny<Tag>()), Times.Exactly(tags.Length)
             );
             this.mocks.TagRepositoryMock.Verify(x => x.Add(
-                It.IsAny<Tag>()), Times.Exactly(34) // based on Tags.Length from TagsSeederData.cs
+                It.IsAny<Tag>()), Times.Exactly(33) // based on Tags.Length from TagsSeederData.cs
             );
         }
 

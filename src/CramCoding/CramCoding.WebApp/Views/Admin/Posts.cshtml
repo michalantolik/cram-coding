@@ -1,22 +1,24 @@
-﻿@{
+﻿@model PostViewModel[]
+
+@{
     ViewData["Title"] = "Wpisy";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 <div class="container-fluid">
 
-    <!-- Top row -->
+    <!-- Header and button -->
     <div class="row pb-4">
 
-        <!-- Empty -->
+        <!-- Empty column (for layout purposes) -->
         <div class="col"></div>
 
-        <!-- Label -->
+        <!-- Page header -->
         <div class="col">
             <h1 class="display-4 text-center">Wpisy</h1>
         </div>
 
-        <!-- Button -->
+        <!-- Add post button -->
         <div class="col my-auto">
             <a type="button" asp-controller="Admin" asp-action="AddPost" class="btn btn-lg btn-primary float-end">
                 Dodaj
@@ -24,7 +26,7 @@
         </div>
     </div>
 
-    <!-- Bottom row -->
+    <!-- Table of posts -->
     <div class="row">
         <table class="table table-striped">
             <thead>
@@ -37,41 +39,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Nullam convallis purus in justo mattis</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>Praesent tempus</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>42</td>
-                </tr>
-                <tr>
-                    <td>Donec convallis metus ut cursus commod</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Quisque sollicitudin risus molestie ex dapibus facilisis</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>Suspendisse potenti</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>9/2/2021 6:14 PM</td>
-                    <td>2</td>
-                </tr>
+                @foreach (var post in Model)
+                {
+                    <tr>
+                        <td>@post.Header</td>
+                        <td>@post.PublishedAt</td>
+                        <td>@post.UpdatedAt</td>
+                        <td>@post.CreatedAt</td>
+                        <td>@post.ViewsCount</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

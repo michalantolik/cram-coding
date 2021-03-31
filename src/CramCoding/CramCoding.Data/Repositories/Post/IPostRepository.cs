@@ -1,4 +1,5 @@
 ﻿using CramCoding.Domain.Entities;
+using System.Linq;
 
 namespace CramCoding.Data.Repositories
 {
@@ -7,6 +8,13 @@ namespace CramCoding.Data.Repositories
     /// </summary>
     public interface IPostRepository : IRepository<Post>
     {
+        /// <summary>
+        /// Reads out all <see cref="Post"/> entities from the data storage
+        /// </summary>
+        /// <param name="include">Include all related entities</param>
+        /// <returns>All <see cref="Post"/> entities</returns>
+        IQueryable<Post> GetAll(bool include = false);
+
         /// <summary>
         /// Finds <see cref="Post"/> entity in the data storage by header
         /// </summary>

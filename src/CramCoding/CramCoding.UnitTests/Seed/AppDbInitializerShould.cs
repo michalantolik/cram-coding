@@ -87,7 +87,7 @@ namespace CramCoding.UnitTests.Seed
         {
             // ARRANGE
             var posts = new Post[32];
-            this.mocks.PostRepositoryMock.Setup(x => x.GetAll())
+            this.mocks.PostRepositoryMock.Setup(x => x.GetAll(false))
                 .Returns(posts.AsQueryable());
 
             var sut = CreateSut();
@@ -108,6 +108,7 @@ namespace CramCoding.UnitTests.Seed
         {
             return new AppDbInitializer(
                 this.mocks.RoleManagerMock.Object,
+                this.mocks.UserManagerMock.Object,
                 this.mocks.PostRepositoryMock.Object,
                 this.mocks.CategoryRepositoryMock.Object,
                 this.mocks.TagRepositoryMock.Object

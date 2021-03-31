@@ -13,15 +13,18 @@ namespace CramCoding.WebApp.Controllers
     public class AdminController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IPostRepository postRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly ITagRepository tagRepository;
 
         public AdminController(
             UserManager<ApplicationUser> userManager,
+            IPostRepository postRepository,
             ICategoryRepository categoryRepository,
             ITagRepository tagRepository)
         {
             this.userManager = userManager;
+            this.postRepository = postRepository;
             this.categoryRepository = categoryRepository;
             this.tagRepository = tagRepository;
         }
@@ -33,7 +36,25 @@ namespace CramCoding.WebApp.Controllers
 
         public IActionResult Posts()
         {
-            return View();
+            var postViewModels = this.postRepository.GetAll(include: true)
+                .ToArray()
+                .Select(p => new PostViewModel()
+            {
+                Header = p.Header,
+                Content = p.Content,
+                CreatedAt = p.CreatedAt,
+                UpdatedAt = p.UpdatedAt,
+                PublishedAt = p.PublishedAt,
+                IsVisible = p.IsVisible,
+                ViewsCount = p.ViewsCount,
+                Author = p.Author.UserName,
+                Categories = p.Categories.Select(c => c.Name).ToArray(),
+                Tags = p.Tags.Select(t => t.Name).ToArray(),
+                CommentsCount = p.Comments.Count()
+            })
+            .ToArray();
+
+            return View(postViewModels);
         }
 
         [HttpGet]

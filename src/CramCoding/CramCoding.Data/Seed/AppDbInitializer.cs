@@ -9,17 +9,20 @@ namespace CramCoding.Data.Seed
     public class AppDbInitializer
     {
         private readonly RoleManager<ApplicationRole> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IPostRepository postRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly ITagRepository tagRepository;
 
         public AppDbInitializer(
             RoleManager<ApplicationRole> roleManager,
+            UserManager<ApplicationUser> userManager,
             IPostRepository postRepository,
             ICategoryRepository categoryRepository,
             ITagRepository tagRepository)
         {
             this.roleManager = roleManager;
+            this.userManager = userManager;
             this.postRepository = postRepository;
             this.categoryRepository = categoryRepository;
             this.tagRepository = tagRepository;
@@ -35,6 +38,7 @@ namespace CramCoding.Data.Seed
 
             await AssignPostsToCategories();
             await AssignPostsToTags();
+            await AssignPostsToAuthors();
         }
 
         private async Task SeedRolesAsync()
@@ -249,6 +253,20 @@ namespace CramCoding.Data.Seed
                     this.categoryRepository.Update(category);
                 }
             }
+        }
+
+        private async Task AssignPostsToAuthors()
+        {
+            var posts = this.postRepository.GetAll(include: true).ToArray();
+
+            await Task.Run(() =>
+            {
+                foreach (var post in posts)
+                {
+                    post.Author = this.userManager.Users.First();
+                    this.postRepository.Update(post);
+                }
+            });
         }
     }
 }

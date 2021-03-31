@@ -42,7 +42,6 @@ namespace CramCoding.Data.Seed
                 "volutpat",
                 "rutrum",
                 "pharetra",
-                "elementum",
                 "aliquam",
                 "turpis",
             };

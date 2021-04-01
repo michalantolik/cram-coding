@@ -61,11 +61,6 @@ namespace CramCoding.WebApp.ViewModels.Admin.Post
                     return null;
                 }
 
-                if (PublishedDate.Value.Offset != PublishedTime.Value.Offset)
-                {
-                    return null;
-                }
-
                 var publishedDateTime = new DateTimeOffset(
                     PublishedDate.Value.Year,
                     PublishedDate.Value.Month,

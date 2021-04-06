@@ -65,7 +65,7 @@ namespace CramCoding.UnitTests.Seed
         {
             // ARRANGE
             var tags = new Tag[] { new Tag(), new Tag() };
-            this.mocks.TagRepositoryMock.Setup(x => x.GetAll())
+            this.mocks.TagRepositoryMock.Setup(x => x.GetAll(false))
                 .Returns(tags.AsQueryable());
 
             var sut = CreateSut();

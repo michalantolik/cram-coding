@@ -1,30 +1,32 @@
-﻿@{
+﻿@model TagViewModel[]
+
+@{
     ViewData["Title"] = "Tagi";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 <div class="container-fluid">
 
-    <!-- Top row -->
+    <!-- Page header and button -->
     <div class="row pb-4">
 
-        <!-- Empty -->
+        <!-- Empty column (for layout purposes) -->
         <div class="col"></div>
 
-        <!-- Label -->
+        <!-- Page header -->
         <div class="col">
             <h1 class="display-4 text-center">Tagi</h1>
         </div>
 
-        <!-- Button -->
+        <!-- Add tag button -->
         <div class="col my-auto">
-            <a type="button" href="#" class="btn btn-lg btn-primary float-end">
+            <a type="button" asp-controller="Admin" asp-action="AddTag" class="btn btn-lg btn-primary float-end">
                 Dodaj
             </a>
         </div>
     </div>
 
-    <!-- Bottom row -->
+    <!-- Table of tags -->
     <div class="row">
         <table class="table table-striped">
             <thead>
@@ -34,38 +36,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>enim</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>tincidunt</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>blandit</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>vestibulum</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>primis</td>
-                    <td>13</td>
-                </tr>
-                <tr>
-                    <td>ultrices</td>
-                    <td>21</td>
-                </tr>
-                <tr>
-                    <td>elementum</td>
-                    <td>17</td>
-                </tr>
-                <tr>
-                    <td>placerat</td>
-                    <td>17</td>
-                </tr>
+                @foreach (var tag in Model)
+                {
+                    <tr>
+                        <td>@tag.TagName</td>
+                        <td>@tag.PostsCount</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

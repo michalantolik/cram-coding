@@ -1,4 +1,5 @@
 ﻿using CramCoding.Domain.Entities;
+using System.Linq;
 
 namespace CramCoding.Data.Repositories
 {
@@ -13,5 +14,12 @@ namespace CramCoding.Data.Repositories
         /// <param name="name">Tag name</param>
         /// <returns>Found <see cref="Tag"/> entity or null</returns>
         Tag FindByName(string name);
+
+        /// <summary>
+        /// Reads out all <see cref="Tag"/> entities from the data storage
+        /// </summary>
+        /// <param name="include">Include all related entities</param>
+        /// <returns>All <see cref="Tag"/> entities</returns>
+        IQueryable<Tag> GetAll(bool include = false);
     }
 }

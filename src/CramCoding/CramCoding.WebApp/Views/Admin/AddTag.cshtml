@@ -1,0 +1,30 @@
+﻿@model EditTagViewModel
+
+@{
+    ViewData["Title"] = "Nowy Tag";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <!-- Page Header -->
+    <div class="row pb-4">
+        <h1 class="display-4">Nowy tag</h1>
+    </div>
+
+    <!-- Form -->
+    <form asp-action="AddTag" method="post" role="form">
+
+        <!-- Tag Name -->
+        <div class="pb-4">
+            <label asp-for="TagName">Nazwa</label>
+            <input asp-for="TagName" type="text" class="form-control" />
+            <span asp-validation-for="TagName" class="text-danger"></span>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="btn btn-lg btn-primary">Zapisz</button>
+
+    </form>
+
+</div>

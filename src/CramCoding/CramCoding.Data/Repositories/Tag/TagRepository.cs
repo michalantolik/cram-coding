@@ -1,4 +1,5 @@
 ﻿using CramCoding.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace CramCoding.Data.Repositories
@@ -17,6 +18,14 @@ namespace CramCoding.Data.Repositories
         public Tag FindByName(string name)
         {
             return this.context.Tag.SingleOrDefault(t => t.Name == name);
+        }
+
+        /// <inheritdoc/>
+        public IQueryable<Tag> GetAll(bool include = false)
+        {
+            return include 
+                ? this.context.Tag.Include(t => t.Posts)
+                : this.context.Tag;
         }
     }
 }

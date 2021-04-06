@@ -7,16 +7,14 @@
 
 <div class="container">
 
-    <!-- Top row -->
+    <!-- Page Header -->
     <div class="row pb-4">
-
-        <!-- Label -->
         <div class="col">
             <h1 class="display-4 text-center">Nowy wpis</h1>
         </div>
     </div>
 
-    <!-- Bottom row -->
+    <!-- Form -->
     <div class="row">
 
         <form asp-action="AddPost" method="post" class="row" role="form">
@@ -24,21 +22,21 @@
             <!-- Validation summary -->
             <div asp-validation-summary="All" class="text-danger"></div>
 
-            <!-- Header -->
+            <!-- Post Header -->
             <div class="col-12 pb-3">
                 <label asp-for="Header"></label>
                 <input asp-for="Header" type="text" class="form-control" />
                 <span asp-validation-for="Header" class="text-danger"></span>
             </div>
 
-            <!-- Content -->
+            <!-- Post Content -->
             <div class="col-12 pb-3">
                 <label asp-for="Content"></label>
                 <textarea asp-for="Content" class="form-control" rows="10" cols="120"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
 
-            <!-- Author -->
+            <!-- Post Author -->
             <div class="col-12 pb-3">
                 <label asp-for="SelectedAuthor">Autor</label>
                 <select asp-for="SelectedAuthor" asp-items="@Model.Authors" class="form-select">
@@ -47,7 +45,7 @@
                 <span asp-validation-for="SelectedAuthor" class="text-danger"></span>
             </div>
 
-            <!-- Category -->
+            <!-- Post Category -->
             <div class="col-12 pb-3">
                 <label asp-for="SelectedCategory">Kategoria</label>
                 <select asp-for="SelectedCategory" asp-items="@Model.Categories" class="form-select">
@@ -56,7 +54,7 @@
                 <span asp-validation-for="SelectedCategory" class="text-danger"></span>
             </div>
 
-            <!-- Tags -->
+            <!-- Post Tags -->
             <div class="col-12 pb-3">
                 <label asp-for="SelectedTags">Tagi</label>
                 <select asp-for="SelectedTags" asp-items="@Model.Tags" class="form-select" multiple>
@@ -94,10 +92,10 @@
             </div>
 
             <!-- Form Submission Datetime (UTC).
-                 This is a hidden input field which gets updated when the form is submitted.
-                 This is done by JS function which is subscribed to submit button "onlick" event.
-                 Form submission datetime is then passed to ViewModel via Model Binding.
-                 It can be further used by DB persistence logic to store post created/updated date -->
+            This is a hidden input field which gets updated when the form is submitted.
+            This is done by JS function which is subscribed to submit button "onlick" event.
+            Form submission datetime is then passed to ViewModel via Model Binding.
+            It can be further used by DB persistence logic to store post created/updated date -->
             <input hidden asp-for="FormSumbissionDateTimeUtc" type="datetime" />
 
         </form>

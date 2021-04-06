@@ -1,30 +1,32 @@
-﻿@{
+﻿@model CategoryViewModel[]
+
+@{
     ViewData["Title"] = "Kategorie";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
 <div class="container-fluid">
 
-    <!-- Top row -->
+    <!-- Page header and button -->
     <div class="row pb-4">
 
-        <!-- Empty -->
+        <!-- Empty column (for layout purposes) -->
         <div class="col"></div>
 
-        <!-- Label -->
+        <!-- Page header -->
         <div class="col">
             <h1 class="display-4 text-center">Kategorie</h1>
         </div>
 
-        <!-- Button -->
+        <!-- Add category button -->
         <div class="col my-auto">
-            <a type="button" href="#" class="btn btn-lg btn-primary float-end">
+            <a type="button" asp-controller="Admin" asp-action="AddCategory" class="btn btn-lg btn-primary float-end">
                 Dodaj
             </a>
         </div>
     </div>
 
-    <!-- Bottom row -->
+    <!-- Table of categories -->
     <div class="row">
         <table class="table table-striped">
             <thead>
@@ -34,34 +36,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Maximus</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>Lorem</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>Vestibulum</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Libero</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>Morbi</td>
-                    <td>13</td>
-                </tr>
-                <tr>
-                    <td>Proin</td>
-                    <td>21</td>
-                </tr>
-                <tr>
-                    <td>Cras</td>
-                    <td>17</td>
-                </tr>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.CategoryName</td>
+                        <td>@category.PostsCount</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

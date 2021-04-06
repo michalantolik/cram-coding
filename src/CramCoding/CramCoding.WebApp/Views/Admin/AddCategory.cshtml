@@ -1,0 +1,30 @@
+﻿@model EditCategoryViewModel
+
+@{
+    ViewData["Title"] = "Nowa Kategoria";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<div class="container">
+
+    <!-- Page Header -->
+    <div class="row pb-4">
+        <h1 class="display-4">Nowa kategoria</h1>
+    </div>
+
+    <!-- Form -->
+    <form asp-action="AddCategory" method="post" role="form">
+
+        <!-- Category Name -->
+        <div class="pb-4">
+            <label asp-for="CategoryName">Nazwa</label>
+            <input asp-for="CategoryName" type="text" class="form-control" />
+            <span asp-validation-for="CategoryName" class="text-danger"></span>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="btn btn-lg btn-primary">Zapisz</button>
+
+    </form>
+
+</div>

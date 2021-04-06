@@ -21,17 +21,17 @@ namespace CramCoding.UnitTests.Components
             // ... based on data in "categoryRepositoryMock"
             var expectedCategories = new[]
             {
-                new CategoryViewModel()
+                new MenuCategoryViewModel()
                 {
                     CategoryName = "Category 1",
                     Subcategories = new[] { "Subcategory 1", "Subcategory 2", "Subcategory 3" }
                 },
-                new CategoryViewModel()
+                new MenuCategoryViewModel()
                 {
                     CategoryName = "Category 3",
                     Subcategories = new[] { "Subcategory 6", "Subcategory 7", "Subcategory 8" }
                 },
-                new CategoryViewModel()
+                new MenuCategoryViewModel()
                 {
                     CategoryName = "Category 2",
                     Subcategories = new[] { "Subcategory 4", "Subcategory 5", }

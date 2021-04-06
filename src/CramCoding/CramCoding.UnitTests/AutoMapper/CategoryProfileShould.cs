@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CramCoding.Domain.Entities;
+using CramCoding.WebApp.ViewModels.Admin.Category;
 using CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu;
 using System.Linq;
 using Xunit;
@@ -9,7 +10,7 @@ namespace CramCoding.UnitTests.AutoMapper
     public class CategoryProfileShould
     {
         [Fact]
-        public void MapCategoryEntityToViewModel()
+        public void MapCategoryEntityToMenuCategoryViewModel()
         {
             // ARRANGE
             var categoryEntity = new Category
@@ -26,7 +27,7 @@ namespace CramCoding.UnitTests.AutoMapper
 
             // ACT
             var mapper = CreateSut();
-            var categoryViewModel = mapper.Map<CategoryViewModel>(categoryEntity);
+            var categoryViewModel = mapper.Map<MenuCategoryViewModel>(categoryEntity);
 
             // ASSERT
             Assert.Equal("Hero Category", categoryViewModel.CategoryName);
@@ -39,6 +40,46 @@ namespace CramCoding.UnitTests.AutoMapper
                 var destName = categoryViewModel.Subcategories.ElementAt(i);
                 Assert.Equal(sourceName, destName);
             }
+        }
+
+        [Theory]
+        [InlineData("architecture")]
+        [InlineData("javascript")]
+        [InlineData("web-development")]
+        public void MapCategoryEntityToEditCategoryViewModel(string categoryName)
+        {
+            // ARRANGE
+            var categoryEntity = new Category
+            {
+                Name = categoryName
+            };
+
+            // ACT
+            var mapper = CreateSut();
+            var editCategoryViewModel = mapper.Map<EditCategoryViewModel>(categoryEntity);
+
+            // ASSERT
+            Assert.Equal(categoryName, editCategoryViewModel.CategoryName);
+        }
+
+        [Theory]
+        [InlineData("architecture")]
+        [InlineData("javascript")]
+        [InlineData("web-development")]
+        public void MapEditCategoryViewModelToCategoryEntity(string categoryName)
+        {
+            // ARRANGE
+            var editCategoryViewModel = new EditCategoryViewModel
+            {
+                CategoryName = categoryName
+            };
+
+            // ACT
+            var mapper = CreateSut();
+            var categoryEntity = mapper.Map<Category>(editCategoryViewModel);
+
+            // ASSERT
+            Assert.Equal(categoryName, categoryEntity.Name);
         }
 
         internal IMapper CreateSut()

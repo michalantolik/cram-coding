@@ -29,13 +29,13 @@ namespace CramCoding.WebApp.ViewModels.ViewComponents.CategoryMenu
                 .Select(mainCategory =>
                 {
                     mainCategory.Children = mainCategory.Children.OrderBy(child => child.Name).ToArray();
-                    return this.mapper.Map<CategoryViewModel>(mainCategory);
+                    return this.mapper.Map<MenuCategoryViewModel>(mainCategory);
                 })
                 .ToArray();
 
             Categories = mainCategoriesViewModels;
         }
 
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
+        public IEnumerable<MenuCategoryViewModel> Categories { get; set; }
     }
 }

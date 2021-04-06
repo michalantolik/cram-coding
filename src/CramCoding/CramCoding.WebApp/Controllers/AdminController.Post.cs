@@ -40,7 +40,6 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new post" form to be filled in
         /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public IActionResult AddPost()
         {

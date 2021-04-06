@@ -19,7 +19,7 @@
 
         <form asp-action="AddPost" method="post" class="row" role="form">
 
-            <!-- Validation summary -->
+            <!-- Validation Summary -->
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <!-- Post Header -->
@@ -63,21 +63,21 @@
                 <span asp-validation-for="SelectedTags" class="text-danger"></span>
             </div>
 
-            <!-- Published date -->
+            <!-- Published Date -->
             <div class="col-md-6">
                 <label asp-for="PublishedDate">Data publikacji</label>
                 <input asp-for="PublishedDate" type="date" class="form-control" />
                 <span asp-validation-for="PublishedDate" class="text-danger"></span>
             </div>
 
-            <!-- Published time -->
+            <!-- Published Time -->
             <div class="col-md-6 pb-4">
                 <label asp-for="PublishedTime">Czas publikacji</label>
                 <input asp-for="PublishedTime" type="time" class="form-control" />
                 <span asp-validation-for="PublishedTime" class="text-danger"></span>
             </div>
 
-            <!-- Is visible -->
+            <!-- Is Visible -->
             <div class="col-12 pb-5">
                 <div class="form-check form-switch">
                     <input asp-for="IsVisible" type="checkbox" class="form-check-input" checked />
@@ -86,7 +86,7 @@
                 <span asp-validation-for="IsVisible" class="text-danger"></span>
             </div>
 
-            <!-- Save button -->
+            <!-- Save Button -->
             <div class="col-12">
                 <button type="submit" onclick="updateFormSubmissionDateTime()" class="btn btn-lg btn-primary btn-block">Zapisz</button>
             </div>

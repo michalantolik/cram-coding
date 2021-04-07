@@ -4,6 +4,7 @@ namespace CramCoding.WebApp.ViewModels.Admin.Post
 {
     public class PostViewModel
     {
+        public int Id { get; set; }
         public string Header { get; set; }
         public string Content { get; set; }
         public DateTimeOffset CreatedAt { get; set; }

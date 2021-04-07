@@ -20,6 +20,7 @@ namespace CramCoding.WebApp.Controllers
                 .ToArray()
                 .Select(p => new PostViewModel()
                 {
+                    Id = p.PostId,
                     Header = p.Header,
                     Content = p.Content,
                     CreatedAt = p.CreatedAt,
@@ -35,6 +36,14 @@ namespace CramCoding.WebApp.Controllers
             .ToArray();
 
             return View(postViewModels);
+        }
+
+        /// <summary>
+        /// SHOWS post details for a given ID
+        /// </summary>
+        public IActionResult PostDetails(int id)
+        {
+            return View("PostDetails");
         }
 
         /// <summary>

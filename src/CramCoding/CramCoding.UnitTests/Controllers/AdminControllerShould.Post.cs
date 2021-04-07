@@ -127,5 +127,32 @@ namespace CramCoding.UnitTests.Controllers
             var actualPostsCount = viewModel.Length;
             Assert.Equal(expectedPostsCount, actualPostsCount);
         }
+
+        [Fact]
+        public void ShowPostDetailsView()
+        {
+            // ARRANGE
+            var userManagerMock = IdentityMocksFactory.CreateUserManagerMock();
+            var postRepositoryMock = new RepositoryMocks().PostRepositoryMock;
+            var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
+            var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
+            var automapper = AutoMapperFactory.Create();
+
+            var sut = new AdminController(
+                userManagerMock.Object,
+                postRepositoryMock,
+                categoryRepositoryMock,
+                tagRepositoryMock,
+                automapper
+            );
+
+            // ACT
+            var result = sut.PostDetails(4);
+
+            // ASSERT
+            var viewResult = result as ViewResult;
+            Assert.NotNull(viewResult);
+            Assert.Equal("PostDetails", viewResult.ViewName);
+        }
     }
 }

@@ -1,0 +1,140 @@
+﻿@model TagViewModel[]
+
+@{
+    ViewData["Title"] = "Post";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+
+    const string ddResponsive = "offset-sm-2 col-sm-8 offset-md-1 col-md-9 offset-lg-0 col-lg-10";
+}
+
+<div class="container">
+
+    <!-- Page Header and Edit/Delete Buttons -->
+    <div class="row pb-2">
+
+        <!-- Empty column (for layout purposes) -->
+        <div class="col-md"></div>
+
+        <!-- Page Header -->
+        <div class="col-sm col-md">
+            <h1 class="display-4 text-md-center">Wpis</h1>
+        </div>
+
+        <!-- Edit/Delete Buttons -->
+        <div class="col-sm col-md my-auto">
+            <div class="d-flex justify-content-md-end">
+                <button href="#" class="btn btn-lg btn-outline-dark">Edytuj</button>
+                <button href="#" class="btn btn-lg btn-outline-dark ms-3">Usuń</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Horizontal Line -->
+    <div class="row pb-4">
+        <hr />
+    </div>
+
+    <!-- Post Details -->
+    <div class="row mb-3">
+
+        <!-- ID -->
+        <dl class="row mb-0">
+            <dt class="col-2">Id</dt>
+            <dd class="@ddResponsive">32</dd>
+        </dl>
+
+        <!-- Title -->
+        <dl class="row mb-0">
+            <dt class="col-2">Tytuł</dt>
+            <dd class="@ddResponsive">Lorem ipsum dolor sit amet</dd>
+        </dl>
+
+        <!-- Content -->
+        <dl class="row mb-0">
+            <dt class="col-2">Treść</dt>
+            <dd class="@ddResponsive">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis suscipit diam suscipit nisl gravida, ut aliquam orci facilisis. Nunc venenatis sed enim sed auctor. Nulla facilisi. Mauris accumsan, massa congue finibus condimentum, massa ante porttitor neque, ac vestibulum nunc diam id mauris. Pellentesque semper venenatis augue, ac maximus turpis mattis ac. Phasellus tellus eros, blandit iaculis feugiat a, condimentum eget dolor. Proin faucibus finibus nisl sit amet efficitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at sapien et libero aliquet fringilla. Vestibulum nibh risus, pretium vel pretium sit amet, faucibus sed ipsum. Duis venenatis turpis pellentesque lectus condimentum, consectetur hendrerit quam congue. Praesent sagittis ornare augue, id blandit metus condimentum at. Mauris dictum accumsan eros at tincidunt. Morbi blandit est in diam feugiat iaculis. Sed placerat, nisi nec tristique interdum, quam mi blandit est, a eleifend turpis arcu cursus leo. Cras pulvinar neque quam, sed varius urna lobortis at. Etiam dictum mauris nulla, at volutpat orci semper quis. Vivamus condimentum elit a iaculis dignissim. Morbi mollis consectetur sapien ac luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed venenatis dolor sit amet neque aliquet luctus. Nunc quis quam cursus, pellentesque dolor a, vulputate orci. Ut ac cursus est. Curabitur vitae sollicitudin nulla. Curabitur eros arcu, aliquet nec massa id, consequat condimentum arcu.</dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+        <!-- Published Date -->
+        <dl class="row mb-0">
+            <dt class="col-2">Opublikowano</dt>
+            <dd class="@ddResponsive">04.01.2020 13:52:32 +01:00</dd>
+        </dl>
+
+        <!-- Updated Date -->
+        <dl class="row mb-0">
+            <dt class="col-2">Zaktualizowano</dt>
+            <dd class="@ddResponsive">04.01.2020 13:52:32 +01:00</dd>
+        </dl>
+
+        <!-- Created Date -->
+        <dl class="row mb-0">
+            <dt class="col-2">Utworzono</dt>
+            <dd class="@ddResponsive">04.01.2020 13:52:32 +01:00</dd>
+        </dl>
+
+        <!-- Is Post Visible -->
+        <dl class="row mb-0">
+            <dt class="col-2">Widoczność</dt>
+            <dd class="@ddResponsive">Widoczny</dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+        <!-- Visits Count -->
+        <dl class="row mb-0">
+            <dt class="col-2">Liczba odwiedzin</dt>
+            <dd class="@ddResponsive">32</dd>
+        </dl>
+
+        <!-- Comments Count -->
+        <dl class="row mb-0">
+            <dt class="col-2">Liczba komentarzy</dt>
+            <dd class="@ddResponsive">5</dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+        <!-- Author -->
+        <dl class="row mb-0">
+            <dt class="col-2">Autor</dt>
+            <dd class="@ddResponsive">jan.kowalski@gmail.com</dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+        <!-- Categories -->
+        <dl class="row mb-0">
+            <dt class="col-2">Kategorie</dt>
+            <dd class="@ddResponsive">
+                <ul class="list-unstyled">
+                    <li>Kategoria nr 1</li>
+                    <li>Kategoria nr 2</li>
+                    <li>Kategoria nr 3</li>
+                </ul>
+            </dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+        <!-- Tags -->
+        <dl class="row mb-0">
+            <dt class="col-2">Tagi</dt>
+            <dd class="@ddResponsive">
+                <ul class="list-unstyled">
+                    <li>Tag nr 1</li>
+                    <li>Tag nr 2</li>
+                    <li>Tag nr 3</li>
+                </ul>
+            </dd>
+        </dl>
+        <hr class="mt-2" />
+    </div>
+
+    <!-- Back to List button -->
+    <a type="button" asp-controller="Admin" asp-action="Posts" class="btn btn-outline-dark">Cofnij do Listy</a>
+
+</div>

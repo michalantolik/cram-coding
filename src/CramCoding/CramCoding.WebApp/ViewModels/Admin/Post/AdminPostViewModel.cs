@@ -2,7 +2,7 @@
 
 namespace CramCoding.WebApp.ViewModels.Admin.Post
 {
-    public class PostViewModel
+    public class AdminPostViewModel
     {
         public int Id { get; set; }
         public string Header { get; set; }

@@ -18,7 +18,7 @@ namespace CramCoding.WebApp.Controllers
         {
             var postViewModels = this.postRepository.GetAll(include: true)
                 .ToArray()
-                .Select(p => new PostViewModel()
+                .Select(p => new AdminPostViewModel()
                 {
                     Id = p.PostId,
                     Header = p.Header,

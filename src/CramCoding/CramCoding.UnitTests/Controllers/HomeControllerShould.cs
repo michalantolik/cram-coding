@@ -27,27 +27,27 @@ namespace CramCoding.UnitTests.Controllers
             // ... based on data in "postRepositoryMock"
             var expectedPosts = new[]
             {
-                new PostViewModel()
+                new HomePostViewModel()
                 {
                     Header = "Header 1",
                     Content = "Content 1"
                 },
-                new PostViewModel()
+                new HomePostViewModel()
                 {
                     Header = "Header 3",
                     Content = "Content 3"
                 },
-                new PostViewModel()
+                new HomePostViewModel()
                 {
                     Header = "Header 4",
                     Content = "Content 4"
                 },
-                new PostViewModel()
+                new HomePostViewModel()
                 {
                     Header = "Header 2",
                     Content = "Content 2"
                 },
-                new PostViewModel()
+                new HomePostViewModel()
                 {
                     Header = "Header 5",
                     Content = "Content 5"
@@ -86,12 +86,12 @@ namespace CramCoding.UnitTests.Controllers
             // ... based on data in "postRepositoryMock"
             var expectedPosts = new[]
             {
-                new PostViewModel()
+                new AdminPostViewModel()
                 {
                     Header = "Header 3",
                     Content = "Content 3"
                 },
-                new PostViewModel()
+                new AdminPostViewModel()
                 {
                     Header = "Header 5",
                     Content = "Content 5"

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CramCoding.Data.Repositories;
 using CramCoding.Domain.Entities;
-using CramCoding.WebApp.ViewModels.Admin.Post;
 using CramCoding.WebApp.ViewModels.Home.Post;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -43,7 +42,7 @@ namespace CramCoding.WebApp.Controllers
             var viewModel = new CategoryPostsViewModel
             {
                 CategoryName = category,
-                Posts = posts.Select(p => this.mapper.Map<PostViewModel>(p)).ToArray()
+                Posts = posts.Select(p => this.mapper.Map<HomePostViewModel>(p)).ToArray()
             };
 
             return View(viewModel);

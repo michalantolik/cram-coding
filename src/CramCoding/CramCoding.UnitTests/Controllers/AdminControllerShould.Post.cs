@@ -121,7 +121,7 @@ namespace CramCoding.UnitTests.Controllers
             Assert.NotNull(viewResult);
             Assert.Null(viewResult.ViewName);
 
-            var viewModel = viewResult.Model as PostViewModel[];
+            var viewModel = viewResult.Model as AdminPostViewModel[];
 
             var expectedPostsCount = postRepositoryMock.GetAll().ToArray().Length;
             var actualPostsCount = viewModel.Length;

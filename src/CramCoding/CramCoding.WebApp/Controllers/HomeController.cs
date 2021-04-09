@@ -53,5 +53,15 @@ namespace CramCoding.WebApp.Controllers
 
             return View(viewModel);
         }
+
+        /// <summary>
+        /// SHOWS a post for the given ID
+        /// </summary>
+        public IActionResult Post(int postId)
+        {
+            var post = this.postRepository.FindById(postId);
+
+            return post != null ? View(post) : View("PostNotFound");
+        }
     }
 }

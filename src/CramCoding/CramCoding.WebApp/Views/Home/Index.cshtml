@@ -1,9 +1,19 @@
 ﻿@model PaginatedList<Post>
 
+@{
+    const int PostExcerptMaxLength = 350;
+    string GetPostExcerpt(string postContent)
+    {
+        return postContent.Length > PostExcerptMaxLength
+            ? postContent.Substring(0, PostExcerptMaxLength - 1) + " ..."
+            : postContent;
+    }
+}
+
 <!-- Page of Posts -->
 @foreach (var post in Model)
 {
-    <div class="card mb-4 shadow-sm">
+    <div class="card mb-5 shadow-sm">
         <div class="card-header bg-dark text-light">
             <div class="d-flex my-auto">
                 <div>@post.Header</div>
@@ -11,8 +21,8 @@
             </div>
         </div>
         <div class="card-body">
-            <p>@post.Content</p>
-            <a type="button" href="#" class="btn btn-outline-dark">Wyświetl ...</a>
+            <p>@GetPostExcerpt(post.Content)</p>
+            <a type="button" asp-action="Post" asp-route-postId="@post.PostId" class="btn btn-outline-dark">Wyświetl ...</a>
         </div>
     </div>
 }

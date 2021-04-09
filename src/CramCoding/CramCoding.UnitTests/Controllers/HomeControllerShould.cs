@@ -97,5 +97,62 @@ namespace CramCoding.UnitTests.Controllers
                 Assert.Equal(expectedPosts[i].Content, paginatedPosts[i].Content);
             }
         }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        [InlineData(5)]
+        public void DisplayPostWhenExists(int postId)
+        {
+            // ARRANGE
+            var automapper = AutoMapperFactory.Create();
+            var postRepositoryMock = new RepositoryMocks().PostRepositoryMock;
+            var sut = new HomeController(automapper, postRepositoryMock);
+
+            // ... based on data in "postRepositoryMock"
+            var expectedPost = new Post()
+            {
+                Header = $"Header {postId}",
+                Content = $"Content {postId}"
+            };
+
+            // ACT
+            var view = sut.Post(postId) as ViewResult;
+
+            // ASSERT
+            Assert.NotNull(view);
+            var post = view.ViewData.Model as Post;
+
+            Assert.NotNull(post);
+            Assert.Equal(expectedPost.Header, post.Header);
+            Assert.Equal(expectedPost.Content, post.Content);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(53)]
+        [InlineData(34)]
+        [InlineData(-23)]
+        public void DisplayPostNotFoundPageWhenDoesNotExist(int postId)
+        {
+            // ARRANGE
+            var automapper = AutoMapperFactory.Create();
+            var postRepositoryMock = new RepositoryMocks().PostRepositoryMock;
+            var sut = new HomeController(automapper, postRepositoryMock);
+
+            // ... based on data in "postRepositoryMock"
+            var expectedPost = new Post()
+            {
+                Header = $"Header {postId}",
+                Content = $"Content {postId}"
+            };
+
+            // ACT
+            var view = sut.Post(postId) as ViewResult;
+
+            // ASSERT
+            Assert.NotNull(view);
+            Assert.Equal("PostNotFound", view.ViewName);
+        }
     }
 }

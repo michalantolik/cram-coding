@@ -43,7 +43,11 @@ namespace CramCoding.WebApp.Controllers
         /// </summary>
         public IActionResult PostDetails(int id)
         {
-            return View("PostDetails");
+            var post = this.postRepository
+                .GetAll(include: true)
+                .FirstOrDefault(p => p.PostId == id);
+
+            return View(post);
         }
 
         /// <summary>

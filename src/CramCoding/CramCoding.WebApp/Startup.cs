@@ -61,6 +61,12 @@ namespace CramCoding.WebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "Admin.PostDetails",
+                    pattern: "Admin/PostDetails/{id}",
+                    defaults: new { controller = "Admin", action = "PostDetails" }
+                );
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{category?}"
                 );

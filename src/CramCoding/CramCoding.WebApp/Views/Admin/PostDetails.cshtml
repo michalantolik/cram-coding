@@ -1,4 +1,4 @@
-﻿@model TagViewModel[]
+﻿@model Post
 
 @{
     ViewData["Title"] = "Post";
@@ -41,19 +41,19 @@
         <!-- ID -->
         <dl class="row mb-0">
             <dt class="col-2">Id</dt>
-            <dd class="@ddResponsive">32</dd>
+            <dd class="@ddResponsive">@Model.PostId</dd>
         </dl>
 
-        <!-- Title -->
+        <!-- Header -->
         <dl class="row mb-0">
             <dt class="col-2">Tytuł</dt>
-            <dd class="@ddResponsive">Lorem ipsum dolor sit amet</dd>
+            <dd class="@ddResponsive">@Model.Header</dd>
         </dl>
 
         <!-- Content -->
         <dl class="row mb-0">
             <dt class="col-2">Treść</dt>
-            <dd class="@ddResponsive">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis suscipit diam suscipit nisl gravida, ut aliquam orci facilisis. Nunc venenatis sed enim sed auctor. Nulla facilisi. Mauris accumsan, massa congue finibus condimentum, massa ante porttitor neque, ac vestibulum nunc diam id mauris. Pellentesque semper venenatis augue, ac maximus turpis mattis ac. Phasellus tellus eros, blandit iaculis feugiat a, condimentum eget dolor. Proin faucibus finibus nisl sit amet efficitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at sapien et libero aliquet fringilla. Vestibulum nibh risus, pretium vel pretium sit amet, faucibus sed ipsum. Duis venenatis turpis pellentesque lectus condimentum, consectetur hendrerit quam congue. Praesent sagittis ornare augue, id blandit metus condimentum at. Mauris dictum accumsan eros at tincidunt. Morbi blandit est in diam feugiat iaculis. Sed placerat, nisi nec tristique interdum, quam mi blandit est, a eleifend turpis arcu cursus leo. Cras pulvinar neque quam, sed varius urna lobortis at. Etiam dictum mauris nulla, at volutpat orci semper quis. Vivamus condimentum elit a iaculis dignissim. Morbi mollis consectetur sapien ac luctus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed venenatis dolor sit amet neque aliquet luctus. Nunc quis quam cursus, pellentesque dolor a, vulputate orci. Ut ac cursus est. Curabitur vitae sollicitudin nulla. Curabitur eros arcu, aliquet nec massa id, consequat condimentum arcu.</dd>
+            <dd class="@ddResponsive">@Model.Content</dd>
         </dl>
 
         <hr class="mt-2" />
@@ -61,25 +61,25 @@
         <!-- Published Date -->
         <dl class="row mb-0">
             <dt class="col-2">Opublikowano</dt>
-            <dd class="@ddResponsive">04.01.2020 13:52:32 +01:00</dd>
+            <dd class="@ddResponsive">@Model.PublishedAt</dd>
         </dl>
 
         <!-- Updated Date -->
         <dl class="row mb-0">
             <dt class="col-2">Zaktualizowano</dt>
-            <dd class="@ddResponsive">04.01.2020 13:52:32 +01:00</dd>
+            <dd class="@ddResponsive">@Model.UpdatedAt</dd>
         </dl>
 
         <!-- Created Date -->
         <dl class="row mb-0">
             <dt class="col-2">Utworzono</dt>
-            <dd class="@ddResponsive">04.01.2020 13:52:32 +01:00</dd>
+            <dd class="@ddResponsive">@Model.CreatedAt</dd>
         </dl>
 
         <!-- Is Post Visible -->
         <dl class="row mb-0">
             <dt class="col-2">Widoczność</dt>
-            <dd class="@ddResponsive">Widoczny</dd>
+            <dd class="@ddResponsive">@Model.IsVisible</dd>
         </dl>
 
         <hr class="mt-2" />
@@ -87,13 +87,13 @@
         <!-- Visits Count -->
         <dl class="row mb-0">
             <dt class="col-2">Liczba odwiedzin</dt>
-            <dd class="@ddResponsive">32</dd>
+            <dd class="@ddResponsive">@Model.ViewsCount</dd>
         </dl>
 
         <!-- Comments Count -->
         <dl class="row mb-0">
             <dt class="col-2">Liczba komentarzy</dt>
-            <dd class="@ddResponsive">5</dd>
+            <dd class="@ddResponsive">@Model.Comments.Count</dd>
         </dl>
 
         <hr class="mt-2" />
@@ -101,7 +101,7 @@
         <!-- Author -->
         <dl class="row mb-0">
             <dt class="col-2">Autor</dt>
-            <dd class="@ddResponsive">jan.kowalski@gmail.com</dd>
+            <dd class="@ddResponsive">@Model?.Author?.Email</dd>
         </dl>
 
         <hr class="mt-2" />
@@ -111,9 +111,10 @@
             <dt class="col-2">Kategorie</dt>
             <dd class="@ddResponsive">
                 <ul class="list-unstyled">
-                    <li>Kategoria nr 1</li>
-                    <li>Kategoria nr 2</li>
-                    <li>Kategoria nr 3</li>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li>@category.Name</li>
+                    }
                 </ul>
             </dd>
         </dl>
@@ -125,9 +126,10 @@
             <dt class="col-2">Tagi</dt>
             <dd class="@ddResponsive">
                 <ul class="list-unstyled">
-                    <li>Tag nr 1</li>
-                    <li>Tag nr 2</li>
-                    <li>Tag nr 3</li>
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <li>@tag.Name</li>
+                    }
                 </ul>
             </dd>
         </dl>

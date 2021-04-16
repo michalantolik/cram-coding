@@ -1,4 +1,5 @@
-﻿using CramCoding.Domain.Identity;
+﻿using CramCoding.Domain.Entities;
+using CramCoding.Domain.Identity;
 using CramCoding.UnitTests.AutoMapper;
 using CramCoding.UnitTests.Identity;
 using CramCoding.UnitTests.Models.Repositories.Mocks;
@@ -151,8 +152,25 @@ namespace CramCoding.UnitTests.Controllers
 
             // ASSERT
             var viewResult = result as ViewResult;
-            Assert.NotNull(viewResult);
-            Assert.Equal("PostDetails", viewResult.ViewName);
+            Assert.Null(viewResult.ViewName);
+
+            var post = viewResult.Model as Post;
+            Assert.NotNull(post);
+
+            // ... based on data in "postRepositoryMock"
+
+            Assert.Equal("john.rambo@gmail.com", post.Author.Email);
+            Assert.Equal("Header 4", post.Header);
+            Assert.Equal("Content 4", post.Content);
+
+
+            Assert.NotNull(post.Categories);
+            Assert.Equal(1, post.Categories.Count);
+            Assert.Equal("Subcategory 8", post.Categories.ElementAt(0).Name);
+
+            Assert.NotNull(post.Tags);
+            Assert.Equal(1, post.Tags.Count);
+            Assert.Equal("Tag 2", post.Tags.ElementAt(0).Name);
         }
     }
 }

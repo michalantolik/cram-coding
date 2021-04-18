@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="card-body">
-            <p>@GetPostExcerpt(post.Content)</p>
+            <markdown>@GetPostExcerpt(post.Content)</markdown>
             <a type="button" asp-action="Post" asp-route-postId="@post.PostId" class="btn btn-outline-dark">Wyświetl ...</a>
         </div>
     </div>

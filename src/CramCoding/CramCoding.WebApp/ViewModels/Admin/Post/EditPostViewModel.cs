@@ -6,41 +6,41 @@ namespace CramCoding.WebApp.ViewModels.Admin.Post
 {
     public class EditPostViewModel
     {
-        [Required(ErrorMessage = "Uzupełnij tytuł")]
-        [Display(Name = "Tytuł")]
+        [Required(ErrorMessage = "Fill in the header")]
+        [Display(Name = "Header")]
         public string Header { get; set; }
 
-        [Required(ErrorMessage = "Uzupełnij treść")]
-        [Display(Name = "Treść")]
+        [Required(ErrorMessage = "Fill in the content")]
+        [Display(Name = "Content")]
         public string Content { get; set; }
 
-        [Required(ErrorMessage = "Wybierz autora")]
-        [Display(Name = "Autor")]
+        [Required(ErrorMessage = "Fill in the author")]
+        [Display(Name = "Author")]
         public string SelectedAuthor { get; set; }
 
         public SelectListItem[] Authors { get; set; }
 
-        [Required(ErrorMessage = "Wybierz kategorię")]
-        [Display(Name = "Kategoria")]
+        [Required(ErrorMessage = "Fill in the category")]
+        [Display(Name = "Category")]
         public string SelectedCategory { get; set; }
 
         public SelectListItem[] Categories { get; set; }
 
-        [Required(ErrorMessage = "Wybierz tagi")]
-        [Display(Name = "Tagi")]
+        [Required(ErrorMessage = "Select tags")]
+        [Display(Name = "Tags")]
         public string[] SelectedTags { get; set; }
 
         public SelectListItem[] Tags { get; set; }
 
-        [Required(ErrorMessage = "Podaj datę publikacji")]
-        [Display(Name = "Data publikacji")]
+        [Required(ErrorMessage = "Fill in publish date")]
+        [Display(Name = "Publish date")]
         public DateTimeOffset? PublishedDate { get; set; }
 
-        [Required(ErrorMessage = "Podaj czas publikacji")]
-        [Display(Name = "Czas publikacji")]
+        [Required(ErrorMessage = "Fill in publish time")]
+        [Display(Name = "Public time")]
         public DateTimeOffset? PublishedTime { get; set; }
 
-        [Display(Name = "Pokaż wpis")]
+        [Display(Name = "Publicly visible")]
         public bool IsVisible { get; set; }
 
         /// <summary>

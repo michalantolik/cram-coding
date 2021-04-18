@@ -10,7 +10,7 @@
     <!-- Page Header -->
     <div class="row pb-2">
         <div class="col">
-            <h1 class="display-4 text-center">Nowy wpis</h1>
+            <h1 class="display-4 text-center">New post</h1>
         </div>
     </div>
 
@@ -38,41 +38,41 @@
 
             <!-- Post Author -->
             <div class="col-12 pb-3">
-                <label asp-for="SelectedAuthor">Autor</label>
+                <label asp-for="SelectedAuthor">Author</label>
                 <select asp-for="SelectedAuthor" asp-items="@Model.Authors" class="form-select">
-                    <option selected disabled>Wybierz autora...</option>
+                    <option selected disabled>Select author...</option>
                 </select>
                 <span asp-validation-for="SelectedAuthor" class="text-danger"></span>
             </div>
 
             <!-- Post Category -->
             <div class="col-12 pb-3">
-                <label asp-for="SelectedCategory">Kategoria</label>
+                <label asp-for="SelectedCategory">Category</label>
                 <select asp-for="SelectedCategory" asp-items="@Model.Categories" class="form-select">
-                    <option selected disabled>Wybierz kategorię...</option>
+                    <option selected disabled>Select category...</option>
                 </select>
                 <span asp-validation-for="SelectedCategory" class="text-danger"></span>
             </div>
 
             <!-- Post Tags -->
             <div class="col-12 pb-3">
-                <label asp-for="SelectedTags">Tagi</label>
+                <label asp-for="SelectedTags">Tags</label>
                 <select asp-for="SelectedTags" asp-items="@Model.Tags" class="form-select" multiple>
-                    <option>Wybierz tagi...</option>
+                    <option>Select tags...</option>
                 </select>
                 <span asp-validation-for="SelectedTags" class="text-danger"></span>
             </div>
 
             <!-- Published Date -->
             <div class="col-md-6">
-                <label asp-for="PublishedDate">Data publikacji</label>
+                <label asp-for="PublishedDate">Publish date</label>
                 <input asp-for="PublishedDate" type="date" class="form-control" />
                 <span asp-validation-for="PublishedDate" class="text-danger"></span>
             </div>
 
             <!-- Published Time -->
             <div class="col-md-6 pb-4">
-                <label asp-for="PublishedTime">Czas publikacji</label>
+                <label asp-for="PublishedTime">Publish time</label>
                 <input asp-for="PublishedTime" type="time" class="form-control" />
                 <span asp-validation-for="PublishedTime" class="text-danger"></span>
             </div>
@@ -81,14 +81,14 @@
             <div class="col-12 pb-5">
                 <div class="form-check form-switch">
                     <input asp-for="IsVisible" type="checkbox" class="form-check-input" checked />
-                    <label asp-for="IsVisible" class="form-check-label">Pokaż wpis</label>
+                    <label asp-for="IsVisible" class="form-check-label">Publicly visible</label>
                 </div>
                 <span asp-validation-for="IsVisible" class="text-danger"></span>
             </div>
 
             <!-- Save Button -->
             <div class="col-12">
-                <button type="submit" onclick="updateFormSubmissionDateTime()" class="btn btn-lg btn-primary btn-block">Zapisz</button>
+                <button type="submit" onclick="updateFormSubmissionDateTime()" class="btn btn-lg btn-primary btn-block">Save</button>
             </div>
 
             <!-- Form Submission Datetime (UTC).

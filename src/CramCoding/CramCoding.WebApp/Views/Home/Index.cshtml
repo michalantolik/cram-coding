@@ -22,7 +22,7 @@
         </div>
         <div class="card-body">
             <markdown>@GetPostExcerpt(post.Content)</markdown>
-            <a type="button" asp-action="Post" asp-route-postId="@post.PostId" class="btn btn-outline-dark">Wyświetl ...</a>
+            <a type="button" asp-action="Post" asp-route-postId="@post.PostId" class="btn btn-outline-dark">Show post ...</a>
         </div>
     </div>
 }
@@ -34,15 +34,15 @@
 
         <!-- Previous Page button -->
         <a type="button" asp-route-pageNumber="@(Model.PageNumber - 1)" class="btn btn-outline-dark me-3 @(Model.HasPreviousPage ? "" : "disabled")">
-            Nowsze posty ...
+            Newer posts ...
         </a>
 
         <!-- Next Page button -->
         <a type="button" asp-route-pageNumber="@(Model.PageNumber + 1)" class="btn btn-outline-dark @(Model.HasNextPage ? "" : "disabled")">
-            Starsze posty ...
+            Older posts ...
         </a>
 
         <!-- Current Page info-->
-        <small class="ms-auto my-auto"><i>Strona @Model.PageNumber z @Model.TotalPages</i></small>
+        <small class="ms-auto my-auto"><i>Page @Model.PageNumber of @Model.TotalPages</i></small>
     </div>
 }

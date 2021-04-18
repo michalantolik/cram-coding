@@ -17,14 +17,14 @@
 
         <!-- Page Header -->
         <div class="col-sm col-md">
-            <h1 class="display-4 text-md-center">Wpis</h1>
+            <h1 class="display-4 text-md-center">Post</h1>
         </div>
 
         <!-- Edit/Delete Buttons -->
         <div class="col-sm col-md my-auto">
             <div class="d-flex justify-content-md-end">
-                <button href="#" class="btn btn-lg btn-outline-dark">Edytuj</button>
-                <button href="#" class="btn btn-lg btn-outline-dark ms-3">Usuń</button>
+                <button href="#" class="btn btn-lg btn-outline-dark">Edit</button>
+                <button href="#" class="btn btn-lg btn-outline-dark ms-3">Delete</button>
             </div>
         </div>
 
@@ -46,13 +46,13 @@
 
         <!-- Header -->
         <dl class="row mb-0">
-            <dt class="col-2">Tytuł</dt>
+            <dt class="col-2">Header</dt>
             <dd class="@ddResponsive">@Model.Header</dd>
         </dl>
 
         <!-- Content -->
         <dl class="row mb-0">
-            <dt class="col-2">Treść</dt>
+            <dt class="col-2">Content</dt>
             <dd class="@ddResponsive">
                 <markdown>@Model.Content</markdown>
             </dd>
@@ -62,25 +62,25 @@
 
         <!-- Published Date -->
         <dl class="row mb-0">
-            <dt class="col-2">Opublikowano</dt>
+            <dt class="col-2">Published at</dt>
             <dd class="@ddResponsive">@Model.PublishedAt</dd>
         </dl>
 
         <!-- Updated Date -->
         <dl class="row mb-0">
-            <dt class="col-2">Zaktualizowano</dt>
+            <dt class="col-2">Updated at</dt>
             <dd class="@ddResponsive">@Model.UpdatedAt</dd>
         </dl>
 
         <!-- Created Date -->
         <dl class="row mb-0">
-            <dt class="col-2">Utworzono</dt>
+            <dt class="col-2">Created at</dt>
             <dd class="@ddResponsive">@Model.CreatedAt</dd>
         </dl>
 
         <!-- Is Post Visible -->
         <dl class="row mb-0">
-            <dt class="col-2">Widoczność</dt>
+            <dt class="col-2">Publicly visible</dt>
             <dd class="@ddResponsive">@Model.IsVisible</dd>
         </dl>
 
@@ -88,13 +88,13 @@
 
         <!-- Visits Count -->
         <dl class="row mb-0">
-            <dt class="col-2">Liczba odwiedzin</dt>
+            <dt class="col-2">Number of visits</dt>
             <dd class="@ddResponsive">@Model.ViewsCount</dd>
         </dl>
 
         <!-- Comments Count -->
         <dl class="row mb-0">
-            <dt class="col-2">Liczba komentarzy</dt>
+            <dt class="col-2">Number of comments</dt>
             <dd class="@ddResponsive">@Model.Comments.Count</dd>
         </dl>
 
@@ -102,7 +102,7 @@
 
         <!-- Author -->
         <dl class="row mb-0">
-            <dt class="col-2">Autor</dt>
+            <dt class="col-2">Author</dt>
             <dd class="@ddResponsive">@Model?.Author?.Email</dd>
         </dl>
 
@@ -110,7 +110,7 @@
 
         <!-- Categories -->
         <dl class="row mb-0">
-            <dt class="col-2">Kategorie</dt>
+            <dt class="col-2">Categories</dt>
             <dd class="@ddResponsive">
                 <ul class="list-unstyled">
                     @foreach (var category in Model.Categories)
@@ -125,7 +125,7 @@
 
         <!-- Tags -->
         <dl class="row mb-0">
-            <dt class="col-2">Tagi</dt>
+            <dt class="col-2">Tags</dt>
             <dd class="@ddResponsive">
                 <ul class="list-unstyled">
                     @foreach (var tag in Model.Tags)
@@ -139,6 +139,6 @@
     </div>
 
     <!-- Back to List button -->
-    <a type="button" asp-controller="Admin" asp-action="Posts" class="btn btn-outline-dark">Cofnij do Listy</a>
+    <a type="button" asp-controller="Admin" asp-action="Posts" class="btn btn-outline-dark">Go back to List</a>
 
 </div>

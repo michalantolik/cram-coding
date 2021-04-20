@@ -20,11 +20,21 @@
             <h1 class="display-4 text-md-center">Post</h1>
         </div>
 
-        <!-- Edit/Delete Buttons -->
+        <!-- Edit / Delete Buttons -->
         <div class="col-sm col-md my-auto">
             <div class="d-flex justify-content-md-end">
+
+                <!-- Edit post -->
                 <a asp-controller="Admin" asp-action="EditPost" asp-route-id=@Model.PostId class="btn btn-lg btn-outline-dark">Edit</a>
-                <button href="#" class="btn btn-lg btn-outline-dark ms-3">Delete</button>
+
+                <!-- Delete post -->
+                <a data-bs-toggle="modal" data-bs-target=@($"#_DeletePostConfirmationModal-{Model.PostId}") class="btn btn-lg btn-outline-dark ms-3">Delete</a>
+
+                <!-- Delete post confirmation modal -->
+                <!-- IMPORTANT!!!: "id" attribute of the partial modal ...
+                ... must match the value of the "data-bs-target" attribute -->
+                <partial name="_DeletePostConfirmationModal" model=@Model.PostId />
+
             </div>
         </div>
 

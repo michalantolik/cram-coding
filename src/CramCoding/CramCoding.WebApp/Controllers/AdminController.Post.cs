@@ -190,6 +190,23 @@ namespace CramCoding.WebApp.Controllers
         }
 
         /// <summary>
+        /// DELETES post from DB
+        /// </summary>
+        [Route("~/Admin/DeletePost/{id}")]
+        public IActionResult DeletePost(int id)
+        {
+            var post = this.postRepository.FindById(id);
+            if (post == null)
+            {
+                //TODO: Post not found in DB. Add logging.
+                return new EmptyResult();
+            }
+
+            this.postRepository.Delete(post);
+            return RedirectToAction("Posts");
+        }
+
+        /// <summary>
         /// Creates post for edit with selection data populated from the database
         /// </summary>
         private EditPostViewModel CreatePostForEdit(string submitController, string submitAction)

@@ -54,15 +54,24 @@
                         <td>@post.CreatedAt</td>
                         <td>@post.ViewsCount</td>
                         <td>
-                            <div class="d-flex">
-                                <!-- Edit -->
+                            <!-- It is important to stop propagation of the "onclick" event so that it is not bubbled to a table row -->
+                            <div class="d-flex" onclick="event.stopPropagation()">
+
+                                <!-- Edit post -->
                                 <a asp-controller="Admin" asp-action="EditPost" asp-route-id="@post.Id">
                                     <i class="fa fa-edit text-dark me-5"></i>
                                 </a>
-                                <!-- Delete -->
-                                <a href="#">
+
+                                <!-- Delete post -->
+                                <a data-bs-toggle="modal" data-bs-target=@($"#_DeletePostConfirmationModal-{post.Id}")>
                                     <i class="fa fa-trash-alt text-dark"></i>
                                 </a>
+
+                                <!-- Delete post confirmation modal -->
+                                <!-- IMPORTANT!!!: "id" attribute of the partial modal ...
+                                ... must match the value of the "data-bs-target" attribute -->
+                                <partial name="_DeletePostConfirmationModal" model=@post.Id />
+
                             </div>
                         </td>
                     </tr>
@@ -71,3 +80,4 @@
         </table>
     </div>
 </div>
+

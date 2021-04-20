@@ -255,5 +255,33 @@ namespace CramCoding.UnitTests.Controllers
 
             Assert.True(viewModel.IsVisible);
         }
+
+        [Fact]
+        public void DeletePost()
+        {
+            // ARRANGE
+            var userManagerMock = IdentityMocksFactory.CreateUserManagerMock();
+            var postRepositoryMock = new RepositoryMocks().PostRepositoryMock;
+            var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
+            var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
+            var automapper = AutoMapperFactory.Create();
+
+            var sut = new AdminController(
+                userManagerMock.Object,
+                postRepositoryMock,
+                categoryRepositoryMock,
+                tagRepositoryMock,
+                automapper
+            );
+
+            // Post exists in DB before delete
+            Assert.NotNull(postRepositoryMock.FindById(3));
+
+            // ACT
+            sut.DeletePost(3);
+
+            // ASSERT - Post does NOT exist in DB after delete
+            Assert.Null(postRepositoryMock.FindById(3));
+        }
     }
 }

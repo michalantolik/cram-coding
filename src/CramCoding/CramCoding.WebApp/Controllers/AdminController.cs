@@ -30,6 +30,8 @@ namespace CramCoding.WebApp.Controllers
             this.mapper = mapper;
         }
 
+        [Route("~/Admin")]
+        [Route("~/Admin/Index")]
         public IActionResult Index()
         {
             return View();

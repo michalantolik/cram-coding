@@ -13,6 +13,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// LISTS categories from DB
         /// </summary>
+        [Route("~/Admin/Categories")]
         public IActionResult Categories()
         {
             var categoryViewModels = this.categoryRepository.GetAll(include: true)
@@ -30,7 +31,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new category" form to be filled in
         /// </summary>
-        [HttpGet]
+        [HttpGet("~/Admin/AddCategory")]
         public IActionResult AddCategory()
         {
             return View();
@@ -39,7 +40,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS "new category" in DB
         /// </summary>
-        [HttpPost]
+        [HttpPost("~/Admin/AddCategory")]
         public IActionResult AddCategory(EditCategoryViewModel editCategoryViewModel)
         {
             var alreadyExists = this.categoryRepository.FindByName(editCategoryViewModel.CategoryName) != null;

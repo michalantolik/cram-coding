@@ -7,6 +7,7 @@ namespace CramCoding.WebApp.Controllers
     /// </summary>
     public partial class AdminController
     {
+        [Route("~/Admin/Comments")]
         public IActionResult Comments()
         {
             return View();

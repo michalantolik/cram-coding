@@ -13,6 +13,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// LISTS tags from DB
         /// </summary>
+        [Route("~/Admin/Tags")]
         public IActionResult Tags()
         {
             var tagViewModels = this.tagRepository.GetAll(include: true)
@@ -30,7 +31,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new tag" form to be filled in
         /// </summary>
-        [HttpGet]
+        [HttpGet("~/Admin/AddTag")]
         public IActionResult AddTag()
         {
             return View();
@@ -39,7 +40,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS "new tag" in DB
         /// </summary>
-        [HttpPost]
+        [HttpPost("~/Admin/AddTag")]
         public IActionResult AddTag(EditTagViewModel editTagViewModel)
         {
             var alreadyExists = this.tagRepository.FindByName(editTagViewModel.TagName) != null;

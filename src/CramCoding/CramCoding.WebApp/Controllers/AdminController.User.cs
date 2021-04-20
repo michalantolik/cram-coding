@@ -7,6 +7,7 @@ namespace CramCoding.WebApp.Controllers
     /// </summary>
     public partial class AdminController
     {
+        [Route("~/Admin/Users")]
         public IActionResult Users()
         {
             return View();

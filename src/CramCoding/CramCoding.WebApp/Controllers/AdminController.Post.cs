@@ -14,6 +14,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// LISTS posts from DB
         /// </summary>
+        [Route("~/Admin/Posts")]
         public IActionResult Posts()
         {
             var postViewModels = this.postRepository.GetAll(include: true)
@@ -41,6 +42,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// SHOWS post details for a given ID
         /// </summary>
+        [Route("~/Admin/PostDetails/{id}")]
         public IActionResult PostDetails(int id)
         {
             var post = this.postRepository
@@ -53,7 +55,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new post" form to be filled in
         /// </summary>
-        [HttpGet]
+        [HttpGet("~/Admin/AddPost")]
         public IActionResult AddPost()
         {
             return View(CreatePostForEdit());
@@ -62,7 +64,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS "new post" in DB
         /// </summary>
-        [HttpPost]
+        [HttpPost("~/Admin/AddPost")]
         public IActionResult AddPost(EditPostViewModel editPostViewModel)
         {
             if (ModelState.IsValid)

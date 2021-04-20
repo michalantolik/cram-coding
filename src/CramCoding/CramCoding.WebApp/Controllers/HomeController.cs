@@ -27,6 +27,10 @@ namespace CramCoding.WebApp.Controllers
             this.postRepository = postRepository;
         }
 
+        [Route("~/")]
+        [Route("~/Home")]
+        [Route("~/Home/Index/")]
+        [Route("~/Home/Index/{category?}/{pageNumber?}")]
         public async Task<IActionResult> Index(string category, int? pageNumber)
         {
             IQueryable<Post> posts = null;
@@ -57,9 +61,10 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// SHOWS a post for the given ID
         /// </summary>
-        public IActionResult Post(int postId)
+        [Route("~/Home/Post/{id}")]
+        public IActionResult Post(int id)
         {
-            var post = this.postRepository.FindById(postId);
+            var post = this.postRepository.FindById(id);
 
             return post != null ? View(post) : View("PostNotFound");
         }

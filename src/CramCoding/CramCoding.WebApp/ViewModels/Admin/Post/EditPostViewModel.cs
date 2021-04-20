@@ -14,13 +14,13 @@ namespace CramCoding.WebApp.ViewModels.Admin.Post
         [Display(Name = "Content")]
         public string Content { get; set; }
 
-        [Required(ErrorMessage = "Fill in the author")]
+        [Required(ErrorMessage = "Select author")]
         [Display(Name = "Author")]
         public string SelectedAuthor { get; set; }
 
         public SelectListItem[] Authors { get; set; }
 
-        [Required(ErrorMessage = "Fill in the category")]
+        [Required(ErrorMessage = "Select category")]
         [Display(Name = "Category")]
         public string SelectedCategory { get; set; }
 
@@ -32,11 +32,11 @@ namespace CramCoding.WebApp.ViewModels.Admin.Post
 
         public SelectListItem[] Tags { get; set; }
 
-        [Required(ErrorMessage = "Fill in publish date")]
+        [Required(ErrorMessage = "Set publish date")]
         [Display(Name = "Publish date")]
         public DateTimeOffset? PublishedDate { get; set; }
 
-        [Required(ErrorMessage = "Fill in publish time")]
+        [Required(ErrorMessage = "Set publish time")]
         [Display(Name = "Public time")]
         public DateTimeOffset? PublishedTime { get; set; }
 

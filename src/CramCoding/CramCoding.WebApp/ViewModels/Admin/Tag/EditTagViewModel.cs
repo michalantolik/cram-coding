@@ -4,8 +4,8 @@ namespace CramCoding.WebApp.ViewModels.Admin.Tag
 {
     public class EditTagViewModel
     {
-        [Required(ErrorMessage = "Uzupełnij nazwę")]
-        [Display(Name = "Nazwa")]
+        [Required(ErrorMessage = "Fill in tag name")]
+        [Display(Name = "Name")]
         public string TagName { get; set; }
     }
 }

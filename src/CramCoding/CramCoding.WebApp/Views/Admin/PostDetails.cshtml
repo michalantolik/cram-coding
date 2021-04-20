@@ -23,7 +23,7 @@
         <!-- Edit/Delete Buttons -->
         <div class="col-sm col-md my-auto">
             <div class="d-flex justify-content-md-end">
-                <button href="#" class="btn btn-lg btn-outline-dark">Edit</button>
+                <a asp-controller="Admin" asp-action="EditPost" asp-route-id=@Model.PostId class="btn btn-lg btn-outline-dark">Edit</a>
                 <button href="#" class="btn btn-lg btn-outline-dark ms-3">Delete</button>
             </div>
         </div>

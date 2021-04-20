@@ -172,5 +172,88 @@ namespace CramCoding.UnitTests.Controllers
             Assert.Equal(1, post.Tags.Count);
             Assert.Equal("Tag 2", post.Tags.ElementAt(0).Name);
         }
+
+        [Fact]
+        public void OpenNewPostForm()
+        {
+            // ARRANGE
+            var userManagerMock = IdentityMocksFactory.CreateUserManagerMock();
+            var postRepositoryMock = new RepositoryMocks().PostRepositoryMock;
+            var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
+            var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
+            var automapper = AutoMapperFactory.Create();
+
+            var sut = new AdminController(
+                userManagerMock.Object,
+                postRepositoryMock,
+                categoryRepositoryMock,
+                tagRepositoryMock,
+                automapper
+            );
+
+            // ACT
+            var viewResult = sut.AddPost() as ViewResult;
+
+            // ASSERT
+            Assert.NotNull(viewResult);
+
+            var viewModel = viewResult.Model as EditPostViewModel;
+            Assert.NotNull(viewModel);
+
+            Assert.Null(viewModel.Header);
+            Assert.Null(viewModel.Content);
+            Assert.Null(viewModel.SelectedAuthor);
+            Assert.Null(viewModel.SelectedCategory);
+            Assert.Null(viewModel.SelectedTags);
+            Assert.Null(viewModel.PublishedDate);
+            Assert.Null(viewModel.PublishedTime);
+            Assert.False(viewModel.IsVisible);
+        }
+
+        [Fact]
+        public void OpenEditPostForm()
+        {
+            // ARRANGE
+            var userManagerMock = IdentityMocksFactory.CreateUserManagerMock();
+            var postRepositoryMock = new RepositoryMocks().PostRepositoryMock;
+            var categoryRepositoryMock = new RepositoryMocks().CategoryRepositoryMock;
+            var tagRepositoryMock = new RepositoryMocks().TagRepositoryMock;
+            var automapper = AutoMapperFactory.Create();
+
+            var sut = new AdminController(
+                userManagerMock.Object,
+                postRepositoryMock,
+                categoryRepositoryMock,
+                tagRepositoryMock,
+                automapper
+            );
+
+            // ACT
+            var viewResult = sut.EditPost(2) as ViewResult;
+
+            // ASSERT
+            Assert.NotNull(viewResult);
+
+            var viewModel = viewResult.Model as EditPostViewModel;
+            Assert.NotNull(viewModel);
+
+            // ... based on data in "postRepositoryMock"
+
+            Assert.Equal("Header 2", viewModel.Header);
+            Assert.Equal("Content 2", viewModel.Content);
+            Assert.Equal("Subcategory 3", viewModel.SelectedCategory);
+
+            Assert.Equal(2, viewModel.SelectedTags.Length);
+            Assert.Equal("Tag 2", viewModel.SelectedTags[0]);
+            Assert.Equal("Tag 3", viewModel.SelectedTags[1]);
+
+            Assert.Equal(new DateTimeOffset(2020, 01, 04, 14, 52, 32, 425, new TimeSpan(2, 0, 0)),
+                viewModel.PublishedDate);
+
+            Assert.Equal(new DateTimeOffset(2020, 01, 04, 14, 52, 32, 425, new TimeSpan(2, 0, 0)),
+                viewModel.PublishedTime);
+
+            Assert.True(viewModel.IsVisible);
+        }
     }
 }

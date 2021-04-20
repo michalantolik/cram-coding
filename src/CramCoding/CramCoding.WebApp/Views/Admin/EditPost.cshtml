@@ -1,7 +1,7 @@
 ﻿@model EditPostViewModel
 
 @{
-    ViewData["Title"] = "New post";
+    ViewData["Title"] = "Edit post";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
@@ -10,12 +10,12 @@
     <!-- Page Header -->
     <div class="row pb-2">
         <div class="col">
-            <h1 class="display-4 text-center">New post</h1>
+            <h1 class="display-4 text-center">Edit post</h1>
         </div>
     </div>
 
     <!-- Post Form -->
     <div class="row">
-        <partial name="_PostForm" />
+        <partial name="_PostForm" action="" />
     </div>
 </div>

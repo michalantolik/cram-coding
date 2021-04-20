@@ -58,7 +58,7 @@ namespace CramCoding.WebApp.Controllers
         [HttpGet("~/Admin/AddPost")]
         public IActionResult AddPost()
         {
-            return View(CreatePostForEdit());
+            return View(CreatePostForEdit("Admin", nameof(AddPost)));
         }
 
         /// <summary>
@@ -102,16 +102,102 @@ namespace CramCoding.WebApp.Controllers
                 return RedirectToAction("Posts");
             }
 
-            return View(CreatePostForEdit());
+            return View(CreatePostForEdit("Admin", nameof(AddPost)));
+        }
+
+        /// <summary>
+        /// DISPLAYS "post" to be edited
+        /// </summary>
+        [HttpGet("~/Admin/EditPost/{id}")]
+        public IActionResult EditPost(int id)
+        {
+            var post = this.postRepository
+                .GetAll(include: true)
+                .FirstOrDefault(p => p.PostId == id);
+
+            if (post == null)
+            {
+                //TODO: Post not found in DB. Add logging.
+                return new EmptyResult();
+            }
+
+            var editPostViewModel = CreatePostForEdit("Admin", nameof(EditPost));
+
+            editPostViewModel.Header = post.Header;
+            editPostViewModel.Content = post.Content;
+            editPostViewModel.SelectedAuthor = post.Author.UserName;
+            editPostViewModel.SelectedTags = post.Tags.Select(t => t.Name).ToArray();
+
+            //TODO: Either allow to select multiple categories ...
+            // ... or update data model so that the post is assigned only to single category
+            editPostViewModel.SelectedCategory = post.Categories.FirstOrDefault().Name;
+
+            editPostViewModel.PublishedDate = post.PublishedAt;
+            editPostViewModel.PublishedTime = post.PublishedAt;
+            editPostViewModel.IsVisible = post.IsVisible;
+
+            return View(editPostViewModel);
+        }
+
+        /// <summary>
+        /// PERSISTS "edited post" in DB
+        /// </summary>
+        [HttpPost("~/Admin/EditPost/{id}")]
+        public IActionResult EditPost(EditPostViewModel editPostViewModel, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var post = this.postRepository
+                    .GetAll(include: true)
+                    .FirstOrDefault(p => p.PostId == id);
+
+                if (post == null)
+                {
+                    //TODO: Post not found in DB. Add logging.
+                    return new EmptyResult();
+                }
+
+                post.Header = editPostViewModel.Header;
+                post.Content = editPostViewModel.Content;
+                post.CreatedAt = editPostViewModel.FormSumbissionDateTimeUtc.Value; // collected automatically
+                post.UpdatedAt = editPostViewModel.FormSumbissionDateTimeUtc.Value; // collected automatically
+                post.PublishedAt = editPostViewModel.PublishedDateTimeUtc.Value;    // set by post author
+                post.IsVisible = editPostViewModel.IsVisible;
+                post.ViewsCount = 0;
+                post.Author = this.userManager.FindByNameAsync(editPostViewModel.SelectedAuthor).Result;
+
+                var category = this.categoryRepository.FindByName(editPostViewModel.SelectedCategory);
+                if (category != null && post.Categories.Contains(category) == false)
+                {
+                    post.Categories.Add(category);
+                }
+
+                foreach (var singleTag in editPostViewModel.SelectedTags)
+                {
+                    var tag = this.tagRepository.FindByName(singleTag);
+                    if (tag != null && post.Tags.Contains(tag) == false)
+                    {
+                        post.Tags.Add(tag);
+                    }
+                }
+
+                this.postRepository.Update(post);
+
+                return RedirectToAction("Posts");
+            }
+
+            return View(CreatePostForEdit("Admin", nameof(EditPost)));
         }
 
         /// <summary>
         /// Creates post for edit with selection data populated from the database
         /// </summary>
-        private EditPostViewModel CreatePostForEdit()
+        private EditPostViewModel CreatePostForEdit(string submitController, string submitAction)
         {
             return new EditPostViewModel()
             {
+                SubmitController = submitController,
+                SubmitAction = submitAction,
                 Authors = this.userManager.Users
                     .Select(u => new SelectListItem(u.UserName, u.UserName)).ToArray(),
                 Categories = this.categoryRepository.GetAll()

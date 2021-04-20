@@ -75,5 +75,16 @@ namespace CramCoding.WebApp.ViewModels.Admin.Post
                 return publishedDateTime.ToUniversalTime();
             }
         }
+
+        /// <summary>
+        /// Name of a controller which should be used when the post is submitted
+        /// </summary>
+        public string SubmitController { get; set; }
+
+        /// <summary>
+        /// Name of a action method which should be used when the post is submitted
+        /// </summary>
+        public string SubmitAction { get; set; }
+
     }
 }

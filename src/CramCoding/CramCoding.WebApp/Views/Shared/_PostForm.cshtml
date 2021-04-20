@@ -1,0 +1,90 @@
+﻿<!--
+POST FORM - used for adding new post and editing existing one.
+
+IMPORTANT: controller and action method which will be used to submit a form are "bound" from the ViewModel.
+-->
+
+@model EditPostViewModel
+
+<form asp-controller="@Model.SubmitController" asp-action="@Model.SubmitAction" method="post" class="row" role="form">
+
+    <!-- Validation Summary -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Post Header -->
+    <div class="col-12 pb-3">
+        <label asp-for="Header"></label>
+        <input asp-for="Header" type="text" class="form-control" />
+        <span asp-validation-for="Header" class="text-danger"></span>
+    </div>
+
+    <!-- Post Content -->
+    <div class="col-12 pb-3">
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control" rows="10" cols="120"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <!-- Post Author -->
+    <div class="col-12 pb-3">
+        <label asp-for="SelectedAuthor">Author</label>
+        <select asp-for="SelectedAuthor" asp-items="@Model.Authors" class="form-select">
+            <option selected disabled>Select author...</option>
+        </select>
+        <span asp-validation-for="SelectedAuthor" class="text-danger"></span>
+    </div>
+
+    <!-- Post Category -->
+    <div class="col-12 pb-3">
+        <label asp-for="SelectedCategory">Category</label>
+        <select asp-for="SelectedCategory" asp-items="@Model.Categories" class="form-select">
+            <option selected disabled>Select category...</option>
+        </select>
+        <span asp-validation-for="SelectedCategory" class="text-danger"></span>
+    </div>
+
+    <!-- Post Tags -->
+    <div class="col-12 pb-3">
+        <label asp-for="SelectedTags">Tags</label>
+        <select asp-for="SelectedTags" asp-items="@Model.Tags" class="form-select" multiple>
+            <option>Select tags...</option>
+        </select>
+        <span asp-validation-for="SelectedTags" class="text-danger"></span>
+    </div>
+
+    <!-- Published Date -->
+    <div class="col-md-6">
+        <label asp-for="PublishedDate">Publish date</label>
+        <input asp-for="PublishedDate" type="date" class="form-control" />
+        <span asp-validation-for="PublishedDate" class="text-danger"></span>
+    </div>
+
+    <!-- Published Time -->
+    <div class="col-md-6 pb-4">
+        <label asp-for="PublishedTime">Publish time</label>
+        <input asp-for="PublishedTime" type="time" class="form-control" />
+        <span asp-validation-for="PublishedTime" class="text-danger"></span>
+    </div>
+
+    <!-- Is Visible -->
+    <div class="col-12 pb-5">
+        <div class="form-check form-switch">
+            <input asp-for="IsVisible" type="checkbox" class="form-check-input" checked />
+            <label asp-for="IsVisible" class="form-check-label">Publicly visible</label>
+        </div>
+        <span asp-validation-for="IsVisible" class="text-danger"></span>
+    </div>
+
+    <!-- Save Button -->
+    <div class="col-12">
+        <button type="submit" onclick="updateFormSubmissionDateTime()" class="btn btn-lg btn-primary btn-block">Save</button>
+    </div>
+
+    <!-- Form Submission Datetime (UTC).
+    This is a hidden input field which gets updated when the form is submitted.
+    This is done by JS function which is subscribed to submit button "onlick" event.
+    Form submission datetime is then passed to ViewModel via Model Binding.
+    It can be further used by DB persistence logic to store post created/updated date -->
+    <input hidden asp-for="FormSumbissionDateTimeUtc" type="datetime" />
+
+</form>

@@ -41,6 +41,7 @@
                     <th>Updated at</th>
                     <th>Created at</th>
                     <th>Visits</th>
+                    <th>Edit/Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,6 +53,18 @@
                         <td>@post.UpdatedAt</td>
                         <td>@post.CreatedAt</td>
                         <td>@post.ViewsCount</td>
+                        <td>
+                            <div class="d-flex">
+                                <!-- Edit -->
+                                <a asp-controller="Admin" asp-action="EditPost" asp-route-id="@post.Id">
+                                    <i class="fa fa-edit text-dark me-5"></i>
+                                </a>
+                                <!-- Delete -->
+                                <a href="#">
+                                    <i class="fa fa-trash-alt text-dark"></i>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>

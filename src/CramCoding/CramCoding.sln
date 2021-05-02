@@ -5,11 +5,9 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CramCoding.WebApp", "CramCoding.WebApp\CramCoding.WebApp.csproj", "{A523F040-C690-44E6-9A35-DD5AC7B772D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CramCoding.UnitTests", "CramCoding.UnitTests\CramCoding.UnitTests.csproj", "{67F2559C-E744-456A-8817-BD24D17D90B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CramCoding.Domain", "CramCoding.Domain\CramCoding.Domain.csproj", "{36AF593D-591E-4A05-8060-75240D954924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CramCoding.Domain", "CramCoding.Domain\CramCoding.Domain.csproj", "{36AF593D-591E-4A05-8060-75240D954924}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CramCoding.Data", "CramCoding.Data\CramCoding.Data.csproj", "{B4293061-5056-480A-A60D-93F001D79A4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CramCoding.Data", "CramCoding.Data\CramCoding.Data.csproj", "{B4293061-5056-480A-A60D-93F001D79A4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{A523F040-C690-44E6-9A35-DD5AC7B772D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A523F040-C690-44E6-9A35-DD5AC7B772D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A523F040-C690-44E6-9A35-DD5AC7B772D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67F2559C-E744-456A-8817-BD24D17D90B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67F2559C-E744-456A-8817-BD24D17D90B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67F2559C-E744-456A-8817-BD24D17D90B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67F2559C-E744-456A-8817-BD24D17D90B0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36AF593D-591E-4A05-8060-75240D954924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36AF593D-591E-4A05-8060-75240D954924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36AF593D-591E-4A05-8060-75240D954924}.Release|Any CPU.ActiveCfg = Release|Any CPU

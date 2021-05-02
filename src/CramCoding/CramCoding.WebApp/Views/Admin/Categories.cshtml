@@ -44,15 +44,31 @@
                     <tr class="table-dark">
                         <th>Category name</th>
                         <th>Posts count</th>
+                        <th>Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var category in Model)
                     {
-                        <tr>
-                            <td>@category.CategoryName</td>
-                            <td>@category.PostsCount</td>
-                        </tr>
+                    <tr>
+                        <td>@category.CategoryName</td>
+                        <td>@category.PostsCount</td>
+                        <td>
+                            <div class="d-flex">
+
+                                <!-- Edit post -->
+                                <a asp-controller="Admin" asp-action="EditCategory" asp-route-id="@category.CategoryId">
+                                    <i class="fa fa-edit text-dark me-5"></i>
+                                </a>
+
+                                <!-- Delete post -->
+                                <a href="#">
+                                    <i class="fa fa-trash-alt text-dark"></i>
+                                </a>
+
+                            </div>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

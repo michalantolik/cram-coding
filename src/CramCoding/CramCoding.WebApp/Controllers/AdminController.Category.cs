@@ -20,6 +20,7 @@ namespace CramCoding.WebApp.Controllers
                 .ToArray()
                 .Select(category => new CategoryViewModel()
                 {
+                    CategoryId = category.CategoryId,
                     CategoryName = category.Name,
                     PostsCount = category.Posts.Count
                 })
@@ -34,7 +35,13 @@ namespace CramCoding.WebApp.Controllers
         [HttpGet("~/Admin/AddCategory")]
         public IActionResult AddCategory()
         {
-            return View();
+            var editCategoryViewModel = new EditCategoryViewModel()
+            {
+                SubmitController = "Admin",
+                SubmitAction = nameof(AddCategory)
+            };
+
+            return View(editCategoryViewModel);
         }
 
         /// <summary>
@@ -43,6 +50,9 @@ namespace CramCoding.WebApp.Controllers
         [HttpPost("~/Admin/AddCategory")]
         public IActionResult AddCategory(EditCategoryViewModel editCategoryViewModel)
         {
+            editCategoryViewModel.SubmitController = "Admin";
+            editCategoryViewModel.SubmitAction = nameof(AddCategory);
+
             var alreadyExists = this.categoryRepository.FindByName(editCategoryViewModel.CategoryName) != null;
             if (alreadyExists)
             {
@@ -58,7 +68,61 @@ namespace CramCoding.WebApp.Controllers
                 return RedirectToAction("Categories");
             }
 
-            return View();
+            return View(editCategoryViewModel);
+        }
+
+        /// <summary>
+        /// DISPLAYS category to be edited
+        /// </summary>
+        [HttpGet("~/Admin/EditCategory/{id}")]
+        public IActionResult EditCategory(int id)
+        {
+            var category = this.categoryRepository
+                .GetAll(include: true)
+                .FirstOrDefault(c => c.CategoryId == id);
+
+            if (category == null)
+            {
+                //TODO: Category not found in DB. Add logging
+                return new EmptyResult();
+            }
+
+            var editCategoryViewModel = new EditCategoryViewModel()
+            {
+                CategoryName = category.Name,
+                SubmitController = "Admin",
+                SubmitAction = nameof(EditCategory)
+            };
+
+            return View(editCategoryViewModel);
+        }
+
+        /// <summary>
+        /// PERSISTS edited category in DB
+        /// </summary>
+        [HttpPost("~/Admin/EditCategory/{id}")]
+        public IActionResult EditCategory(EditCategoryViewModel editCategoryViewModel, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var category = this.categoryRepository
+                    .GetAll(include: true)
+                    .FirstOrDefault(c => c.CategoryId == id);
+
+                if (category == null)
+                {
+                    //TODO: Category not found in DB. Add logging.
+                    return new EmptyResult();
+                }
+
+                category.Name = editCategoryViewModel.CategoryName;
+
+                this.categoryRepository.Update(category);
+
+                return RedirectToAction("Categories");
+            }
+
+            return View(editCategoryViewModel);
         }
     }
 }

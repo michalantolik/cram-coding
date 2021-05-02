@@ -25,7 +25,7 @@
             <div class="d-flex justify-content-md-end">
 
                 <!-- Edit post -->
-                <a asp-controller="Admin" asp-action="EditPost" asp-route-id=@Model.PostId class="btn btn-lg btn-outline-dark">Edit</a>
+                <a asp-controller="AdminPost" asp-action="EditPost" asp-route-id=@Model.PostId class="btn btn-lg btn-outline-dark">Edit</a>
 
                 <!-- Delete post -->
                 <a data-bs-toggle="modal" data-bs-target=@($"#_DeletePostConfirmationModal-{Model.PostId}") class="btn btn-lg btn-outline-dark ms-3">Delete</a>
@@ -149,6 +149,6 @@
     </div>
 
     <!-- Back to List button -->
-    <a type="button" asp-controller="Admin" asp-action="Posts" class="btn btn-outline-dark">Go back to List</a>
+    <a type="button" asp-controller="AdminPost" asp-action="Posts" class="btn btn-outline-dark">Go back to List</a>
 
 </div>

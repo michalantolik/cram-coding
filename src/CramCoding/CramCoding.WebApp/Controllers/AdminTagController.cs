@@ -1,19 +1,29 @@
-﻿using CramCoding.Domain.Entities;
+﻿using CramCoding.Data.Repositories;
+using CramCoding.Domain.Entities;
 using CramCoding.WebApp.ViewModels.Admin.Tag;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace CramCoding.WebApp.Controllers
 {
     /// <summary>
-    /// Part responsible for Tag management
+    /// Controller responsible for Tag administration
     /// </summary>
-    public partial class AdminController
+    [Authorize(Roles = "AdminUser")]
+    public class AdminTagController : Controller
     {
+        private readonly ITagRepository tagRepository;
+
+        public AdminTagController(ITagRepository tagRepository)
+        {
+            this.tagRepository = tagRepository;
+        }
+
         /// <summary>
         /// LISTS tags from DB
         /// </summary>
-        [Route("~/Admin/Tags")]
+        [Route("~/AdminTag/Tags")]
         public IActionResult Tags()
         {
             var tagViewModels = this.tagRepository.GetAll(include: true)
@@ -31,7 +41,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new tag" form to be filled in
         /// </summary>
-        [HttpGet("~/Admin/AddTag")]
+        [HttpGet("~/AdminTag/AddTag")]
         public IActionResult AddTag()
         {
             return View();
@@ -40,7 +50,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS "new tag" in DB
         /// </summary>
-        [HttpPost("~/Admin/AddTag")]
+        [HttpPost("~/AdminTag/AddTag")]
         public IActionResult AddTag(EditTagViewModel editTagViewModel)
         {
             var alreadyExists = this.tagRepository.FindByName(editTagViewModel.TagName) != null;
@@ -52,7 +62,10 @@ namespace CramCoding.WebApp.Controllers
 
             if (ModelState.IsValid)
             {
-                var tag = this.mapper.Map<Tag>(editTagViewModel);
+                var tag = new Tag()
+                {
+                    Name = editTagViewModel.TagName
+                };
                 this.tagRepository.Add(tag);
 
                 return RedirectToAction("Tags");

@@ -20,7 +20,7 @@
 
         <!-- Add category button -->
         <div class="col my-auto">
-            <a type="button" asp-controller="Admin" asp-action="AddCategory" class="btn btn-lg btn-primary float-end">
+            <a type="button" asp-controller="AdminCategory" asp-action="AddCategory" class="btn btn-lg btn-primary float-end">
                 Create new
             </a>
         </div>
@@ -57,7 +57,7 @@
                             <div class="d-flex">
 
                                 <!-- Edit post -->
-                                <a asp-controller="Admin" asp-action="EditCategory" asp-route-id="@category.CategoryId">
+                                <a asp-controller="AdminCategory" asp-action="EditCategory" asp-route-id="@category.CategoryId">
                                     <i class="fa fa-edit text-dark me-5"></i>
                                 </a>
 

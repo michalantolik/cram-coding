@@ -1,19 +1,37 @@
-﻿using CramCoding.Domain.Entities;
+﻿using AutoMapper;
+using CramCoding.Data.Repositories;
+using CramCoding.Domain.Entities;
 using CramCoding.WebApp.ViewModels.Admin.Category;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
 namespace CramCoding.WebApp.Controllers
 {
     /// <summary>
-    /// Part responsible for Category management
+    /// Controller responsible for Category administration
     /// </summary>
-    public partial class AdminController
+    [Authorize(Roles = "AdminUser")]
+    public class AdminCategoryController : Controller
     {
+        private readonly ICategoryRepository categoryRepository;
+        private readonly ITagRepository tagRepository;
+        private readonly IMapper mapper;
+
+        public AdminCategoryController(
+            ICategoryRepository categoryRepository,
+            ITagRepository tagRepository,
+            IMapper mapper)
+        {
+            this.categoryRepository = categoryRepository;
+            this.tagRepository = tagRepository;
+            this.mapper = mapper;
+        }
+
         /// <summary>
         /// LISTS categories from DB
         /// </summary>
-        [Route("~/Admin/Categories")]
+        [Route("~/AdminCategory/Categories")]
         public IActionResult Categories()
         {
             var categoryViewModels = this.categoryRepository.GetAll(include: true)
@@ -32,12 +50,12 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new category" form to be filled in
         /// </summary>
-        [HttpGet("~/Admin/AddCategory")]
+        [HttpGet("~/AdminCategory/AddCategory")]
         public IActionResult AddCategory()
         {
             var editCategoryViewModel = new EditCategoryViewModel()
             {
-                SubmitController = "Admin",
+                SubmitController = "AdminCategory",
                 SubmitAction = nameof(AddCategory)
             };
 
@@ -47,10 +65,10 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS "new category" in DB
         /// </summary>
-        [HttpPost("~/Admin/AddCategory")]
+        [HttpPost("~/AdminCategory/AddCategory")]
         public IActionResult AddCategory(EditCategoryViewModel editCategoryViewModel)
         {
-            editCategoryViewModel.SubmitController = "Admin";
+            editCategoryViewModel.SubmitController = "AdminCategory";
             editCategoryViewModel.SubmitAction = nameof(AddCategory);
 
             var alreadyExists = this.categoryRepository.FindByName(editCategoryViewModel.CategoryName) != null;
@@ -74,7 +92,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS category to be edited
         /// </summary>
-        [HttpGet("~/Admin/EditCategory/{id}")]
+        [HttpGet("~/AdminCategory/EditCategory/{id}")]
         public IActionResult EditCategory(int id)
         {
             var category = this.categoryRepository
@@ -90,7 +108,7 @@ namespace CramCoding.WebApp.Controllers
             var editCategoryViewModel = new EditCategoryViewModel()
             {
                 CategoryName = category.Name,
-                SubmitController = "Admin",
+                SubmitController = "AdminCategory",
                 SubmitAction = nameof(EditCategory)
             };
 
@@ -100,7 +118,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS edited category in DB
         /// </summary>
-        [HttpPost("~/Admin/EditCategory/{id}")]
+        [HttpPost("~/AdminCategory/EditCategory/{id}")]
         public IActionResult EditCategory(EditCategoryViewModel editCategoryViewModel, int id)
         {
             if (ModelState.IsValid)

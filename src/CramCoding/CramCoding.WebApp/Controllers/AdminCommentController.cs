@@ -4,14 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace CramCoding.WebApp.Controllers
 {
     /// <summary>
-    /// Main administration controller
+    /// Controller responsible for Comment administration
     /// </summary>
     [Authorize(Roles = "AdminUser")]
-    public partial class AdminController : Controller
+    public class AdminCommentController : Controller
     {
-        [Route("~/Admin")]
-        [Route("~/Admin/Index")]
-        public IActionResult Index()
+        [Route("~/AdminComment/Comments")]
+        public IActionResult Comments()
         {
             return View();
         }

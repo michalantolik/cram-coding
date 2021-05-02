@@ -1,5 +1,8 @@
-﻿using CramCoding.Domain.Entities;
+﻿using CramCoding.Data.Repositories;
+using CramCoding.Domain.Entities;
+using CramCoding.Domain.Identity;
 using CramCoding.WebApp.ViewModels.Admin.Post;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
@@ -9,12 +12,29 @@ namespace CramCoding.WebApp.Controllers
     /// <summary>
     /// Part responsible for Post management
     /// </summary>
-    public partial class AdminController
+    public partial class AdminPostController : Controller
     {
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IPostRepository postRepository;
+        private readonly ICategoryRepository categoryRepository;
+        private readonly ITagRepository tagRepository;
+
+        public AdminPostController(
+            UserManager<ApplicationUser> userManager,
+            IPostRepository postRepository,
+            ICategoryRepository categoryRepository,
+            ITagRepository tagRepository)
+        {
+            this.userManager = userManager;
+            this.postRepository = postRepository;
+            this.categoryRepository = categoryRepository;
+            this.tagRepository = tagRepository;
+        }
+
         /// <summary>
         /// LISTS posts from DB
         /// </summary>
-        [Route("~/Admin/Posts")]
+        [Route("~/AdminPost/Posts")]
         public IActionResult Posts()
         {
             var postViewModels = this.postRepository.GetAll(include: true)
@@ -42,7 +62,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// SHOWS post details for a given ID
         /// </summary>
-        [Route("~/Admin/PostDetails/{id}")]
+        [Route("~/AdminPost/PostDetails/{id}")]
         public IActionResult PostDetails(int id)
         {
             var post = this.postRepository
@@ -55,16 +75,16 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// DISPLAYS "new post" form to be filled in
         /// </summary>
-        [HttpGet("~/Admin/AddPost")]
+        [HttpGet("~/AdminPost/AddPost")]
         public IActionResult AddPost()
         {
-            return View(CreatePostForEdit("Admin", nameof(AddPost)));
+            return View(CreatePostForEdit("AdminPost", nameof(AddPost)));
         }
 
         /// <summary>
         /// PERSISTS "new post" in DB
         /// </summary>
-        [HttpPost("~/Admin/AddPost")]
+        [HttpPost("~/AdminPost/AddPost")]
         public IActionResult AddPost(EditPostViewModel editPostViewModel)
         {
             if (ModelState.IsValid)
@@ -102,13 +122,13 @@ namespace CramCoding.WebApp.Controllers
                 return RedirectToAction("Posts");
             }
 
-            return View(CreatePostForEdit("Admin", nameof(AddPost)));
+            return View(CreatePostForEdit("AdminPost", nameof(AddPost)));
         }
 
         /// <summary>
         /// DISPLAYS "post" to be edited
         /// </summary>
-        [HttpGet("~/Admin/EditPost/{id}")]
+        [HttpGet("~/AdminPost/EditPost/{id}")]
         public IActionResult EditPost(int id)
         {
             var post = this.postRepository
@@ -121,7 +141,7 @@ namespace CramCoding.WebApp.Controllers
                 return new EmptyResult();
             }
 
-            var editPostViewModel = CreatePostForEdit("Admin", nameof(EditPost));
+            var editPostViewModel = CreatePostForEdit("AdminPost", nameof(EditPost));
 
             editPostViewModel.Header = post.Header;
             editPostViewModel.Content = post.Content;
@@ -142,7 +162,7 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// PERSISTS "edited post" in DB
         /// </summary>
-        [HttpPost("~/Admin/EditPost/{id}")]
+        [HttpPost("~/AdminPost/EditPost/{id}")]
         public IActionResult EditPost(EditPostViewModel editPostViewModel, int id)
         {
             if (ModelState.IsValid)
@@ -186,13 +206,13 @@ namespace CramCoding.WebApp.Controllers
                 return RedirectToAction("Posts");
             }
 
-            return View(CreatePostForEdit("Admin", nameof(EditPost)));
+            return View(CreatePostForEdit("AdminPost", nameof(EditPost)));
         }
 
         /// <summary>
         /// DELETES post from DB
         /// </summary>
-        [Route("~/Admin/DeletePost/{id}")]
+        [Route("~/AdminPost/DeletePost/{id}")]
         public IActionResult DeletePost(int id)
         {
             var post = this.postRepository.FindById(id);

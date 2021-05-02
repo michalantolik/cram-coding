@@ -3,11 +3,11 @@
 namespace CramCoding.WebApp.Controllers
 {
     /// <summary>
-    /// Part responsible for User management
+    /// Controller responsible for ApplicationUser administration
     /// </summary>
-    public partial class AdminController
+    public class AdminUserController : Controller
     {
-        [Route("~/Admin/Users")]
+        [Route("~/AdminUser/Users")]
         public IActionResult Users()
         {
             return View();

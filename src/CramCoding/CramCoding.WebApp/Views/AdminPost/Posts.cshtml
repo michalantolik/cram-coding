@@ -20,7 +20,7 @@
 
         <!-- Add post button -->
         <div class="col my-auto">
-            <a type="button" asp-controller="Admin" asp-action="AddPost" class="btn btn-lg btn-primary float-end">
+            <a type="button" asp-controller="AdminPost" asp-action="AddPost" class="btn btn-lg btn-primary float-end">
                 Create new
             </a>
         </div>
@@ -47,7 +47,7 @@
             <tbody>
                 @foreach (var post in Model)
                 {
-                    <tr onclick="showPostDetails('Admin', 'PostDetails', @post.Id)">
+                    <tr onclick="showPostDetails('AdminPost', 'PostDetails', @post.Id)">
                         <td>@post.Header</td>
                         <td>@post.PublishedAt</td>
                         <td>@post.UpdatedAt</td>
@@ -58,7 +58,7 @@
                             <div class="d-flex" onclick="event.stopPropagation()">
 
                                 <!-- Edit post -->
-                                <a asp-controller="Admin" asp-action="EditPost" asp-route-id="@post.Id">
+                                <a asp-controller="AdminPost" asp-action="EditPost" asp-route-id="@post.Id">
                                     <i class="fa fa-edit text-dark me-5"></i>
                                 </a>
 

@@ -44,6 +44,7 @@
                     <tr class="table-dark">
                         <th>Tag name</th>
                         <th>Posts count</th>
+                        <th>Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,21 @@
                         <tr>
                             <td>@tag.TagName</td>
                             <td>@tag.PostsCount</td>
+                            <td>
+                                <div class="d-flex">
+
+                                    <!-- Edit tag -->
+                                    <a asp-controller="AdminTag" asp-action="EditTag" asp-route-id="@tag.TagId">
+                                        <i class="fa fa-edit text-dark me-5"></i>
+                                    </a>
+
+                                    <!-- Delete tag -->
+                                    <a href="#">
+                                        <i class="fa fa-trash-alt text-dark"></i>
+                                    </a>
+
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>

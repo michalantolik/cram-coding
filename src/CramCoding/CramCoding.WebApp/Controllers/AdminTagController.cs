@@ -30,6 +30,7 @@ namespace CramCoding.WebApp.Controllers
                 .ToArray()
                 .Select(tag => new TagViewModel()
                 {
+                    TagId = tag.TagId,
                     TagName = tag.Name,
                     PostsCount = tag.Posts.Count
                 })
@@ -72,6 +73,60 @@ namespace CramCoding.WebApp.Controllers
             }
 
             return View();
+        }
+
+        /// <summary>
+        /// DISPLAYS tag to be edited
+        /// </summary>
+        [HttpGet("~/AdminTag/EditTag/{id}")]
+        public IActionResult EditTag(int id)
+        {
+            var tag = this.tagRepository
+                .GetAll(include: true)
+                .FirstOrDefault(t => t.TagId == id);
+
+            if (tag == null)
+            {
+                //TODO: Tag not found in DB. Add logging
+                return new EmptyResult();
+            }
+
+            var editTagViewModel = new EditTagViewModel()
+            {
+                TagName = tag.Name,
+                SubmitController = "AdminTag",
+                SubmitAction = nameof(EditTag)
+            };
+
+            return View(editTagViewModel);
+        }
+
+        /// <summary>
+        /// PERSISTS edited tag in DB
+        /// </summary>
+        [HttpPost("~/AdminTag/EditTag/{id}")]
+        public IActionResult EditTag(EditTagViewModel editTagViewModel, int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var tag = this.tagRepository
+                    .GetAll(include: true)
+                    .FirstOrDefault(t => t.TagId == id);
+
+                if (tag == null)
+                {
+                    //TODO: Tag not found in DB. Add logging.
+                    return new EmptyResult();
+                }
+
+                tag.Name = editTagViewModel.TagName;
+
+                this.tagRepository.Update(tag);
+
+                return RedirectToAction("ListTags");
+            }
+
+            return View(editTagViewModel);
         }
     }
 }

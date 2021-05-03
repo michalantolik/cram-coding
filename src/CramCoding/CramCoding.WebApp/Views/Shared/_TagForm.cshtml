@@ -1,0 +1,29 @@
+﻿@model EditTagViewModel
+<!-------------------------------------------------------------------------->
+<!-- Partial View - _TagForm                                              -->
+<!-------------------------------------------------------------------------->
+<!--                                                                      -->
+<!-- It should be used for adding new tag and editing existing one.       -->
+<!--                                                                      -->
+<!--                                                                      -->
+<!-- IMPORTANT !!!                                                        -->
+<!--                                                                      -->
+<!-- Controller and action method which will be used to submit a form ... -->
+<!-- ... are "bound" from the model and they must be set properly there   -->
+<!--                                                                      -->
+<!-------------------------------------------------------------------------->
+
+
+<form asp-controller="@Model.SubmitController" asp-action="@Model.SubmitAction" method="post" role="form">
+
+    <!-- Tag Name -->
+    <div class="pb-4">
+        <label asp-for="TagName">Name</label>
+        <input asp-for="TagName" type="text" class="form-control" />
+        <span asp-validation-for="TagName" class="text-danger"></span>
+    </div>
+
+    <!-- Save button -->
+    <button type="submit" class="btn btn-lg btn-primary">Save</button>
+
+</form>

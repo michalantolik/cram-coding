@@ -12,19 +12,9 @@
         <h1 class="display-4">Create tag</h1>
     </div>
 
-    <!-- Form -->
-    <form asp-action="AddTag" method="post" role="form">
-
-        <!-- Tag Name -->
-        <div class="pb-4">
-            <label asp-for="TagName">Name</label>
-            <input asp-for="TagName" type="text" class="form-control" />
-            <span asp-validation-for="TagName" class="text-danger"></span>
-        </div>
-
-        <!-- Save Button -->
-        <button type="submit" class="btn btn-lg btn-primary">Zapisz</button>
-
-    </form>
+    <!-- Tag Form -->
+    <div class="row">
+        <partial name="_TagForm" />
+    </div>
 
 </div>

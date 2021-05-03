@@ -45,7 +45,13 @@ namespace CramCoding.WebApp.Controllers
         [HttpGet("~/AdminTag/AddTag")]
         public IActionResult AddTag()
         {
-            return View();
+            var editTagViewModel = new EditTagViewModel()
+            {
+                SubmitController = "AdminTag",
+                SubmitAction = nameof(AddTag)
+            };
+
+            return View(editTagViewModel);
         }
 
         /// <summary>
@@ -54,6 +60,9 @@ namespace CramCoding.WebApp.Controllers
         [HttpPost("~/AdminTag/AddTag")]
         public IActionResult AddTag(EditTagViewModel editTagViewModel)
         {
+            editTagViewModel.SubmitAction = "AdminTag";
+            editTagViewModel.SubmitController = nameof(AddTag);
+
             var alreadyExists = this.tagRepository.FindByName(editTagViewModel.TagName) != null;
             if (alreadyExists)
             {

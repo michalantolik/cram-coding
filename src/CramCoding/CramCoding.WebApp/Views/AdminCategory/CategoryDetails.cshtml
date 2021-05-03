@@ -1,0 +1,114 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Category details";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+
+    const string ddResponsive = "offset-sm-2 col-sm-8 offset-md-1 col-md-9 offset-lg-0 col-lg-10";
+}
+
+<div class="container">
+
+    <!-- Page Header and Edit/Delete Buttons -->
+    <div class="row pb-2">
+
+        <!-- Empty column (for layout purposes) -->
+        <div class="col-md"></div>
+
+        <!-- Page Header -->
+        <div class="col-sm col-md">
+            <h1 class="display-4 text-md-center">Category</h1>
+        </div>
+
+        <!-- Edit / Delete Buttons -->
+        <div class="col-sm col-md my-auto">
+            <div class="d-flex justify-content-md-end">
+
+                <!-- Edit category -->
+                <a asp-controller="AdminCategory" asp-action="EditCategory" asp-route-id=@Model.CategoryId class="btn btn-lg btn-outline-dark">Edit</a>
+
+                <!-- Delete category -->
+                <a data-bs-toggle="modal" data-bs-target=@($"#_DeleteCategoryConfirmationModal-{Model.CategoryId}") class="btn btn-lg btn-outline-dark ms-3">Delete</a>
+
+                <!-- Delete category confirmation modal -->
+                <!-- IMPORTANT!!!: "id" attribute of the partial modal ...
+                ... must match the value of the "data-bs-target" attribute -->
+                <partial name="_DeleteCategoryConfirmationModal" model=@Model.CategoryId />
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Horizontal Line -->
+    <div class="row pb-4">
+        <hr />
+    </div>
+
+    <!-- Category Details -->
+    <div class="row mb-3">
+
+        <!-- ID -->
+        <dl class="row mb-0">
+            <dt class="col-2">Id</dt>
+            <dd class="@ddResponsive">@Model.CategoryId</dd>
+        </dl>
+
+        <!-- Name -->
+        <dl class="row mb-0">
+            <dt class="col-2">Name</dt>
+            <dd class="@ddResponsive">@Model.Name</dd>
+        </dl>
+
+        <!-- Posts Count -->
+        <dl class="row mb-0">
+            <dt class="col-2">Number of posts</dt>
+            <dd class="@ddResponsive">@Model.Posts.Count</dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+        <!-- Parent Category -->
+        <dl class="row mb-0">
+            <dt class="col-2">Parent category</dt>
+            <dd class="@ddResponsive">
+                @if (Model.Parent?.Name == null)
+                {
+                    <i class="text-muted">-</i>
+                }
+                else
+                {
+                    @Model.Parent?.Name
+                }
+            </dd>
+        </dl>
+
+        <!-- Children Categories -->
+        <dl class="row mb-0">
+            <dt class="col-2">Children categories</dt>
+            <dd class="@ddResponsive">
+                @if (Model.Children == null || Model.Children.Count == 0)
+                {
+                    <i class="text-muted">-</i>
+                }
+                else
+                {
+                    <ul class="list-unstyled">
+                        @foreach (var childCategory in Model.Children)
+                        {
+                            <li>@childCategory.Name</li>
+                        }
+                    </ul>
+                }
+
+            </dd>
+        </dl>
+
+        <hr class="mt-2" />
+
+    </div>
+
+    <!-- Back to List button -->
+    <a type="button" asp-controller="AdminCategory" asp-action="ListCategories" class="btn btn-outline-dark">Go back to List</a>
+
+</div>

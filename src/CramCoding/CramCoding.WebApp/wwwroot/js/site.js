@@ -11,11 +11,16 @@ function updateFormSubmissionDateTime() {
 }
 
 /*************************************************************************
- * CONTROLLER: AdminPost
- * VIEW:       Posts -> PostDetails
+ * USED IN VIEWS:
+ *
+ * Please update the list below as you use this method in new places:
+ * 
+ * - ListCategories
+ * - ListPosts
+ * 
 *************************************************************************/
 
-function showPostDetails(controller, method, id) {
+function showEntityDetails(controller, method, id) {
 
     window.location = `/${controller}/${method}/${id}`;
 

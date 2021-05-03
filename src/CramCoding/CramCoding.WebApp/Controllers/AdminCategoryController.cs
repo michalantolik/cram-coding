@@ -48,6 +48,25 @@ namespace CramCoding.WebApp.Controllers
         }
 
         /// <summary>
+        /// SHOWS category details for a given ID
+        /// </summary>
+        [Route("~/AdminCategory/CategoryDetails/{id}")]
+        public IActionResult CategoryDetails(int id)
+        {
+            var category = this.categoryRepository
+                .GetAll(include: true)
+                .FirstOrDefault(c => c.CategoryId == id);
+
+            if (category == null)
+            {
+                //TODO: Category not found in DB. Add logging
+                return new EmptyResult();
+            }
+
+            return View(category);
+        }
+
+        /// <summary>
         /// DISPLAYS "new category" form to be filled in
         /// </summary>
         [HttpGet("~/AdminCategory/AddCategory")]

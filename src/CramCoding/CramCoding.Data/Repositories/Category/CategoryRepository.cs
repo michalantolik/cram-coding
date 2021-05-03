@@ -18,7 +18,9 @@ namespace CramCoding.Data.Repositories
         public IQueryable<Category> GetAll(bool include = false)
         {
             return include
-                ? this.context.Category.Include(c => c.Children)
+                ? this.context.Category
+                    .Include(c => c.Parent)
+                    .Include(c => c.Children)
                 : this.context.Category;
         }
 

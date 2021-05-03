@@ -69,6 +69,12 @@ namespace CramCoding.WebApp.Controllers
                 .GetAll(include: true)
                 .FirstOrDefault(p => p.PostId == id);
 
+            if (post == null)
+            {
+                //TODO: Post not found in DB. Add logging
+                return new EmptyResult();
+            }
+
             return View(post);
         }
 

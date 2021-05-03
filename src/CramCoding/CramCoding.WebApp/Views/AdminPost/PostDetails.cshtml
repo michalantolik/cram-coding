@@ -122,12 +122,19 @@
         <dl class="row mb-0">
             <dt class="col-2">Categories</dt>
             <dd class="@ddResponsive">
-                <ul class="list-unstyled">
-                    @foreach (var category in Model.Categories)
-                    {
-                        <li>@category.Name</li>
-                    }
-                </ul>
+                @if (Model.Categories == null || Model.Categories.Count == 0)
+                {
+                    <i class="text-muted">-</i>
+                }
+                else
+                {
+                    <ul class="list-unstyled">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <li>@category.Name</li>
+                        }
+                    </ul>
+                }
             </dd>
         </dl>
 
@@ -137,12 +144,19 @@
         <dl class="row mb-0">
             <dt class="col-2">Tags</dt>
             <dd class="@ddResponsive">
-                <ul class="list-unstyled">
-                    @foreach (var tag in Model.Tags)
-                    {
-                        <li>@tag.Name</li>
-                    }
-                </ul>
+                @if (Model.Tags == null || Model.Tags.Count == 0)
+                {
+                    <i class="text-muted">-</i>
+                }
+                else
+                {
+                    <ul class="list-unstyled">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            <li>@tag.Name</li>
+                        }
+                    </ul>
+                }
             </dd>
         </dl>
         <hr class="mt-2" />

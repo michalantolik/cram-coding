@@ -61,6 +61,7 @@ namespace CramCoding.WebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
     }

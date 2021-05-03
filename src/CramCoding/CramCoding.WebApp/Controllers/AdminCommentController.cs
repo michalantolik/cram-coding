@@ -9,8 +9,8 @@ namespace CramCoding.WebApp.Controllers
     [Authorize(Roles = "AdminUser")]
     public class AdminCommentController : Controller
     {
-        [Route("~/AdminComment/Comments")]
-        public IActionResult Comments()
+        [Route("~/AdminComment/ListComments")]
+        public IActionResult ListComments()
         {
             return View();
         }

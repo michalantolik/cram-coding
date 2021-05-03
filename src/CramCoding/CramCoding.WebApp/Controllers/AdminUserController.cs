@@ -7,8 +7,8 @@ namespace CramCoding.WebApp.Controllers
     /// </summary>
     public class AdminUserController : Controller
     {
-        [Route("~/AdminUser/Users")]
-        public IActionResult Users()
+        [Route("~/AdminUser/ListUsers")]
+        public IActionResult ListUsers()
         {
             return View();
         }

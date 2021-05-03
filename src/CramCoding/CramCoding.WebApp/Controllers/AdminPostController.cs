@@ -34,8 +34,8 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// LISTS posts from DB
         /// </summary>
-        [Route("~/AdminPost/Posts")]
-        public IActionResult Posts()
+        [Route("~/AdminPost/ListPosts")]
+        public IActionResult ListPosts()
         {
             var postViewModels = this.postRepository.GetAll(include: true)
                 .ToArray()
@@ -119,7 +119,7 @@ namespace CramCoding.WebApp.Controllers
 
                 this.postRepository.Add(post);
 
-                return RedirectToAction("Posts");
+                return RedirectToAction("ListPosts");
             }
 
             return View(CreatePostForEdit("AdminPost", nameof(AddPost)));
@@ -203,7 +203,7 @@ namespace CramCoding.WebApp.Controllers
 
                 this.postRepository.Update(post);
 
-                return RedirectToAction("Posts");
+                return RedirectToAction("ListPosts");
             }
 
             return View(CreatePostForEdit("AdminPost", nameof(EditPost)));
@@ -223,7 +223,7 @@ namespace CramCoding.WebApp.Controllers
             }
 
             this.postRepository.Delete(post);
-            return RedirectToAction("Posts");
+            return RedirectToAction("ListPosts");
         }
 
         /// <summary>

@@ -23,8 +23,8 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// LISTS tags from DB
         /// </summary>
-        [Route("~/AdminTag/Tags")]
-        public IActionResult Tags()
+        [Route("~/AdminTag/ListTags")]
+        public IActionResult ListTags()
         {
             var tagViewModels = this.tagRepository.GetAll(include: true)
                 .ToArray()
@@ -68,7 +68,7 @@ namespace CramCoding.WebApp.Controllers
                 };
                 this.tagRepository.Add(tag);
 
-                return RedirectToAction("Tags");
+                return RedirectToAction("ListTags");
             }
 
             return View();

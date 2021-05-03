@@ -31,8 +31,8 @@ namespace CramCoding.WebApp.Controllers
         /// <summary>
         /// LISTS categories from DB
         /// </summary>
-        [Route("~/AdminCategory/Categories")]
-        public IActionResult Categories()
+        [Route("~/AdminCategory/ListCategories")]
+        public IActionResult ListCategories()
         {
             var categoryViewModels = this.categoryRepository.GetAll(include: true)
                 .ToArray()
@@ -83,7 +83,7 @@ namespace CramCoding.WebApp.Controllers
                 var category = this.mapper.Map<Category>(editCategoryViewModel);
                 this.categoryRepository.Add(category);
 
-                return RedirectToAction("Categories");
+                return RedirectToAction("ListCategories");
             }
 
             return View(editCategoryViewModel);
@@ -129,7 +129,7 @@ namespace CramCoding.WebApp.Controllers
             }
 
             this.categoryRepository.Delete(category);
-            return RedirectToAction("Categories");
+            return RedirectToAction("ListCategories");
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace CramCoding.WebApp.Controllers
 
                 this.categoryRepository.Update(category);
 
-                return RedirectToAction("Categories");
+                return RedirectToAction("ListCategories");
             }
 
             return View(editCategoryViewModel);

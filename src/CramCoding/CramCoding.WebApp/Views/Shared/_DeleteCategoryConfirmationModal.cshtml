@@ -14,7 +14,7 @@
 <!--                                                               -->
 <!------------------------------------------------------------------->
 
-<div class="modal fade" id=@($"_DeletePostConfirmationModal-{Model}") data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id=@($"_DeleteCategoryConfirmationModal-{Model}") data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
@@ -27,7 +27,7 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <p>This action <b>cannot</b> be undone.</p>
-                <p>Post @Model will be permanently deleted.</p>
+                <p>Category @Model will be permanently deleted.</p>
             </div>
 
             <!-- Modal Footer -->
@@ -37,7 +37,7 @@
                 <a class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</a>
 
                 <!-- Delete button-->
-                <a asp-controller="AdminPost" asp-action="DeletePost" asp-route-id=@Model class="btn btn-danger">Delete</a>
+                <a asp-controller="AdminCategory" asp-action="DeleteCategory" asp-route-id=@Model class="btn btn-danger">Delete</a>
 
             </div>
 

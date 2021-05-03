@@ -62,9 +62,14 @@
                                 </a>
 
                                 <!-- Delete post -->
-                                <a href="#">
+                                <a data-bs-toggle="modal" data-bs-target=@($"#_DeleteCategoryConfirmationModal-{category.CategoryId}")>
                                     <i class="fa fa-trash-alt text-dark"></i>
                                 </a>
+
+                                <!-- Delete category confirmation modal -->
+                                <!-- IMPORTANT!!!: "id" attribute of the partial modal ...
+                                ... must match the value of the "data-bs-target" attribute -->
+                                <partial name="_DeleteCategoryConfirmationModal" model="@category.CategoryId" />
 
                             </div>
                         </td>

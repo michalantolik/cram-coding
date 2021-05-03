@@ -116,6 +116,23 @@ namespace CramCoding.WebApp.Controllers
         }
 
         /// <summary>
+        /// DELETES category from DB
+        /// </summary>
+        [Route("~/AdminCategory/DeleteCategory/{id}")]
+        public IActionResult DeleteCategory(int id)
+        {
+            var category = this.categoryRepository.FindById(id);
+            if (category == null)
+            {
+                //TODO: Category not found in DB. Add logging.
+                return new EmptyResult();
+            }
+
+            this.categoryRepository.Delete(category);
+            return RedirectToAction("Categories");
+        }
+
+        /// <summary>
         /// PERSISTS edited category in DB
         /// </summary>
         [HttpPost("~/AdminCategory/EditCategory/{id}")]

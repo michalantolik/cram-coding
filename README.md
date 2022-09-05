@@ -1,8 +1,5 @@
 # cram-coding
-Software development blog written with ASP.NET Core 5 MVC.
-
-## Purpose
-I treat this project as a learning opportunity for ASP.NET Core 5 framework, MVC architectural pattern and related web technologies.
+Blog WebApp in ASP.NET Core 5 MVC - my learning project
 
 ## Technology Stack
 - .NET 5

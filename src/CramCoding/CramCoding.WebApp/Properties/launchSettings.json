@@ -36,8 +36,8 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Seed CramCoding.WebApp": {
-      "commandLineArgs": "seed",
+    "RecreateDB CramCoding.WebApp": {
+      "commandLineArgs": "recreateDB",
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

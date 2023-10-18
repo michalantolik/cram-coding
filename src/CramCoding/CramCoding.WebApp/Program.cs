@@ -1,3 +1,4 @@
+using CramCoding.Data;
 using CramCoding.Data.Seed;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +14,9 @@ namespace CramCoding.WebApp
         {
             var host = CreateHostBuilder(args).Build();
 
-            if (args.Contains("seed"))
+            if (args.Contains("recreateDB"))
             {
-                await SeedAsync(host);
+                await RecreateDbAsync(host);
             }
 
             host.Run();
@@ -28,12 +29,16 @@ namespace CramCoding.WebApp
                     webBuilder.UseStartup<Startup>();
                 });
 
-        private static async Task SeedAsync(IHost host)
+        private static async Task RecreateDbAsync(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
-                var initializer = scope.ServiceProvider.GetService<AppDbInitializer>();
-                await initializer.SeedAsync();
+                var dbContext = scope.ServiceProvider.GetService<AppDbContext>();
+                await dbContext.Database.EnsureDeletedAsync();
+                await dbContext.Database.EnsureCreatedAsync();
+
+                var dbInitializer = scope.ServiceProvider.GetService<AppDbInitializer>();
+                await dbInitializer.SeedAsync();
             }
         }
     }

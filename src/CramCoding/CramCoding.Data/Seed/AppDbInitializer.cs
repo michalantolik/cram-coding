@@ -1,6 +1,7 @@
 ﻿using CramCoding.Data.Repositories;
 using CramCoding.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace CramCoding.Data.Seed
 {
     public class AppDbInitializer
     {
+        private readonly IConfiguration configuration;
         private readonly RoleManager<ApplicationRole> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IPostRepository postRepository;
@@ -15,12 +17,14 @@ namespace CramCoding.Data.Seed
         private readonly ITagRepository tagRepository;
 
         public AppDbInitializer(
+            IConfiguration configuration,
             RoleManager<ApplicationRole> roleManager,
             UserManager<ApplicationUser> userManager,
             IPostRepository postRepository,
             ICategoryRepository categoryRepository,
             ITagRepository tagRepository)
         {
+            this.configuration = configuration;
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.postRepository = postRepository;
@@ -31,6 +35,8 @@ namespace CramCoding.Data.Seed
         public async Task SeedAsync()
         {
             await SeedRolesAsync();
+            await SeedAdminUserAsync();
+            await SeedBasicUserAsync();
 
             await SeedCategoriesAsync();
             await SeedTagsAsync();
@@ -58,6 +64,40 @@ namespace CramCoding.Data.Seed
                     await this.roleManager.CreateAsync(applicationRole);
                 }
             }
+        }
+
+        private async Task SeedAdminUserAsync()
+        {
+            var adminSeeder = new AdminUserSeederData();
+            var adminUserToStore = new ApplicationUser
+            {
+                FirstName = adminSeeder.FirstName,
+                LastName = adminSeeder.LastName,
+                UserName = adminSeeder.Email,
+                Email = adminSeeder.Email
+            };
+
+            await this.userManager.CreateAsync(adminUserToStore, adminSeeder.Password);
+
+            var adminUserAsRead = await this.userManager.FindByNameAsync(adminSeeder.UserName);
+            await this.userManager.AddToRoleAsync(adminUserAsRead, adminSeeder.RoleName);
+        }
+
+        private async Task SeedBasicUserAsync()
+        {
+            var basicSeeder = new BasicUserSeederData();
+            var basicUserToStore = new ApplicationUser
+            {
+                FirstName = basicSeeder.FirstName,
+                LastName = basicSeeder.LastName,
+                UserName = basicSeeder.Email,
+                Email = basicSeeder.Email
+            };
+
+            await this.userManager.CreateAsync(basicUserToStore, basicSeeder.Password);
+
+            var basicUserAsRead = await this.userManager.FindByNameAsync(basicSeeder.UserName);
+            await this.userManager.AddToRoleAsync(basicUserAsRead, basicSeeder.RoleName);
         }
 
         private async Task SeedCategoriesAsync()

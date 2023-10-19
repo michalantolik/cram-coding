@@ -1,8 +1,8 @@
 # cram-coding
-Blog WebApp in ASP.NET Core 5 MVC - my learning project
+Simple blog web application for learning ASP.NET Core 6 MVC.
 
 ## Technology Stack
-- .NET 5
-- ASP.NET Core 5 (MVC)
-- Entity Framework Core 5
+- .NET 6
+- ASP.NET Core 6 (MVC)
+- Entity Framework Core 6
 - Bootstrap 5

@@ -142,8 +142,10 @@ namespace CramCoding.Data.Seed
 
             // Seed database posts with seeder data
             var postsSeederData = new PostsSeederData().Posts;
+            var defaultAuthor = this.userManager.Users.FirstOrDefault();
             foreach (var post in postsSeederData)
             {
+                post.Author = defaultAuthor;
                 await Task.Run(() => this.postRepository.Add(post));
             }
         }
